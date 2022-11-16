@@ -1,11 +1,11 @@
 import { ReactElement } from 'react'
-import { LoginLayout } from '../layouts/LogintLayout'
-import { NextPageWithLayout } from './_app'
+import { LoginLayout } from '../../layouts/LogintLayout'
+import { NextPageWithLayout } from '../_app'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
-import { useAppDispatch } from '../store/hooks'
+import { useAppDispatch } from '../../store/hooks'
 import { useForm } from 'react-hook-form'
-import { authenticateUser } from '../store/reducers/loginSlice'
+import { authenticateUser } from '../../store/reducers/loginSlice'
 import {
   FieldContainer,
   FormSingIn,
@@ -14,7 +14,7 @@ import {
   SingIn,
   SingUp,
   SingUpButton,
-} from '../styles/pages/singin'
+} from './_styles'
 import { useRouter } from 'next/router'
 
 const loginSchema = z.object({

@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { ReactElement } from 'react'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { styled } from '../styles'
@@ -13,10 +14,15 @@ const Button = styled('button', {
 
 const Home: NextPageWithLayout = () => {
   return (
-    <div>
-      <h1>Hello World!</h1>
-      <Button>Oi</Button>
-    </div>
+    <>
+      <Head>
+        <title>Coronado Pet - Home</title>
+      </Head>
+      <div>
+        <h1>Hello World!</h1>
+        <Button>Oi</Button>
+      </div>
+    </>
   )
 }
 

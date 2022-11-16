@@ -1,5 +1,5 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { keyframes, styled } from '..'
+import { keyframes, styled } from '../../styles'
 
 export const TopBarContainer = styled('nav', {
   width: '1200px',

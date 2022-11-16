@@ -1,7 +1,7 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../store'
-import { singOut } from '../store/reducers/loginSlice'
+import { RootState } from '../../store'
+import { singOut } from '../../store/reducers/loginSlice'
 import Link from 'next/link'
 import { CaretDown, SignIn, SignOut, X } from 'phosphor-react'
 import {
@@ -12,7 +12,7 @@ import {
   PopoverTrigger,
   StyledArrow,
   TopBarContainer,
-} from '../styles/components/topBar'
+} from './styles'
 
 const TopBar = () => {
   const dispatch = useDispatch()

@@ -2,12 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, MagnifyingGlass, ShoppingCart } from 'phosphor-react'
 
-import {
-  HeaderContainer,
-  LadoDireito,
-  Logo,
-  SearchBar,
-} from '../styles/components/header'
+import { HeaderContainer, LadoDireito, Logo, SearchBar } from './styles'
 
 export const Header = () => {
   return (

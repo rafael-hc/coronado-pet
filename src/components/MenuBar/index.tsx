@@ -1,4 +1,4 @@
-import { MenuBarContainer } from '../styles/components/menuBar'
+import { MenuBarContainer } from './styles'
 
 export const MenuBar = () => {
   return (

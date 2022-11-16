@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { CardContainer, CardImage } from '../styles/components/cardProdutc'
+import { CardContainer, CardImage } from './styles'
 
 const CardProduct = () => {
   return (

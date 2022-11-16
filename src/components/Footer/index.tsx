@@ -11,7 +11,7 @@ import {
   RedeSocial,
   SobreNos,
   TrabalheConosco,
-} from '../styles/components/footer'
+} from './styles'
 
 export const Footer = () => {
   return (

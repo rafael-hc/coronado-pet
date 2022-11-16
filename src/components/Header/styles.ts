@@ -1,4 +1,4 @@
-import { styled } from '..'
+import { styled } from '../../styles'
 
 export const HeaderContainer = styled('section', {
   width: '1200px',

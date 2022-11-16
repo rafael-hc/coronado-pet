@@ -1,4 +1,4 @@
-import { styled } from '..'
+import { styled } from '../../styles'
 
 export const MenuBarContainer = styled('nav', {
   width: '1200px',

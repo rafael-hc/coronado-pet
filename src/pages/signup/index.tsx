@@ -2,7 +2,7 @@ import { CaretRight, Check } from 'phosphor-react'
 import * as RadioGroup from '@radix-ui/react-radio-group'
 import { formatToCPF, formatToPhone } from 'brazilian-values'
 import { FormEvent, ReactElement, useState } from 'react'
-import { LoginLayout } from '../layouts/LogintLayout'
+import { LoginLayout } from '../../layouts/LogintLayout'
 import {
   ButtonForm,
   StepFormContainer,
@@ -10,10 +10,10 @@ import {
   TipoPessoa,
   FormRegister,
   LabelStepForm,
-} from '../styles/pages/signup'
-import { NextPageWithLayout } from './_app'
-import { Input } from '../styles/components/input'
-import { Fieldset } from '../styles/components/fieldset'
+} from './_styles'
+import { NextPageWithLayout } from '../_app'
+import { Input } from '../../styles/components/input'
+import { Fieldset } from '../../styles/components/fieldset'
 
 const SignUp: NextPageWithLayout = () => {
   const [stepForm, setStepForm] = useState(0)
