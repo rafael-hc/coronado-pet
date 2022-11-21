@@ -1,16 +1,17 @@
 import Head from 'next/head'
 import { ReactElement } from 'react'
+import { Carrossel } from '../components/Carrossel'
 import { DefaultLayout } from '../layouts/DefaultLayout'
-import { styled } from '../styles'
+// import { styled } from '../styles'
 import { NextPageWithLayout } from './_app'
 
-const Button = styled('button', {
-  border: 'none',
-  backgroundColor: '$primary',
-  borderRadius: 8,
-  padding: '1rem',
-  cursor: 'pointer',
-})
+// const Button = styled('button', {
+//   border: 'none',
+//   backgroundColor: '$primary',
+//   borderRadius: 8,
+//   padding: '1rem',
+//   cursor: 'pointer',
+// })
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -18,10 +19,7 @@ const Home: NextPageWithLayout = () => {
       <Head>
         <title>Coronado Pet - Home</title>
       </Head>
-      <div>
-        <h1>Hello World!</h1>
-        <Button>Oi</Button>
-      </div>
+      <Carrossel />
     </>
   )
 }

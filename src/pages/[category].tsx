@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next'
+import Head from 'next/head'
 import { ReactElement } from 'react'
 import CardProduct from '../components/CardProduct'
 import FilterSidebar from '../components/FilterSidebar'
@@ -11,15 +12,22 @@ interface ProductsProps {
 
 const Products = ({ category }: ProductsProps) => {
   return (
-    <PageProductsContainer>
-      <FilterSidebar />
-      <div style={{ display: 'flex' }}>
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-        <CardProduct />
-      </div>
-    </PageProductsContainer>
+    <>
+      <Head>
+        <title>{`Coronado Pet - ${
+          category[0].toUpperCase() + category.substring(1)
+        }`}</title>
+      </Head>
+      <PageProductsContainer>
+        <FilterSidebar />
+        <div style={{ display: 'flex' }}>
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
+        </div>
+      </PageProductsContainer>
+    </>
   )
 }
 

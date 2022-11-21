@@ -1,13 +1,14 @@
+import Link from 'next/link'
 import { MenuBarContainer } from './styles'
 
 export const MenuBar = () => {
   return (
     <MenuBarContainer>
-      <a href="#">Cachorro</a>
-      <a href="#">Gato</a>
-      <a href="#">Pássaro</a>
-      <a href="#">Casa e Jardim</a>
-      <a href="#">Serviços Veterinários</a>
+      <Link href="/cachorros">Cachorro</Link>
+      <Link href="gatos">Gato</Link>
+      <Link href="passaros">Pássaro</Link>
+      <Link href="casa-e-jardim">Casa e Jardim</Link>
+      <Link href="servicos-veterinarios">Serviços Veterinários</Link>
     </MenuBarContainer>
   )
 }
