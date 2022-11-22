@@ -10,7 +10,7 @@ export const BestSllerContainer = styled('section', {
 })
 
 export const SliderContainer = styled('div', {
-  // gap: '0.5rem',
+  display: 'flex',
 })
 
 export const SliderHeader = styled('header', {

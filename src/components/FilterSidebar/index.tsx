@@ -1,6 +1,8 @@
+import { SidebarContainer } from './styles'
+
 const FilterSidebar = () => {
   return (
-    <div>
+    <SidebarContainer>
       <ul>
         <li>Categoty 1</li>
         <li>item</li>
@@ -23,7 +25,7 @@ const FilterSidebar = () => {
         <li>item</li>
         <li>item</li>
       </ul>
-    </div>
+    </SidebarContainer>
   )
 }
 
