@@ -6,7 +6,11 @@ import { Carrossel } from '../components/Carrossel'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { Button } from '../styles/components/button'
 import { NextPageWithLayout } from './_app'
-import { Description, SubBanner, SubBannerContainer } from './_homeStyle'
+import {
+  Description,
+  SubBanner,
+  SubBannerContainer,
+} from '../styles/pages/home'
 
 const Home: NextPageWithLayout = () => {
   return (

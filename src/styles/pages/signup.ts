@@ -1,4 +1,4 @@
-import { styled } from '../../styles'
+import { styled } from '..'
 
 export const RegisterContainer = styled('main', {
   maxWidth: '70rem',

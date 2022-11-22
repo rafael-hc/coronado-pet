@@ -14,7 +14,7 @@ import {
   SingIn,
   SingUp,
   SingUpButton,
-} from './_styles'
+} from '../../styles/pages/signin'
 import { useRouter } from 'next/router'
 
 const loginSchema = z.object({

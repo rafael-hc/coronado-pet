@@ -1,7 +1,7 @@
 import { ReactElement } from 'react'
 import { LoginLayout } from '../../layouts/LogintLayout'
 import { NextPageWithLayout } from '../_app'
-import { Test } from './_styles'
+import { Test } from '../../styles/pages/cart'
 
 const Cart: NextPageWithLayout = () => {
   return (

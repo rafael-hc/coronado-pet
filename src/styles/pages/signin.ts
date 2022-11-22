@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { styled } from '../../styles'
+import { styled } from '..'
 
 export const LoginContainer = styled('main', {
   maxWidth: '55rem',

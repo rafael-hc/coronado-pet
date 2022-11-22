@@ -10,7 +10,7 @@ import {
   TipoPessoa,
   FormRegister,
   LabelStepForm,
-} from './_styles'
+} from '../../styles/pages/signup'
 import { NextPageWithLayout } from '../_app'
 import { Input } from '../../styles/components/input'
 import { Fieldset } from '../../styles/components/fieldset'

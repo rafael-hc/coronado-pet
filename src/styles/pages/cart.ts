@@ -1,4 +1,4 @@
-import { keyframes, styled } from '../../styles'
+import { keyframes, styled } from '..'
 
 const anime = keyframes({
   from: {
