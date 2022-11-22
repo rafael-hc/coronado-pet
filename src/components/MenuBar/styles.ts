@@ -1,7 +1,7 @@
 import { styled } from '../../styles'
 
 export const MenuBarContainer = styled('nav', {
-  width: '1200px',
+  width: '100%',
   height: 50,
 
   display: 'flex',

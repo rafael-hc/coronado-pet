@@ -1,33 +1,31 @@
 import { styled } from '../../styles'
 
 export const HeaderContainer = styled('section', {
-  width: '1200px',
+  width: '100%',
   padding: '1rem 0',
 
   display: 'grid',
   gridTemplateColumns: 'repeat(3, 1fr)',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyItems: 'center',
 
   backgroundColor: '$white',
   color: '$gray-400',
-
-  img: {
-    width: 120,
-  },
 })
 
 export const Logo = styled('div', {
-  // width: '100%',
-  // maxWidth: 300,
+  width: '7.5rem',
+  height: '4.75rem',
+
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+
+  position: 'relative',
 })
 
-export const LadoDireito = styled('div', {
-  // width: '100%',
-  // maxWidth: 300,
+export const Icons = styled('div', {
+  width: '100%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'end',

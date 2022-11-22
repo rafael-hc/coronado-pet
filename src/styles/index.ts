@@ -17,7 +17,7 @@ export const {
 
       primary: '#7bb831',
       background: '#d5f1b3',
-      secondary: '#FFD33C',
+      secondary: '#437a00',
       button: '#D2D2D2',
       text: '#fffff0',
       light: '#F3F3F3',

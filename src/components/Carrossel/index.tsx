@@ -72,7 +72,7 @@ export const Carrossel = () => {
             <TextSlide active={currentSlide === 0}>
               <span>É Sobre Fazer</span>
               <span>Novos Amigos!</span>
-              <Link href="/cachorros">Compre</Link>
+              <Link href="/cachorros">Confira</Link>
             </TextSlide>
           </ItemSlide>
           <ItemSlide className="keen-slider__slide">
@@ -85,7 +85,7 @@ export const Carrossel = () => {
               <span>O cuidado dos</span>
               <span>seus gatos em</span>
               <span>boas mãos!</span>
-              <Link href="/gatos">Compre</Link>
+              <Link href="/gatos">Confira</Link>
             </TextSlide>
           </ItemSlide>
         </div>

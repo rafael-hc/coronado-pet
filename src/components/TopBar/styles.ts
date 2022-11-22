@@ -2,7 +2,7 @@ import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { keyframes, styled } from '../../styles'
 
 export const TopBarContainer = styled('nav', {
-  width: '1200px',
+  width: '100%',
   padding: '0.75rem 0',
   color: '$gray-400',
 

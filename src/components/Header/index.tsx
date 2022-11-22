@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Heart, MagnifyingGlass, ShoppingCart } from 'phosphor-react'
 
-import { HeaderContainer, LadoDireito, Logo, SearchBar } from './styles'
+import { HeaderContainer, Icons, Logo, SearchBar } from './styles'
 
 export const Header = () => {
   return (
@@ -15,24 +15,17 @@ export const Header = () => {
       </SearchBar>
       <Logo>
         <Link href="/">
-          <Image
-            src="/images/logo-coronado.jpg"
-            width={120}
-            height={75}
-            quality={75}
-            style={{ objectFit: 'cover' }}
-            alt=""
-          />
+          <Image src="/images/logo-coronado.jpg" fill quality={75} alt="" />
         </Link>
       </Logo>
-      <LadoDireito>
+      <Icons>
         <Link href="/cart">
           <Heart size={24} />
         </Link>
         <Link href="/cart">
           <ShoppingCart size={24} />
         </Link>
-      </LadoDireito>
+      </Icons>
     </HeaderContainer>
   )
 }

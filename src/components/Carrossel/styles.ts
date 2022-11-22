@@ -61,6 +61,12 @@ export const TextSlide = styled('div', {
 
     backgroundColor: '$primary',
     color: '$white',
+    transition: 'all 0.5s',
+
+    '&:hover': {
+      backgroundColor: '$secondary',
+      transition: 'all 0.5s',
+    },
   },
 
   variants: {
