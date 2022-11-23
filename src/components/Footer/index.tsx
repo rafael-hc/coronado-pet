@@ -1,56 +1,108 @@
+import Link from 'next/link'
 import {
   FacebookLogo,
   InstagramLogo,
   EnvelopeSimple,
   WhatsappLogo,
-  Phone,
+  YoutubeLogo,
 } from 'phosphor-react'
 import {
-  Contato,
+  QuickLinks,
   FooterContainer,
-  RedeSocial,
-  SobreNos,
-  TrabalheConosco,
+  FooterContent,
+  Services,
+  Contact,
+  Information,
 } from './styles'
 
 export const Footer = () => {
   return (
     <FooterContainer>
-      <SobreNos>
-        <a href="#">Sobre a Coronado</a>
-      </SobreNos>
+      <FooterContent>
+        <Contact>
+          <li>
+            <h4>Contatos</h4>
+          </li>
+          <li>
+            <a href="#">
+              <EnvelopeSimple size={24} /> example@coronadopet.com.br
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <WhatsappLogo size={24} /> (99) 9 9999-9999
+            </a>
+          </li>
 
-      <Contato>
-        <div>Contato</div>
-        <div className="iconesRedeSocial">
-          <a href="#">
-            <EnvelopeSimple size={24} />
-          </a>
-          <a href="#">
-            <WhatsappLogo size={24} />
-          </a>
-          <a href="#">
-            <Phone size={24} />
-          </a>
-        </div>
-      </Contato>
+          <div style={{ display: 'flex' }}>
+            <a href="#">
+              <YoutubeLogo size={24} />
+            </a>
 
-      <TrabalheConosco>
-        <a href="#">Trabalhe Conosco</a>
-      </TrabalheConosco>
+            <a href="#">
+              <FacebookLogo size={24} />
+            </a>
 
-      <RedeSocial>
-        <div>Siga a Coronado</div>
-        <div className="iconesRedeSocial">
-          <a href="#">
-            <FacebookLogo size={24} />
-          </a>
+            <a href="#">
+              <InstagramLogo size={24} />
+            </a>
+          </div>
+        </Contact>
 
-          <a href="#">
-            <InstagramLogo size={24} />
-          </a>
-        </div>
-      </RedeSocial>
+        <QuickLinks>
+          <h4>Links Rápidos</h4>
+          <li>
+            <Link href="#">Contate-nos</Link>
+          </li>
+          <li>
+            <Link href="#">Envio</Link>
+          </li>
+          <li>
+            <Link href="#">Mapa do site</Link>
+          </li>
+          <li>
+            <Link href="#">Perguntas Frequentes</Link>
+          </li>
+          <li>
+            <Link href="#">Lojas</Link>
+          </li>
+        </QuickLinks>
+
+        <Information>
+          <h4>Informações</h4>
+          <li>
+            <Link href="#">Sobre nós</Link>
+          </li>
+          <li>
+            <Link href="#">Informação de entrega</Link>
+          </li>
+          <li>
+            <Link href="#">Política de Privacidade</Link>
+          </li>
+          <li>
+            <Link href="#">Termos e Condições</Link>
+          </li>
+        </Information>
+
+        <Services>
+          <h4>Serviços</h4>
+          <li>
+            <Link href="#">Política para vendedores</Link>
+          </li>
+          <li>
+            <Link href="#">Política para Compradores</Link>
+          </li>
+          <li>
+            <Link href="#">Termos e Condições</Link>
+          </li>
+          <li>
+            <Link href="#">Envio e Reembolso</Link>
+          </li>
+          <li>
+            <Link href="#">Política de Atacado</Link>
+          </li>
+        </Services>
+      </FooterContent>
       <p>
         Copyright© 2022 Coronado Comércio de Rações Todos os direitos reservados
       </p>

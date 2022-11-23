@@ -5,7 +5,7 @@ import { CardContainer, CardImage, Rating, Tilte } from './styles'
 
 const CardProduct = () => {
   return (
-    <CardContainer>
+    <CardContainer href="#">
       <CardImage>
         <Image
           src="/images/62fd4ba2a1be394a91a84cf3.png"

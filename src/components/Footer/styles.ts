@@ -1,37 +1,44 @@
 import { styled } from '../../styles'
 
 export const FooterContainer = styled('footer', {
-  backgroundColor: '$footer-backgound',
-
-  maxWidth: '100%',
-  height: '12rem',
-  padding: '1rem',
-
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gridTemplateRows: '0.5fr 0.5fr',
-  gap: '2rem',
-
   width: '100%',
-
-  p: {
-    textAlign: 'center',
-    justifyContent: 'center',
-    fontSize: '0.7rem',
-    gridColumnStart: 2,
-    gridRowStart: 3,
-  },
-})
-
-export const SobreNos = styled('div', {
-  gridColumnStart: 1,
-  gridRowStart: 1,
+  height: '12rem',
+  padding: '2rem 0',
 
   display: 'flex',
-  justifyContent: 'center',
+  flexDirection: 'column',
   alignItems: 'center',
-  gap: '1rem',
 
+  backgroundColor: '$white',
+  borderTop: '$gray-200 solid 1px',
+  $$shadowColor: '$colors$secondary',
+  boxShadow: '0px -8px 12px -9px $$shadowColor',
+
+  // p: {
+  //   textAlign: 'center',
+  //   justifyContent: 'center',
+  //   fontSize: '0.7rem',
+  //   gridColumnStart: 2,
+  //   gridRowStart: 3,
+  // },
+})
+
+export const FooterContent = styled('section', {
+  width: '100%',
+  maxWidth: '75rem',
+
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginBottom: '2rem',
+})
+
+const BaseList = styled('ul', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5rem',
+})
+
+export const Contact = styled(BaseList, {
   a: {
     display: 'flex',
     '&:hover': {
@@ -40,15 +47,7 @@ export const SobreNos = styled('div', {
   },
 })
 
-export const Contato = styled('div', {
-  gridColumnStart: 1,
-  gridRowStart: 2,
-
-  display: 'grid',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '1rem',
-
+export const QuickLinks = styled(BaseList, {
   a: {
     display: 'flex',
     '&:hover:': {
@@ -63,16 +62,7 @@ export const Contato = styled('div', {
   },
 })
 
-export const TrabalheConosco = styled('div', {
-  gridColumnStart: 2,
-  gridRowStart: 1,
-
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-
-  gap: '1rem',
-
+export const Information = styled(BaseList, {
   a: {
     display: 'flex',
     '&:hover': {
@@ -81,15 +71,7 @@ export const TrabalheConosco = styled('div', {
   },
 })
 
-export const RedeSocial = styled('div', {
-  gridColumnStart: 2,
-  gridRowStart: 2,
-
-  display: 'grid',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '1rem',
-
+export const Services = styled(BaseList, {
   a: {
     display: 'flex',
     '&:hover': {
