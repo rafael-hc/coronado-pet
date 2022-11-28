@@ -5,6 +5,7 @@ export const CardContainer = styled(Link, {
   width: '100%',
   maxWidth: '14rem',
   padding: '0.75rem',
+  margin: '0 auto',
 
   display: 'flex',
   flexDirection: 'column',
@@ -16,7 +17,7 @@ export const CardContainer = styled(Link, {
   p: {
     fontSize: '1rem',
     fontWeight: 'bold',
-    color: '$primary',
+    color: '$gray-700',
 
     marginBottom: '1rem',
   },
@@ -36,6 +37,10 @@ export const CardImage = styled('div', {
 export const Tilte = styled('h3', {
   fontSize: '1rem',
   fontWeight: 'normal',
+  height: '100%',
+  maxHeight: '3.625rem',
+  overflow: 'hidden',
+  color: '$gray-500',
 
   marginBottom: '0.5rem',
 })

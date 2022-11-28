@@ -1,14 +1,25 @@
-interface IDetails {
-  title: string
-  body: string
+interface Category {
+  id?: string
+  name: string
 }
 
-export interface IProduct {
-  _id?: string
+export interface Product {
+  id?: string
   name: string
-  category: string
   price: number
+  costPrice: string
+  description: string
+  imageUrl: string
+  size: string
   inventory: number
-  details: IDetails[]
-  createdAt?: Date
+  category: Category[]
+  registeredAt?: Date
+}
+
+export interface LatestProducts {
+  id: string
+  name: string
+  price: number
+  imageUrl: string
+  slug: string
 }

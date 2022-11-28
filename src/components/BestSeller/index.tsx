@@ -9,12 +9,14 @@ import { useState } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
 import CardProduct from '../CardProduct'
 import { CaretLeft, CaretRight } from 'phosphor-react'
+import { LatestProducts } from '../../utils/interfaces/productInterface'
 
 interface BestSellerProps {
   title: string
+  products: LatestProducts[]
 }
 
-export const BestSller = ({ title }: BestSellerProps) => {
+export const BestSller = ({ title, products }: BestSellerProps) => {
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
@@ -25,6 +27,7 @@ export const BestSller = ({ title }: BestSellerProps) => {
       setLoaded(true)
     },
   })
+  console.log(products)
   return (
     <BestSllerContainer>
       <SliderHeader>
@@ -51,7 +54,19 @@ export const BestSller = ({ title }: BestSellerProps) => {
         </div>
       </SliderHeader>
       <SliderContainer ref={sliderRef} className="keen-slider">
-        <div className="keen-slider__slide">
+        {products.map((product) => {
+          return (
+            <div key={product.id} className="keen-slider__slide">
+              <CardProduct
+                name={product.name}
+                imageUrl={product.imageUrl}
+                price={product.price}
+                slug={product.slug}
+              />
+            </div>
+          )
+        })}
+        {/* <div className="keen-slider__slide">
           <CardProduct />
         </div>
         <div className="keen-slider__slide">
@@ -71,10 +86,7 @@ export const BestSller = ({ title }: BestSellerProps) => {
         </div>
         <div className="keen-slider__slide">
           <CardProduct />
-        </div>
-        <div className="keen-slider__slide">
-          <CardProduct />
-        </div>
+        </div> */}
       </SliderContainer>
     </BestSllerContainer>
   )

@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppDispatch, AppThunk } from '..'
 import axios from 'axios'
-import { IProduct } from '../../utils/interfaces/productInterface'
+import { Product } from '../../utils/interfaces/productInterface'
 
-const initialState: IProduct[] = []
+const initialState: Product[] = []
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    fetchProducts: (state, { payload }: PayloadAction<IProduct[]>) => {
+    fetchProducts: (state, { payload }: PayloadAction<Product[]>) => {
       return payload
     },
-    addProducts: (state, { payload }: PayloadAction<IProduct>) => {
+    addProducts: (state, { payload }: PayloadAction<Product>) => {
       state.push(payload)
     },
     setProducts: (state, action) => {

@@ -1,7 +1,6 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { ReactElement } from 'react'
-import CardProduct from '../components/CardProduct'
 import FilterSidebar from '../components/FilterSidebar'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { PageProductsContainer } from '../styles/pages/products'
@@ -20,12 +19,7 @@ const Products = ({ category }: ProductsProps) => {
       </Head>
       <PageProductsContainer>
         <FilterSidebar />
-        <div style={{ display: 'flex' }}>
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-        </div>
+        <div style={{ display: 'flex' }}></div>
       </PageProductsContainer>
     </>
   )

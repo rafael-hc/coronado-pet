@@ -28,9 +28,9 @@ export const globalStyles = globalCss({
   a: {
     color: '$gray-500',
 
-    '&:hover': {
-      color: '$primary',
-    },
+    // '&:hover': {
+    //   color: '$primary',
+    // },
     textDecoration: 'none',
   },
 })
