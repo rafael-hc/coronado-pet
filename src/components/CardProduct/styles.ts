@@ -34,6 +34,10 @@ export const CardImage = styled('div', {
   },
 })
 
+export const CardInfo = styled('div', {
+  height: '10.5rem',
+})
+
 export const Tilte = styled('h3', {
   fontSize: '1rem',
   fontWeight: 'normal',

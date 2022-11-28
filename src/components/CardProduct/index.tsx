@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { ShoppingCart } from 'phosphor-react'
 import { Button } from '../../styles/components/button'
-import { CardContainer, CardImage, Rating, Tilte } from './styles'
+import { CardContainer, CardImage, CardInfo, Rating, Tilte } from './styles'
 
 interface CardProductProps {
   name: string
@@ -16,7 +16,7 @@ const CardProduct = ({ name, imageUrl, price, slug }: CardProductProps) => {
       <CardImage>
         <Image src={imageUrl} alt={name} fill quality={75} />
       </CardImage>
-      <div>
+      <CardInfo>
         <Tilte>{name}</Tilte>
         <Rating>*****</Rating>
         <p>
@@ -29,7 +29,7 @@ const CardProduct = ({ name, imageUrl, price, slug }: CardProductProps) => {
           <ShoppingCart />
           Comprar
         </Button>
-      </div>
+      </CardInfo>
     </CardContainer>
   )
 }
