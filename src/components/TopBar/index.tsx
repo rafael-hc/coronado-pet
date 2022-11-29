@@ -23,7 +23,9 @@ const TopBar = () => {
   }
   return (
     <TopBarContainer>
-      <Link href="/product/mots-vendor">Mais vendidos!</Link>
+      <Link href="/product/mots-vendor" prefetch={false}>
+        Mais vendidos!
+      </Link>
       <PopoverPrimitive.Root>
         <PopoverTrigger asChild>
           <ButtonAccount>

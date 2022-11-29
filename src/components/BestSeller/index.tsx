@@ -27,7 +27,6 @@ export const BestSller = ({ title, products }: BestSellerProps) => {
       setLoaded(true)
     },
   })
-  console.log(products)
   return (
     <BestSllerContainer>
       <SliderHeader>
