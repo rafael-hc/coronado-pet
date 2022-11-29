@@ -19,7 +19,7 @@ interface ProductProps {
 
 const Product = ({ product }: ProductProps) => {
   const { isFallback } = useRouter()
-  const { imageUrl, name } = product
+  // const { imageUrl, name } = product
 
   if (isFallback) {
     return <h1 style={{ margin: '0 auto' }}>Loading</h1>
@@ -30,8 +30,8 @@ const Product = ({ product }: ProductProps) => {
       <InfoProduct>
         <div>
           <Image
-            src={imageUrl}
-            alt={name}
+            src={product.imageUrl}
+            alt={product.name}
             width={300}
             height={400}
             style={{ objectFit: 'contain' }}
@@ -39,8 +39,8 @@ const Product = ({ product }: ProductProps) => {
           <div>
             <button type="button" style={{ cursor: 'pointer' }}>
               <Image
-                src={imageUrl}
-                alt={name}
+                src={product.imageUrl}
+                alt={product.name}
                 width={50}
                 height={100}
                 style={{ objectFit: 'contain' }}
@@ -48,8 +48,8 @@ const Product = ({ product }: ProductProps) => {
             </button>
             <button type="button" style={{ cursor: 'pointer' }}>
               <Image
-                src={imageUrl}
-                alt={name}
+                src={product.imageUrl}
+                alt={product.name}
                 width={50}
                 height={100}
                 style={{ objectFit: 'contain' }}
@@ -57,8 +57,8 @@ const Product = ({ product }: ProductProps) => {
             </button>
             <button type="button" style={{ cursor: 'pointer' }}>
               <Image
-                src={imageUrl}
-                alt={name}
+                src={product.imageUrl}
+                alt={product.name}
                 width={50}
                 height={100}
                 style={{ objectFit: 'contain' }}
@@ -66,8 +66,8 @@ const Product = ({ product }: ProductProps) => {
             </button>
             <button type="button" style={{ cursor: 'pointer' }}>
               <Image
-                src={imageUrl}
-                alt={name}
+                src={product.imageUrl}
+                alt={product.name}
                 width={50}
                 height={100}
                 style={{ objectFit: 'contain' }}
@@ -75,8 +75,8 @@ const Product = ({ product }: ProductProps) => {
             </button>
             <button type="button" style={{ cursor: 'pointer' }}>
               <Image
-                src={imageUrl}
-                alt={name}
+                src={product.imageUrl}
+                alt={product.name}
                 width={50}
                 height={100}
                 style={{ objectFit: 'contain' }}
