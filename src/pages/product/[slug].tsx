@@ -29,6 +29,7 @@ const Product = ({ product }: ProductProps) => {
     <ProductContainer>
       <InfoProduct>
         <div>
+          <p>{JSON.stringify(product.registeredAt)}</p>
           <Image
             src={product.imageUrl}
             alt={product.name}
@@ -117,7 +118,19 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
   const product = await getProduct(slug!)
   return {
     props: {
-      product,
+      product: {
+        id: product?.id,
+        name: product?.name,
+        slug: product?.slug,
+        price: product?.price,
+        costPrice: product?.costPrice,
+        description: product?.description,
+        imageUrl: product?.imageUrl,
+        size: product?.size,
+        inventory: product?.inventory,
+        registeredAt: JSON.parse(JSON.stringify(product?.registeredAt)),
+        categories: product?.categories,
+      },
     },
     revalidate: 60 * 60 * 4, // 4horas
   }

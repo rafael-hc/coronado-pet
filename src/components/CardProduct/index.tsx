@@ -12,7 +12,7 @@ interface CardProductProps {
 
 const CardProduct = ({ name, imageUrl, price, slug }: CardProductProps) => {
   return (
-    <CardContainer href={`/product/${slug}`}>
+    <CardContainer href={`/product/${slug}`} prefetch={false}>
       <CardImage>
         <Image src={imageUrl} alt={name} fill quality={75} />
       </CardImage>

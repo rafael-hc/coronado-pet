@@ -10,6 +10,22 @@ export const getAllProducts = async () => {
   return products
 }
 
+export const getProductsByCategory = async (category: string) => {
+  const products = await prisma.products.findMany({
+    where: {
+      categories: {
+        none: {
+          name: category,
+        },
+      },
+    },
+    include: {
+      categories: true,
+    },
+  })
+  return products
+}
+
 export const getProduct = async (slug: string) => {
   const product = await prisma.products.findUnique({
     where: {
@@ -19,7 +35,7 @@ export const getProduct = async (slug: string) => {
       categories: true,
     },
   })
-  return JSON.parse(JSON.stringify(product))
+  return product
 }
 
 export const getBestSellerProducts = async () => {
