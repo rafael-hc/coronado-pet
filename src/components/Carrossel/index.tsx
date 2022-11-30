@@ -4,7 +4,14 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CaretLeft, CaretRight } from 'phosphor-react'
 import { useState } from 'react'
-import { ArrowSlide, Dot, Dots, ItemSlide, SliderContainer, TextSlide } from './styles'
+import {
+  ArrowSlide,
+  Dot,
+  Dots,
+  ItemSlide,
+  SliderContainer,
+  TextSlide,
+} from './styles'
 
 export const Carrossel = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -84,14 +91,18 @@ export const Carrossel = () => {
       {loaded && instanceRef.current && (
         <>
           <ArrowSlide
-            onClick={(e: any) => e.stopPropagation() || instanceRef.current?.prev()}
+            onClick={(e: any) =>
+              e.stopPropagation() || instanceRef.current?.prev()
+            }
             // disabled={currentSlide === 0}
             position="left"
           >
             <CaretLeft size={30} />
           </ArrowSlide>
           <ArrowSlide
-            onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
+            onClick={(e: any) =>
+              e.stopPropagation() || instanceRef.current?.next()
+            }
             // disabled={
             //   currentSlide ===
             //   instanceRef.current.track.details.slides.length - 1
@@ -104,19 +115,21 @@ export const Carrossel = () => {
       )}
       {loaded && instanceRef.current && (
         <Dots>
-          {Array.from(Array<number>(instanceRef.current.track.details.slides.length).keys()).map(
-            (idx) => {
-              return (
-                <Dot
-                  key={idx}
-                  onClick={() => {
-                    instanceRef.current?.moveToIdx(idx)
-                  }}
-                  active={currentSlide === idx}
-                ></Dot>
-              )
-            },
-          )}
+          {Array.from(
+            Array<number>(
+              instanceRef.current.track.details.slides.length,
+            ).keys(),
+          ).map((idx) => {
+            return (
+              <Dot
+                key={idx}
+                onClick={() => {
+                  instanceRef.current?.moveToIdx(idx)
+                }}
+                active={currentSlide === idx}
+              ></Dot>
+            )
+          })}
         </Dots>
       )}
     </SliderContainer>

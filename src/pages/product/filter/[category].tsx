@@ -6,7 +6,10 @@ import CardProduct from '../../../components/CardProduct'
 import FilterSidebar from '../../../components/FilterSidebar'
 import { DefaultLayout } from '../../../layouts/DefaultLayout'
 import { getProductsByCategory } from '../../../services/products'
-import { GridProducts, PageProductsContainer } from '../../../styles/pages/products'
+import {
+  GridProducts,
+  PageProductsContainer,
+} from '../../../styles/pages/products'
 
 interface ProductsProps {
   category: string
@@ -17,7 +20,9 @@ const Products = ({ category, products }: ProductsProps) => {
   return (
     <>
       <Head>
-        <title>{`Coronado Pet - ${category[0].toUpperCase() + category.substring(1)}`}</title>
+        <title>{`Coronado Pet - ${
+          category[0].toUpperCase() + category.substring(1)
+        }`}</title>
       </Head>
       <PageProductsContainer>
         <FilterSidebar />
@@ -43,9 +48,10 @@ Products.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>
 }
 
-export const getServerSideProps: GetServerSideProps<any, { category: string }> = async ({
-  params,
-}) => {
+export const getServerSideProps: GetServerSideProps<
+  any,
+  { category: string }
+> = async ({ params }) => {
   const category = params?.category
   const products = await getProductsByCategory(category!)
   return {

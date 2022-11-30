@@ -1,6 +1,10 @@
 import Link from 'next/link'
 import FilterItem from '../FilterItem'
-import { FilterCategory, SidebarFilterContainer, SidebarFilterHeader } from './styles'
+import {
+  FilterCategory,
+  SidebarFilterContainer,
+  SidebarFilterHeader,
+} from './styles'
 
 const FilterSidebar = () => {
   return (

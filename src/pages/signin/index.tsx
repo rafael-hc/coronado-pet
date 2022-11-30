@@ -19,7 +19,9 @@ import { useRouter } from 'next/router'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Digite um e-mail válido' }),
-  password: z.string().min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
+  password: z
+    .string()
+    .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
 })
 
 type loginFormData = z.infer<typeof loginSchema>
@@ -52,7 +54,9 @@ const SignIn: NextPageWithLayout = () => {
               placeholder="Digite seu e-mail..."
               {...register('email')}
             />
-            {errors.email?.message && <InputError>{String(errors.email?.message)}</InputError>}
+            {errors.email?.message && (
+              <InputError>{String(errors.email?.message)}</InputError>
+            )}
           </FieldContainer>
 
           <FieldContainer>
@@ -73,8 +77,8 @@ const SignIn: NextPageWithLayout = () => {
       <SingUp>
         <h2>Crie sua conta é rápido, fácil e gratuito!</h2>
         <p>
-          Com a sua conta da você tem acesso a Ofertas exclusivas, descontos, acompanhar os seus
-          pedidos e muito mais!
+          Com a sua conta da você tem acesso a Ofertas exclusivas, descontos,
+          acompanhar os seus pedidos e muito mais!
         </p>
         <SingUpButton href="/signup">Criar uma conta</SingUpButton>
       </SingUp>

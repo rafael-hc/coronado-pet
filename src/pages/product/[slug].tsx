@@ -5,7 +5,11 @@ import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getProduct } from '../../services/products'
-import { DescriptionProduct, InfoProduct, ProductContainer } from '../../styles/pages/product'
+import {
+  DescriptionProduct,
+  InfoProduct,
+  ProductContainer,
+} from '../../styles/pages/product'
 
 interface ProductProps {
   product: Products & {
@@ -107,7 +111,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
+  params,
+}) => {
   const slug = params?.slug
   const product = await getProduct(slug!)
   return {
