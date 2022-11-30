@@ -1,3 +1,5 @@
+// import { Products } from '@prisma/client'
+import { primeiraLetraMaiuscula } from '../utils/formats'
 import { prisma } from '../utils/prisma'
 import { categoryList } from '../utils/productList'
 
@@ -14,15 +16,45 @@ export const getProductsByCategory = async (category: string) => {
   const products = await prisma.products.findMany({
     where: {
       categories: {
-        none: {
-          name: category,
+        some: {
+          OR: [
+            {
+              name: {
+                contains: primeiraLetraMaiuscula(category),
+              },
+            },
+            {
+              name: {
+                contains: category,
+              },
+            },
+          ],
         },
       },
     },
-    include: {
-      categories: true,
-    },
+    // where: {
+    // OR: [
+    //   {
+    //     name: {
+    //       contains: primeiraLetraMaiuscula(category),
+    //     },
+    //   },
+    //   {
+    //     name: {
+    //       contains: category,
+    //     },
+    //   },
+    // ],
+    // },
+    // include: {
+    //   products: true,
+    // },
   })
+  // const onlyProducts = categories.reduce((acc, atual) => {
+  //   acc = [...atual.products]
+  //   return acc
+  // }, [] as Products[])
+
   return products
 }
 

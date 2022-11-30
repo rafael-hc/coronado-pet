@@ -2,6 +2,7 @@ import { keyframes, styled } from '../../styles'
 
 export const SliderContainer = styled('div', {
   position: 'relative',
+  width: '100%',
 })
 
 export const ItemSlide = styled('div', {
@@ -13,11 +14,14 @@ export const ItemSlide = styled('div', {
   color: '$white',
   fontWeight: 500,
   height: 650,
-  maxHeight: '100vh',
+  maxHeight: 200,
   position: 'relative',
 
   img: {
     objectFit: 'cover',
+  },
+  '@sm': {
+    maxHeight: '100vh',
   },
 })
 

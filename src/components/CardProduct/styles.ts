@@ -5,7 +5,6 @@ export const CardContainer = styled(Link, {
   width: '100%',
   maxWidth: '14rem',
   padding: '0.75rem',
-  margin: '0 auto',
 
   display: 'flex',
   flexDirection: 'column',

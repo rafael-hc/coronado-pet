@@ -2,10 +2,7 @@ import { ReactNode } from 'react'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import TopBar from '../components/TopBar'
-import {
-  DefaultLayoutContent,
-  HeaderContainer,
-} from '../styles/layouts/Layouts'
+import { DefaultLayoutContent, HeaderContainer } from '../styles/layouts/Layouts'
 
 interface LoginLayoutProps {
   children: ReactNode

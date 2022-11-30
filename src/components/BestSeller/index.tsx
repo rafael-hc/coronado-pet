@@ -1,9 +1,4 @@
-import {
-  ArrowSlide,
-  BestSllerContainer,
-  SliderContainer,
-  SliderHeader,
-} from './styles'
+import { ArrowSlide, BestSllerContainer, SliderContainer, SliderHeader } from './styles'
 import 'keen-slider/keen-slider.min.css'
 import { useState } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
@@ -21,7 +16,8 @@ export const BestSller = ({ title, products }: BestSellerProps) => {
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     slides: {
-      perView: 5,
+      perView: 'auto',
+      spacing: 20,
     },
     created() {
       setLoaded(true)
@@ -34,18 +30,10 @@ export const BestSller = ({ title, products }: BestSellerProps) => {
         <div>
           {loaded && instanceRef.current && (
             <>
-              <ArrowSlide
-                onClick={(e: any) =>
-                  e.stopPropagation() || instanceRef.current?.prev()
-                }
-              >
+              <ArrowSlide onClick={(e: any) => e.stopPropagation() || instanceRef.current?.prev()}>
                 <CaretLeft size={24} />
               </ArrowSlide>
-              <ArrowSlide
-                onClick={(e: any) =>
-                  e.stopPropagation() || instanceRef.current?.next()
-                }
-              >
+              <ArrowSlide onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}>
                 <CaretRight size={24} />
               </ArrowSlide>
             </>

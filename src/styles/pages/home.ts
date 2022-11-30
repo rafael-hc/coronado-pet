@@ -2,29 +2,31 @@ import Link from 'next/link'
 import { styled } from '..'
 
 export const SubBannerContainer = styled('section', {
-  width: 1200,
+  width: '100vw',
   margin: '0 auto 2.5rem',
   display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',
+
   gridTemplateRows: 'repeat(2, 1fr)',
   gap: '2rem',
 
-  ':first-child': {
-    gridRowStart: 1,
-    gridRowEnd: 3,
+  ':first-child': {},
+
+  img: {
+    objectFit: 'cover',
+  },
+  '@sm': {
+    width: 1200,
+    gridTemplateColumns: 'repeat(2, 1fr)',
   },
 })
 
 export const SubBanner = styled(Link, {
   width: '100%',
-  height: 256,
+  height: 200,
   position: 'relative',
   overflow: 'hidden',
   borderRadius: '10px',
 
-  '&:first-child': {
-    height: 544,
-  },
   '&:hover': {
     img: {
       transform: 'scale(1.1)',
@@ -32,6 +34,15 @@ export const SubBanner = styled(Link, {
   },
   img: {
     transition: 'transform .5s ease',
+  },
+
+  '@sm': {
+    height: 256,
+    '&:first-child': {
+      height: 544,
+      gridRowStart: 1,
+      gridRowEnd: 3,
+    },
   },
 })
 
@@ -42,7 +53,7 @@ export const Description = styled('div', {
   flexDirection: 'column',
   alignItems: 'flex-start',
 
-  fontSize: '32px',
+  fontSize: '2rem',
   textAlign: 'start',
 
   color: '$gray-800',

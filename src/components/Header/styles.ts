@@ -1,7 +1,7 @@
 import { styled } from '../../styles'
 
 export const HeaderContainer = styled('section', {
-  width: '100%',
+  width: '100vw',
   padding: '1rem 0',
 
   display: 'grid',
@@ -11,6 +11,9 @@ export const HeaderContainer = styled('section', {
 
   backgroundColor: '$white',
   color: '$gray-400',
+  '@sm': {
+    width: 1200,
+  },
 })
 
 export const Logo = styled('div', {

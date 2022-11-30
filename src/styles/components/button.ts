@@ -1,6 +1,7 @@
 import { styled } from '..'
 
 export const Button = styled('button', {
+  marginTop: '0.5rem',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'centet',
@@ -30,9 +31,13 @@ export const Button = styled('button', {
         fontSize: '0.75rem',
       },
       2: {
-        padding: '0.75rem',
-        fontSize: '1rem',
+        padding: '1.2rem',
+        fontSize: '1.6rem',
         fontWeight: 'bold',
+        '@sm': {
+          fontSize: '1rem',
+          padding: '0.75rem',
+        },
       },
       3: {
         padding: '0.75rem',
@@ -40,5 +45,8 @@ export const Button = styled('button', {
         fontWeight: 'bold',
       },
     },
+  },
+  '@sm': {
+    marginTop: 0,
   },
 })

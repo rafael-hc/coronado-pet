@@ -1,20 +1,30 @@
-import { SidebarContainer } from './styles'
+import Link from 'next/link'
+import FilterItem from '../FilterItem'
+import { FilterCategory, SidebarFilterContainer, SidebarFilterHeader } from './styles'
 
 const FilterSidebar = () => {
   return (
-    <SidebarContainer>
-      <ul>
-        <li>Categoty 1</li>
+    <SidebarFilterContainer>
+      <SidebarFilterHeader>
+        <button>Limpar</button>
+        <button>Aplicar</button>
+      </SidebarFilterHeader>
+      <FilterCategory>
+        <li>Tamanho</li>
+        <li>
+          <Link href="/product/filter/15kg">15kg</Link>
+        </li>
+        <li>
+          <Link href="/product/filter/100g">100g</Link>
+        </li>
+        <FilterItem id="1" label="22kg" value="22kg" />
         <li>item</li>
         <li>item</li>
         <li>item</li>
         <li>item</li>
         <li>item</li>
-        <li>item</li>
-        <li>item</li>
-        <li>item</li>
-      </ul>
-      <ul>
+      </FilterCategory>
+      <FilterCategory>
         <li>Category 2</li>
         <li>item</li>
         <li>item</li>
@@ -24,8 +34,8 @@ const FilterSidebar = () => {
         <li>item</li>
         <li>item</li>
         <li>item</li>
-      </ul>
-    </SidebarContainer>
+      </FilterCategory>
+    </SidebarFilterContainer>
   )
 }
 

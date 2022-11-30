@@ -1,11 +1,14 @@
 import { styled } from '../../styles'
 
 export const BestSllerContainer = styled('section', {
-  width: 1200,
+  width: '100vw',
   margin: '0 auto 2.5rem',
 
   h1: {
     marginBottom: '2rem',
+  },
+  '@sm': {
+    width: 1200,
   },
 })
 

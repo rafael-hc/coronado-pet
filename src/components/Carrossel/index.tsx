@@ -4,14 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CaretLeft, CaretRight } from 'phosphor-react'
 import { useState } from 'react'
-import {
-  ArrowSlide,
-  Dot,
-  Dots,
-  ItemSlide,
-  SliderContainer,
-  TextSlide,
-} from './styles'
+import { ArrowSlide, Dot, Dots, ItemSlide, SliderContainer, TextSlide } from './styles'
 
 export const Carrossel = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -60,67 +53,59 @@ export const Carrossel = () => {
   )
 
   return (
-    <>
-      <SliderContainer>
-        <div ref={sliderRef} className="keen-slider">
-          <ItemSlide className="keen-slider__slide">
-            <Image
-              src="./images/main-banner-01_1903x650.webp"
-              alt="Cachorro marrom com a patinha levantada usando uma coleira com pingente de ossinho"
-              fill
-            />
-            <TextSlide active={currentSlide === 0}>
-              <span>É Sobre Fazer</span>
-              <span>Novos Amigos!</span>
-              <Link href="/cachorros">Confira</Link>
-            </TextSlide>
-          </ItemSlide>
-          <ItemSlide className="keen-slider__slide">
-            <Image
-              src="./images/main-banner-2_1903x650.webp"
-              alt="Gato peludo em cor mesclada entre bege e marrom"
-              fill
-            />
-            <TextSlide active={currentSlide === 1}>
-              <span>O cuidado dos</span>
-              <span>seus gatos em</span>
-              <span>boas mãos!</span>
-              <Link href="/gatos">Confira</Link>
-            </TextSlide>
-          </ItemSlide>
-        </div>
-        {loaded && instanceRef.current && (
-          <>
-            <ArrowSlide
-              onClick={(e: any) =>
-                e.stopPropagation() || instanceRef.current?.prev()
-              }
-              // disabled={currentSlide === 0}
-              position="left"
-            >
-              <CaretLeft size={30} />
-            </ArrowSlide>
-            <ArrowSlide
-              onClick={(e: any) =>
-                e.stopPropagation() || instanceRef.current?.next()
-              }
-              // disabled={
-              //   currentSlide ===
-              //   instanceRef.current.track.details.slides.length - 1
-              // }
-              position="right"
-            >
-              <CaretRight size={30} />
-            </ArrowSlide>
-          </>
-        )}
-        {loaded && instanceRef.current && (
-          <Dots>
-            {Array.from(
-              Array<number>(
-                instanceRef.current.track.details.slides.length,
-              ).keys(),
-            ).map((idx) => {
+    <SliderContainer>
+      <div ref={sliderRef} className="keen-slider">
+        <ItemSlide className="keen-slider__slide">
+          <Image
+            src="./images/main-banner-01_1903x650.webp"
+            alt="Cachorro marrom com a patinha levantada usando uma coleira com pingente de ossinho"
+            fill
+          />
+          <TextSlide active={currentSlide === 0}>
+            <span>É Sobre Fazer</span>
+            <span>Novos Amigos!</span>
+            <Link href="/cachorros">Confira</Link>
+          </TextSlide>
+        </ItemSlide>
+        <ItemSlide className="keen-slider__slide">
+          <Image
+            src="./images/main-banner-2_1903x650.webp"
+            alt="Gato peludo em cor mesclada entre bege e marrom"
+            fill
+          />
+          <TextSlide active={currentSlide === 1}>
+            <span>O cuidado dos</span>
+            <span>seus gatos em</span>
+            <span>boas mãos!</span>
+            <Link href="/gatos">Confira</Link>
+          </TextSlide>
+        </ItemSlide>
+      </div>
+      {loaded && instanceRef.current && (
+        <>
+          <ArrowSlide
+            onClick={(e: any) => e.stopPropagation() || instanceRef.current?.prev()}
+            // disabled={currentSlide === 0}
+            position="left"
+          >
+            <CaretLeft size={30} />
+          </ArrowSlide>
+          <ArrowSlide
+            onClick={(e: any) => e.stopPropagation() || instanceRef.current?.next()}
+            // disabled={
+            //   currentSlide ===
+            //   instanceRef.current.track.details.slides.length - 1
+            // }
+            position="right"
+          >
+            <CaretRight size={30} />
+          </ArrowSlide>
+        </>
+      )}
+      {loaded && instanceRef.current && (
+        <Dots>
+          {Array.from(Array<number>(instanceRef.current.track.details.slides.length).keys()).map(
+            (idx) => {
               return (
                 <Dot
                   key={idx}
@@ -130,10 +115,10 @@ export const Carrossel = () => {
                   active={currentSlide === idx}
                 ></Dot>
               )
-            })}
-          </Dots>
-        )}
-      </SliderContainer>
-    </>
+            },
+          )}
+        </Dots>
+      )}
+    </SliderContainer>
   )
 }

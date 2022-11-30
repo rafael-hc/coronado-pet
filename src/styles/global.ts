@@ -6,6 +6,13 @@ export const globalStyles = globalCss({
     padding: 0,
     boxSizing: 'border-box',
   },
+  html: {
+    fontSize: 10,
+
+    '@sm': {
+      fontSize: 16,
+    },
+  },
 
   body: {
     '-webkit-font-smoothing': 'antialiased',

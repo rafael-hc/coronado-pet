@@ -8,11 +8,7 @@ import { Carrossel } from '../components/Carrossel'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { getAllProducts, getLatestProducts } from '../services/products'
 import { Button } from '../styles/components/button'
-import {
-  Description,
-  SubBanner,
-  SubBannerContainer,
-} from '../styles/pages/home'
+import { Description, SubBanner, SubBannerContainer } from '../styles/pages/home'
 import { LatestProducts } from '../utils/interfaces/productInterface'
 
 interface HomeProps {
@@ -29,7 +25,6 @@ export default function Home({ products, latestProducts }: HomeProps) {
         <title>Coronado Pet - Home</title>
       </Head>
       <Carrossel />
-
       <BestSller title="Mais vendidos" products={latestProducts} />
       <SubBannerContainer>
         <SubBanner href="/cachorros">
