@@ -35,12 +35,19 @@ export const CardImage = styled('div', {
 
 export const CardInfo = styled('div', {
   height: '10.5rem',
+
+  p: {
+    fontSize: '1.6rem',
+    '@sm': {
+      fontSize: '1rem',
+    },
+  },
 })
 
 export const Tilte = styled('h3', {
   fontSize: '1rem',
   fontWeight: 'normal',
-  height: '100%',
+  minHeight: '3.4rem',
   maxHeight: '3.625rem',
   overflow: 'hidden',
   color: '$gray-500',

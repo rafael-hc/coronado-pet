@@ -31,9 +31,10 @@ export const Button = styled('button', {
         fontSize: '0.75rem',
       },
       2: {
-        padding: '1.2rem',
+        padding: '0.6rem',
         fontSize: '1.6rem',
         fontWeight: 'bold',
+        lineHeight: '1.6rem',
         '@sm': {
           fontSize: '1rem',
           padding: '0.75rem',

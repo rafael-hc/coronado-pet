@@ -22,6 +22,10 @@ export const SliderHeader = styled('header', {
   marginBottom: '1rem',
 })
 
+export const ItemSlider = styled('div', {
+  minWidth: '14rem',
+})
+
 export const ArrowSlide = styled('button', {
   width: '2rem',
   height: '2rem',
@@ -30,4 +34,8 @@ export const ArrowSlide = styled('button', {
   backgroundColor: '$primary',
   color: '$white',
   cursor: 'pointer',
+  visibility: 'hidden',
+  '@sm': {
+    visibility: 'visible',
+  },
 })

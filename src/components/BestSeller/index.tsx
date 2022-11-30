@@ -1,6 +1,7 @@
 import {
   ArrowSlide,
   BestSllerContainer,
+  ItemSlider,
   SliderContainer,
   SliderHeader,
 } from './styles'
@@ -22,7 +23,7 @@ export const BestSller = ({ title, products }: BestSellerProps) => {
     initial: 0,
     slides: {
       perView: 'auto',
-      spacing: 20,
+      spacing: 15,
     },
     created() {
       setLoaded(true)
@@ -56,14 +57,14 @@ export const BestSller = ({ title, products }: BestSellerProps) => {
       <SliderContainer ref={sliderRef} className="keen-slider">
         {products.map((product) => {
           return (
-            <div key={product.id} className="keen-slider__slide">
+            <ItemSlider key={product.id} className="keen-slider__slide">
               <CardProduct
                 name={product.name}
                 imageUrl={product.imageUrl}
                 price={product.price}
                 slug={product.slug}
               />
-            </div>
+            </ItemSlider>
           )
         })}
         {/* <div className="keen-slider__slide">
