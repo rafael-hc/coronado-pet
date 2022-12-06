@@ -1,10 +1,7 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
-  engineType      = "binary"
   previewFeatures = ["fieldReference"]
+  engineType      = "binary"
 }
 
 datasource db {
@@ -12,34 +9,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Categories {
+  id       String     @id
+  name     String
+  products Products[] @relation("CategoriesToProducts")
+
+  @@map("categories")
+}
+
 model Products {
-  id           String       @id @default(uuid())
+  id           String       @id
   name         String
   slug         String       @unique
   price        Int
   costPrice    Int
-  description  String[]
   brand        String
   pet          String?
   specie       String?
   type         String?
   imageUrl     String[]
-  breedSize    String[]
-  line         String?
-  age          String[]
   size         String
   inventory    Int
   barcode      String?      @unique
-  categories   Categories[]
   registeredAt DateTime     @default(now())
+  description  String[]
+  line         String?
+  age          String[]
+  breedSize    String[]
+  categories   Categories[] @relation("CategoriesToProducts")
 
   @@map("products")
-}
-
-model Categories {
-  id       String     @id @default(uuid())
-  name     String
-  products Products[]
-
-  @@map("categories")
 }
