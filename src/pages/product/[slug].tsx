@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
-import { SliderThumb } from '../../components/SliderThumb'
+import { SliderThumb } from '../../components/SliderTumb'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getProductBySlug } from '../../services/products/useCases/getProduct/bySlug'
 import {
@@ -9,10 +9,8 @@ import {
   InfoProduct,
   ProductContainer,
 } from '../../styles/pages/product'
-import {
-  Category,
-  Product as IProduct,
-} from '../../utils/interfaces/productInterface'
+import { Product as IProduct } from '../../utils/interfaces/productInterface'
+import { Category } from '../../utils/interfaces/Category'
 
 interface ProductProps {
   product: IProduct & {

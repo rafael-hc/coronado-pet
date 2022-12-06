@@ -10,7 +10,7 @@ datasource db {
 }
 
 model Categories {
-  id       String     @id
+  id       String     @id @default(uuid())
   name     String
   products Products[] @relation("CategoriesToProducts")
 
@@ -18,7 +18,7 @@ model Categories {
 }
 
 model Products {
-  id           String       @id
+  id           String       @id @default(uuid())
   name         String
   slug         String       @unique
   price        Int
