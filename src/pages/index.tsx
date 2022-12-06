@@ -6,7 +6,8 @@ import { ReactElement } from 'react'
 import { BestSller } from '../components/BestSeller'
 import { Carrossel } from '../components/Carrossel'
 import { DefaultLayout } from '../layouts/DefaultLayout'
-import { getAllProducts, getLatestProducts } from '../services/products'
+import { getAllProducts } from '../services/products/useCases/getProduct/all'
+import { getLatestProducts } from '../services/products/useCases/getProduct/latest'
 import { Button } from '../styles/components/button'
 import {
   Description,

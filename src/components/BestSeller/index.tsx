@@ -60,34 +60,13 @@ export const BestSller = ({ title, products }: BestSellerProps) => {
             <ItemSlider key={product.id} className="keen-slider__slide">
               <CardProduct
                 name={product.name}
-                imageUrl={product.imageUrl}
+                imageUrl={product.imageUrl[0]}
                 price={product.price}
                 slug={product.slug}
               />
             </ItemSlider>
           )
         })}
-        {/* <div className="keen-slider__slide">
-          <CardProduct />
-        </div>
-        <div className="keen-slider__slide">
-          <CardProduct />
-        </div>
-        <div className="keen-slider__slide">
-          <CardProduct />
-        </div>
-        <div className="keen-slider__slide">
-          <CardProduct />
-        </div>
-        <div className="keen-slider__slide">
-          <CardProduct />
-        </div>
-        <div className="keen-slider__slide">
-          <CardProduct />
-        </div>
-        <div className="keen-slider__slide">
-          <CardProduct />
-        </div> */}
       </SliderContainer>
     </BestSllerContainer>
   )

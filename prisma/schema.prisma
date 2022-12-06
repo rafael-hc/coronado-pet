@@ -15,19 +15,31 @@ datasource db {
 model Products {
   id           String       @id @default(uuid())
   name         String
-  slug         String?      @unique
+  slug         String       @unique
   price        Int
   costPrice    Int
-  description  String
-  imageUrl     String
+  description  String[]
+  brand        String
+  pet          String?
+  specie       String?
+  type         String?
+  imageUrl     String[]
+  breedSize    String[]
+  line         String?
+  age          String[]
   size         String
   inventory    Int
+  barcode      String?      @unique
   categories   Categories[]
   registeredAt DateTime     @default(now())
+
+  @@map("products")
 }
 
 model Categories {
   id       String     @id @default(uuid())
   name     String
   products Products[]
+
+  @@map("categories")
 }

@@ -11,11 +11,12 @@ export const ProductContainer = styled('main', {
 })
 
 export const InfoProduct = styled('section', {
-  width: '100%',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(2, 1fr)',
-  alignItems: 'flex-end',
-  justifyContent: 'center',
+  '@sm': {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
 })
 
 export const DescriptionProduct = styled('section', {})

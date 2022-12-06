@@ -1,19 +1,22 @@
-import { Categories, Products } from '@prisma/client'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
+import { SliderThumb } from '../../components/SliderThumb'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
-import { getProduct } from '../../services/products'
+import { getProductBySlug } from '../../services/products/useCases/getProduct/bySlug'
 import {
   DescriptionProduct,
   InfoProduct,
   ProductContainer,
 } from '../../styles/pages/product'
+import {
+  Category,
+  Product as IProduct,
+} from '../../utils/interfaces/productInterface'
 
 interface ProductProps {
-  product: Products & {
-    categories: Categories[]
+  product: IProduct & {
+    categories: Category[]
   }
 }
 
@@ -29,65 +32,11 @@ const Product = ({ product }: ProductProps) => {
     <ProductContainer>
       <InfoProduct>
         <div>
-          <p>{JSON.stringify(product.registeredAt)}</p>
-          <Image
-            src={product.imageUrl}
-            alt={product.name}
-            width={300}
-            height={400}
-            style={{ objectFit: 'contain' }}
-          />
-          <div>
-            <button type="button" style={{ cursor: 'pointer' }}>
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                width={50}
-                height={100}
-                style={{ objectFit: 'contain' }}
-              />
-            </button>
-            <button type="button" style={{ cursor: 'pointer' }}>
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                width={50}
-                height={100}
-                style={{ objectFit: 'contain' }}
-              />
-            </button>
-            <button type="button" style={{ cursor: 'pointer' }}>
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                width={50}
-                height={100}
-                style={{ objectFit: 'contain' }}
-              />
-            </button>
-            <button type="button" style={{ cursor: 'pointer' }}>
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                width={50}
-                height={100}
-                style={{ objectFit: 'contain' }}
-              />
-            </button>
-            <button type="button" style={{ cursor: 'pointer' }}>
-              <Image
-                src={product.imageUrl}
-                alt={product.name}
-                width={50}
-                height={100}
-                style={{ objectFit: 'contain' }}
-              />
-            </button>
-          </div>
+          <SliderThumb images={product.imageUrl} thumbnailPosition="botton" />
         </div>
-        <div>lado b</div>
+        <div>Lado Informações</div>
       </InfoProduct>
-      <DescriptionProduct>a</DescriptionProduct>
+      <DescriptionProduct>Descrição</DescriptionProduct>
     </ProductContainer>
   )
 }
@@ -115,7 +64,7 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
   params,
 }) => {
   const slug = params?.slug
-  const product = await getProduct(slug!)
+  const product = await getProductBySlug(slug!)
   return {
     props: {
       product: {
