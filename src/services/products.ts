@@ -1,6 +1,5 @@
 import { Products } from '@prisma/client'
 import { prisma } from '../utils/prisma'
-import { categoryList } from '../utils/productList'
 
 export const filterProductsByPet = async (
   category: string[],
@@ -41,11 +40,4 @@ export const filterProductsByPet = async (
 export const getBestSellerProducts = async () => {
   const bestSellet = await prisma.products.findMany()
   return bestSellet
-}
-
-export const addCategorias = async () => {
-  const response = await prisma.categories.createMany({
-    data: categoryList,
-  })
-  return response
 }
