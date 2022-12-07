@@ -34,6 +34,10 @@ export const Slide = styled('div', {
   width: '100vw',
   height: '100%',
 
+  '&:hover': {
+    cursor: 'none',
+  },
+
   '@sm': {
     maxWidth: 600,
   },
@@ -107,6 +111,7 @@ export const Thumbnail = styled('div', {
   position: 'relative',
 
   borderRadius: 8,
+  backgroundColor: '$white',
 
   cursor: 'pointer',
 
@@ -117,4 +122,19 @@ export const Thumbnail = styled('div', {
       },
     },
   },
+})
+
+export const Magnfy = styled('div', {
+  width: 300,
+  height: 300,
+
+  position: 'absolute',
+  backgroundRepeat: 'no-repeat',
+  border: '2px solid $white',
+  backgroundSize: '700%',
+  backgroundPosition: 'center',
+  borderRadius: '100%',
+  pointerEvents: 'none',
+
+  display: 'none',
 })
