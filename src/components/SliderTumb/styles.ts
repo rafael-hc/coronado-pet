@@ -9,7 +9,8 @@ export const SliderTumbContainer = styled('div', {
   overflow: 'hidden',
 
   '@sm': {
-    width: '100%',
+    width: '100vw',
+    maxWidth: 600,
     height: 600,
   },
 })
@@ -32,6 +33,10 @@ export const Slide = styled('div', {
   position: 'relative',
   width: '100vw',
   height: '100%',
+
+  '@sm': {
+    maxWidth: 600,
+  },
 })
 
 export const SlideTransition = styled('div', {
