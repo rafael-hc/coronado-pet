@@ -20,9 +20,7 @@ const Products = ({ category, products }: ProductsProps) => {
   return (
     <>
       <Head>
-        <title>{`Coronado Pet - ${
-          category[0].toUpperCase() + category.substring(1)
-        }`}</title>
+        <title>{`Coronado Pet - ${products[0].pet}`}</title>
       </Head>
       <PageProductsContainer>
         <FilterSidebar />

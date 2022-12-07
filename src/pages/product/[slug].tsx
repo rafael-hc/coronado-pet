@@ -11,6 +11,7 @@ import {
 } from '../../styles/pages/product'
 import { Product as IProduct } from '../../utils/interfaces/productInterface'
 import { Category } from '../../utils/interfaces/Category'
+import Head from 'next/head'
 
 interface ProductProps {
   product: IProduct & {
@@ -27,15 +28,20 @@ const Product = ({ product }: ProductProps) => {
   }
 
   return (
-    <ProductContainer>
-      <InfoProduct>
-        <div>
-          <SliderThumb images={product.imageUrl} thumbnailPosition="botton" />
-        </div>
-        <div>Lado Informações</div>
-      </InfoProduct>
-      <DescriptionProduct>Descrição</DescriptionProduct>
-    </ProductContainer>
+    <>
+      <Head>
+        <title>{`Coronaro Pet - ${product.name}`}</title>
+      </Head>
+      <ProductContainer>
+        <InfoProduct>
+          <div>
+            <SliderThumb images={product.imageUrl} thumbnailPosition="botton" />
+          </div>
+          <div>Lado Informações</div>
+        </InfoProduct>
+        <DescriptionProduct>Descrição</DescriptionProduct>
+      </ProductContainer>
+    </>
   )
 }
 
