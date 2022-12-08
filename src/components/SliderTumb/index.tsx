@@ -15,7 +15,7 @@ interface SliderThumbProps {
   thumbnailPosition: 'botton' | 'left'
 }
 
-const ADJUSTMENT_POSTION_CURSOS = 110
+const ADJUSTMENT_POSTION_CURSOS = 100
 
 export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
   const [slideActive, setSlideActive] = useState<any>(0)
@@ -50,7 +50,7 @@ export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
       ...state,
       backgroundPosition: `${xPercentage}% ${yPercentage}%`,
       top: `${offsetY + ADJUSTMENT_POSTION_CURSOS}px`,
-      left: `${offsetX + ADJUSTMENT_POSTION_CURSOS}px`,
+      left: `${offsetX + ADJUSTMENT_POSTION_CURSOS * 2}px`,
       display: 'block',
     }))
   }
@@ -71,6 +71,24 @@ export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
   return (
     <>
       <SliderTumbContainer>
+        <ThumbnailsContainer>
+          {images.map((image, index) => (
+            <Thumbnail
+              key={image}
+              onClick={() => setSlideActive(index)}
+              active={slideActive === index}
+            >
+              <Image
+                src={image}
+                alt="Produto"
+                fill
+                sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+              />
+            </Thumbnail>
+          ))}
+        </ThumbnailsContainer>
         <SlidesContainer onTouchEnd={touchMove} onTouchStart={touchStart}>
           <SlideTransition activeSlide={slideActive}>
             {images.map((image, index) => (
@@ -94,25 +112,6 @@ export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
             ))}
           </SlideTransition>
         </SlidesContainer>
-
-        <ThumbnailsContainer thumbPosition={thumbnailPosition}>
-          {images.map((image, index) => (
-            <Thumbnail
-              key={image}
-              onClick={() => setSlideActive(index)}
-              active={slideActive === index}
-            >
-              <Image
-                src={image}
-                alt="Produto"
-                fill
-                sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-              />
-            </Thumbnail>
-          ))}
-        </ThumbnailsContainer>
       </SliderTumbContainer>
       <Magnfy style={magnfyStyle}></Magnfy>
     </>

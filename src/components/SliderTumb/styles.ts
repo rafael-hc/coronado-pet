@@ -4,9 +4,9 @@ export const SliderTumbContainer = styled('div', {
   width: '100vw',
   height: 300,
 
-  display: 'flex',
-  flexDirection: 'column',
-  overflow: 'hidden',
+  display: 'grid',
+  gridTemplateColumns: '100px 1fr',
+  // flexDirection: 'column',
 
   '@sm': {
     width: '100vw',
@@ -18,6 +18,7 @@ export const SliderTumbContainer = styled('div', {
 export const SlidesContainer = styled('div', {
   flex: '5',
   display: 'flex',
+  overflow: 'hidden',
 
   position: 'relative',
 
@@ -39,7 +40,7 @@ export const Slide = styled('div', {
   },
 
   '@sm': {
-    maxWidth: 600,
+    maxWidth: 500,
   },
 })
 
@@ -56,28 +57,28 @@ export const SlideTransition = styled('div', {
         transform: 'translateX(-100vw)',
         transition: 'all 800ms',
         '@sm': {
-          transform: 'translateX(-600px)',
+          transform: 'translateX(-500px)',
         },
       },
       2: {
         transform: 'translateX(-200vw)',
         transition: 'all 800ms',
         '@sm': {
-          transform: 'translateX(-1200px)',
+          transform: 'translateX(-1000px)',
         },
       },
       3: {
         transform: 'translateX(-300vw)',
         transition: 'all 800ms',
         '@sm': {
-          transform: 'translateX(-1800px)',
+          transform: 'translateX(-1500px)',
         },
       },
       4: {
         transform: 'translateX(-400vw)',
         transition: 'all 800ms',
         '@sm': {
-          transform: 'translateX(-2400px)',
+          transform: 'translateX(-2000px)',
         },
       },
     },
@@ -87,7 +88,7 @@ export const SlideTransition = styled('div', {
 export const ThumbnailsContainer = styled('div', {
   flex: '1',
   display: 'grid',
-  gridTemplateColumns: 'repeat(5, 1fr)',
+  gridTemplateRows: 'repeat(5, 1fr)',
   gap: '0.5rem',
 
   img: {
@@ -115,10 +116,12 @@ export const Thumbnail = styled('div', {
 
   cursor: 'pointer',
 
+  opacity: '0.5',
+
   variants: {
     active: {
       true: {
-        border: '1px solid $gray-200',
+        opacity: 1,
       },
     },
   },
