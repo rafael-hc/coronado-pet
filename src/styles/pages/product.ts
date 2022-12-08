@@ -94,6 +94,7 @@ export const Buy = styled('div', {
   marginTop: '3rem',
 
   display: 'flex',
+  alignItems: 'center',
   gap: '1rem',
 })
 
