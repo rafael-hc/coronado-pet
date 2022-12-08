@@ -16,6 +16,7 @@ import {
   SingUpButton,
 } from '../../styles/pages/signin'
 import { useRouter } from 'next/router'
+import { Button } from '../../styles/components/button'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Digite um e-mail válido' }),
@@ -71,7 +72,7 @@ const SignIn: NextPageWithLayout = () => {
               <InputError>{String(errors.password?.message)}</InputError>
             )}
           </FieldContainer>
-          <button type="submit">Entrar</button>
+          <Button type="submit">Entrar</Button>
         </FormSingIn>
       </SingIn>
       <SingUp>

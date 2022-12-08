@@ -46,5 +46,16 @@ export const {
     shadows: {
       solidGrayLarge: `0px 0px 0 2px #7bb831`,
     },
+    fontSizes: {
+      1: '1rem',
+      2: '1.5rem',
+      3: '2rem',
+      4: '2.5rem',
+      5: '3rem',
+      6: '3.5rem',
+      7: '4rem',
+      8: '4.5rem',
+      9: '5rem',
+    },
   },
 })

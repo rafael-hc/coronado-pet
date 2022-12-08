@@ -2,16 +2,17 @@ import { styled } from '../../styles'
 
 export const SliderTumbContainer = styled('div', {
   width: '100vw',
-  height: 300,
+  height: 250,
 
   display: 'grid',
-  gridTemplateColumns: '100px 1fr',
+  gridTemplateColumns: '1fr',
   // flexDirection: 'column',
 
   '@sm': {
     width: '100vw',
     maxWidth: 600,
-    height: 600,
+    height: 400,
+    gridTemplateColumns: '100px 1fr',
   },
 })
 
@@ -87,8 +88,8 @@ export const SlideTransition = styled('div', {
 
 export const ThumbnailsContainer = styled('div', {
   flex: '1',
-  display: 'grid',
-  gridTemplateRows: 'repeat(5, 1fr)',
+  display: 'none',
+
   gap: '0.5rem',
 
   img: {
@@ -104,6 +105,11 @@ export const ThumbnailsContainer = styled('div', {
         order: 2,
       },
     },
+  },
+
+  '@sm': {
+    display: 'grid',
+    gridTemplateRows: 'repeat(5, 1fr)',
   },
 })
 

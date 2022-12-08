@@ -15,6 +15,7 @@ export const InfoProduct = styled('section', {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
     justifyContent: 'center',
+    gap: '1rem',
   },
 })
 
@@ -41,7 +42,7 @@ export const DetailsProduct = styled('section', {
 export const Title = styled('h1', {
   color: '$gray-600',
   fontWeight: 'normal',
-  fontSize: 'x-large',
+  fontSize: '$3',
 })
 
 export const InfoContent = styled('div', {

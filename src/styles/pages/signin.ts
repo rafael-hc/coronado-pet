@@ -23,7 +23,7 @@ export const SingIn = styled(LoginContent, {
 
   borderRadius: 8,
 
-  backgroundColor: '$gray-400',
+  backgroundColor: '$gray-50',
 })
 
 export const SingUp = styled(LoginContent, {
