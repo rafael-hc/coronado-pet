@@ -34,10 +34,17 @@ export const globalStyles = globalCss({
 
   a: {
     color: '$gray-500',
-
-    // '&:hover': {
-    //   color: '$primary',
-    // },
     textDecoration: 'none',
+  },
+
+  input: {
+    '&[type=number]': {
+      '&::-webkit-inner-spin-button': {
+        '-webkit-appearance': 'none',
+      },
+      '&::-webkit-outer-spin-button': {
+        '-webkit-appearance': 'none',
+      },
+    },
   },
 })

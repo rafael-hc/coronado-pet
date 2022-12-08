@@ -1,17 +1,30 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { ReactElement } from 'react'
+import { ReactElement, useState } from 'react'
 import { SliderThumb } from '../../components/SliderTumb'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getProductBySlug } from '../../services/products/useCases/getProduct/bySlug'
 import {
+  Amount,
+  ButtonChangeAmount,
+  Buy,
   DescriptionProduct,
+  DetailsProduct,
+  InfoContent,
   InfoProduct,
+  Informations,
+  InputQnt,
+  Price,
   ProductContainer,
+  Stock,
+  Title,
 } from '../../styles/pages/product'
 import { Product as IProduct } from '../../utils/interfaces/productInterface'
 import { Category } from '../../utils/interfaces/Category'
 import Head from 'next/head'
+import { prisma } from '../../utils/prisma'
+import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { Button } from '../../styles/components/button'
 
 interface ProductProps {
   product: IProduct & {
@@ -20,8 +33,21 @@ interface ProductProps {
 }
 
 const Product = ({ product }: ProductProps) => {
+  const [amount, setAmount] = useState(1)
   const { isFallback } = useRouter()
   // const { imageUrl, name } = product
+
+  function handleIncreaseQuantityOfProducts() {
+    if (amount < 10) {
+      setAmount((state) => state + 1)
+    }
+  }
+
+  function handleDecreaseQuantityOfProducts() {
+    if (amount >= 2) {
+      setAmount((state) => state - 1)
+    }
+  }
 
   if (isFallback) {
     return <h1 style={{ margin: '0 auto' }}>Loading</h1>
@@ -37,9 +63,62 @@ const Product = ({ product }: ProductProps) => {
           <div>
             <SliderThumb images={product.imageUrl} thumbnailPosition="botton" />
           </div>
-          <div>Lado Informações</div>
+          <DetailsProduct>
+            <header>
+              <Title>{product.name}</Title>
+              <Informations>
+                <span>***** |</span>
+                <span>{product.brand && `${product.brand} |`}</span>
+                <Stock isLow={product.inventory <= 10}>
+                  {product.inventory > 10 ? 'Em estoque' : 'Últimas unidades'}
+                </Stock>
+              </Informations>
+            </header>
+            <InfoContent>
+              <Price>
+                {(product.price / 100).toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </Price>
+              <Buy>
+                <InputQnt>
+                  <ButtonChangeAmount
+                    onClick={handleDecreaseQuantityOfProducts}
+                    title="Diminuir quantidade"
+                  >
+                    <Minus />
+                  </ButtonChangeAmount>
+                  <Amount
+                    type="number"
+                    id=""
+                    value={amount}
+                    min="1"
+                    max="10"
+                    readOnly
+                  />
+                  <ButtonChangeAmount
+                    onClick={handleIncreaseQuantityOfProducts}
+                    title="Aumentar quantidade"
+                  >
+                    <Plus />
+                  </ButtonChangeAmount>
+                </InputQnt>
+
+                <Button icon size={2} type="submit" w-full>
+                  {' '}
+                  <ShoppingCart /> Comprar
+                </Button>
+              </Buy>
+            </InfoContent>
+          </DetailsProduct>
         </InfoProduct>
-        <DescriptionProduct>Descrição</DescriptionProduct>
+        <DescriptionProduct>
+          <h2>Descrições:</h2>
+          {product.description.map((desc) => (
+            <p key={desc}>{desc}</p>
+          ))}
+        </DescriptionProduct>
       </ProductContainer>
     </>
   )
@@ -52,14 +131,16 @@ Product.getLayout = function getLayout(page: ReactElement) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const slugs = await prisma.products.findMany({
+    take: 10,
+    select: {
+      slug: true,
+    },
+  })
+
+  const paths = slugs.map((slug) => ({ params: slug }))
   return {
-    paths: [
-      {
-        params: {
-          slug: 'racao-premier-formula-para-caes-adultos-de-racas-grandes-e-gigantes-sabor-carne-15kg',
-        },
-      },
-    ],
+    paths,
     fallback: true,
   }
 }
@@ -79,6 +160,7 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
         costPrice: product?.costPrice,
         description: product?.description,
         imageUrl: product?.imageUrl,
+        brand: product?.brand,
         size: product?.size,
         inventory: product?.inventory,
         registeredAt: JSON.parse(JSON.stringify(product?.registeredAt)),

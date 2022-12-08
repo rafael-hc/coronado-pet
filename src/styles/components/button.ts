@@ -1,10 +1,11 @@
 import { styled } from '..'
 
 export const Button = styled('button', {
-  marginTop: '0.5rem',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'centet',
+  justifyContent: 'center',
+  marginTop: '0.5rem',
+  padding: '0.5rem',
 
   border: 'none',
   backgroundColor: '$primary',
@@ -25,24 +26,28 @@ export const Button = styled('button', {
         gap: '0.5rem',
       },
     },
+    'w-full': {
+      true: {
+        width: '100%',
+      },
+    },
     size: {
       1: {
-        padding: '0.5rem',
         fontSize: '0.75rem',
+        lineHeight: '0.75rem',
       },
       2: {
-        padding: '0.6rem',
         fontSize: '1.6rem',
         fontWeight: 'bold',
-        lineHeight: '1.6rem',
+        lineHeight: '1rem',
         '@sm': {
           fontSize: '1rem',
           padding: '0.75rem',
         },
       },
       3: {
-        padding: '0.75rem',
         fontSize: '2rem',
+        lineHeight: '2rem',
         fontWeight: 'bold',
       },
     },
