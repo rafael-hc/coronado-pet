@@ -3,8 +3,9 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { ReactElement } from 'react'
-import { BestSller } from '../components/BestSeller'
+import { Bestseller } from '../components/BestSeller'
 import { Carrossel } from '../components/Carrossel'
+import { useResize } from '../hooks/useResize'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { getAllProducts } from '../services/products/useCases/getProduct/all'
 import { getLatestProducts } from '../services/products/useCases/getProduct/latest'
@@ -15,6 +16,7 @@ import {
   SubBannerContainer,
 } from '../styles/pages/home'
 import { LatestProducts } from '../utils/interfaces/productInterface'
+import { NextPageWithLayout } from './_app'
 
 interface HomeProps {
   products: (Products & {
@@ -23,14 +25,16 @@ interface HomeProps {
   latestProducts: LatestProducts[]
 }
 
-export default function Home({ products, latestProducts }: HomeProps) {
+const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
+  const { height, width } = useResize()
   return (
     <>
       <Head>
         <title>Coronado Pet - Home</title>
       </Head>
       <Carrossel />
-      <BestSller title="Mais vendidos" products={latestProducts} />
+      <p>{`Width: ${width}, height: ${height}`}</p>
+      <Bestseller title="Mais vendidos" products={latestProducts} />
       <SubBannerContainer>
         <SubBanner href="/cachorros">
           <Image src="/images/sub-banner-1.webp" alt="" fill />
@@ -60,7 +64,7 @@ export default function Home({ products, latestProducts }: HomeProps) {
           </Description>
         </SubBanner>
       </SubBannerContainer>
-      <BestSller title="Lançamentos" products={latestProducts} />
+      <Bestseller title="Lançamentos" products={latestProducts} />
     </>
   )
 }
@@ -80,3 +84,5 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 4, // 4horas
   }
 }
+
+export default Home
