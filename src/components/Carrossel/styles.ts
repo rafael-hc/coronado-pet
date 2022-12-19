@@ -10,7 +10,7 @@ export const ItemSlide = styled('div', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  fontSize: 50,
+  fontSize: 20,
   color: '$white',
   fontWeight: 500,
   height: 650,
@@ -22,6 +22,7 @@ export const ItemSlide = styled('div', {
   },
   '@sm': {
     maxHeight: '100vh',
+    fontSize: 50,
   },
 })
 
@@ -38,20 +39,19 @@ const textAnimation = keyframes({
 
 export const TextSlide = styled('div', {
   position: 'absolute',
-  left: 200,
-  top: 200,
+  left: 50,
   color: 'black',
   width: 400,
 
   'span, a': {
-    display: 'inline-block',
+    display: 'block',
     position: 'relative',
     left: '300px',
     opacity: 0,
   },
 
   a: {
-    width: '10rem',
+    width: '8rem',
     marginTop: '1rem',
     padding: '0.5rem 0',
 
@@ -61,7 +61,7 @@ export const TextSlide = styled('div', {
 
     cursor: 'pointer',
     borderRadius: 8,
-    fontSize: '2rem',
+    fontSize: '1.75rem',
 
     backgroundColor: '$primary',
     color: '$white',
@@ -70,6 +70,11 @@ export const TextSlide = styled('div', {
     '&:hover': {
       backgroundColor: '$secondary',
       transition: 'all 0.5s',
+    },
+
+    '@sm': {
+      width: '10rem',
+      fontSize: '2rem',
     },
   },
 
@@ -90,6 +95,11 @@ export const TextSlide = styled('div', {
         },
       },
     },
+  },
+
+  '@sm': {
+    left: 200,
+    top: 200,
   },
 })
 
@@ -127,6 +137,7 @@ export const ArrowSlide = styled('button', {
   top: '50%',
   transform: 'translateY(-50%)',
   cursor: 'pointer',
+  display: 'none',
 
   variants: {
     position: {
@@ -142,5 +153,9 @@ export const ArrowSlide = styled('button', {
 
   '&:disabled': {
     cursor: 'not-allowed',
+  },
+
+  '@sm': {
+    display: 'block',
   },
 })
