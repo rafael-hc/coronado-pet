@@ -1,6 +1,6 @@
 import { styled } from '../../styles'
 
-export const BestSllerContainer = styled('section', {
+export const BestsellerContainer = styled('section', {
   width: '100vw',
   margin: '0 auto 2.5rem',
 

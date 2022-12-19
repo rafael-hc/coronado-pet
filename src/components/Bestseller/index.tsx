@@ -1,6 +1,6 @@
 import {
   ArrowSlide,
-  BestSllerContainer,
+  BestsellerContainer,
   ItemSlider,
   SliderContainer,
   SliderHeader,
@@ -30,7 +30,7 @@ export const Bestseller = ({ title, products }: BestSellerProps) => {
     },
   })
   return (
-    <BestSllerContainer>
+    <BestsellerContainer>
       <SliderHeader>
         <h2>{title}</h2>
         <div>
@@ -68,6 +68,6 @@ export const Bestseller = ({ title, products }: BestSellerProps) => {
           )
         })}
       </SliderContainer>
-    </BestSllerContainer>
+    </BestsellerContainer>
   )
 }
