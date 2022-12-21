@@ -1,18 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, MagnifyingGlass, ShoppingCart } from 'phosphor-react'
+import { Heart, ShoppingCart } from 'phosphor-react'
+import SearchProductBar from '../SearchProductBar'
 
-import { HeaderContainer, Icons, Logo, SearchBar } from './styles'
+import { HeaderContainer, Icons, Logo } from './styles'
 
 export const Header = () => {
   return (
     <HeaderContainer>
-      <SearchBar>
-        <button>
-          <MagnifyingGlass size={24} />
-        </button>
-        <input type="text" placeholder="pesquisar..." />
-      </SearchBar>
+      <SearchProductBar />
       <Logo>
         <Link href="/">
           <Image src="/images/logo-coronado.jpg" fill quality={75} alt="" />

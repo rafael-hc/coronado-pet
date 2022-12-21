@@ -3,7 +3,7 @@ import { styled } from '../../styles'
 export const FooterContainer = styled('footer', {
   width: '100%',
   height: '12rem',
-  padding: '2rem 0',
+  padding: '2rem 1rem',
   marginBottom: '2rem',
 
   display: 'flex',

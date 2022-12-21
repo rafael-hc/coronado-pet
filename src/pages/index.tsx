@@ -1,11 +1,10 @@
-import { Categories, Products } from '@prisma/client'
+import { ReactElement } from 'react'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { ReactElement } from 'react'
+import { Categories, Products } from '@prisma/client'
 import { Bestseller } from '../components/Bestseller'
 import { Carrossel } from '../components/Carrossel'
-import { useResize } from '../hooks/useResize'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { getAllProducts } from '../services/products/useCases/getProduct/all'
 import { getLatestProducts } from '../services/products/useCases/getProduct/latest'
@@ -26,14 +25,12 @@ interface HomeProps {
 }
 
 const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
-  const { height, width } = useResize()
   return (
     <>
       <Head>
         <title>Coronado Pet - Home</title>
       </Head>
       <Carrossel />
-      <p>{`Width: ${width}, height: ${height}`}</p>
       <Bestseller title="Mais vendidos" products={latestProducts} />
       <SubBannerContainer>
         <SubBanner href="/cachorros">

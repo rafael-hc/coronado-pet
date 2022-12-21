@@ -13,6 +13,16 @@ export const CardContainer = styled(Link, {
   borderRadius: 8,
   border: '$gray-200 solid 1px',
 
+  variants: {
+    landscape: {
+      true: {
+        flexDirection: 'row',
+        width: '100%',
+        maxWidth: '100vw',
+      },
+    },
+  },
+
   p: {
     fontSize: '1rem',
     fontWeight: 'bold',
@@ -44,7 +54,7 @@ export const CardInfo = styled('div', {
   },
 })
 
-export const Tilte = styled('h3', {
+export const Title = styled('h3', {
   fontSize: '1rem',
   fontWeight: 'normal',
   minHeight: '3.4rem',

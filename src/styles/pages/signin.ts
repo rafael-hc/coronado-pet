@@ -3,12 +3,20 @@ import { styled } from '..'
 
 export const LoginContainer = styled('main', {
   maxWidth: '55rem',
-  margin: '2rem auto',
+  margin: '3rem auto',
+  padding: '0 3rem',
 
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
-  gridTemplateRows: '3rem 1fr',
-  gap: '2rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '3rem',
+
+  '@sm': {
+    margin: '2rem auto',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateRows: '3rem 1fr',
+    gap: '2rem',
+  },
 })
 
 const LoginContent = styled('section', {

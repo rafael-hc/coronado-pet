@@ -3,7 +3,7 @@ import { keyframes, styled } from '../../styles'
 
 export const TopBarContainer = styled('nav', {
   width: '100%',
-  padding: '0.75rem 0',
+  padding: '0.75rem',
   color: '$gray-400',
 
   display: 'flex',

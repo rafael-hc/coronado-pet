@@ -10,6 +10,7 @@ import {
   GridProducts,
   PageProductsContainer,
 } from '../../styles/pages/products'
+import { BreakPoint } from '../../utils/breakPoints'
 
 interface ProductsProps {
   category: string
@@ -17,6 +18,7 @@ interface ProductsProps {
 }
 
 const Products = ({ category, products }: ProductsProps) => {
+  const { sm } = BreakPoint()
   return (
     <>
       <Head>
@@ -32,6 +34,7 @@ const Products = ({ category, products }: ProductsProps) => {
               name={product.name}
               price={product.price}
               slug={product.slug!}
+              landscape={sm}
             />
           ))}
         </GridProducts>

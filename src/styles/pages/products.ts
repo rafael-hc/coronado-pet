@@ -4,9 +4,13 @@ export const PageProductsContainer = styled('main', {
   width: '100%',
   maxWidth: '1200px',
   margin: '3rem auto',
-  display: 'grid',
-  gridTemplateColumns: '13rem 1fr',
-  gap: '0.5rem',
+  padding: '0 1rem',
+
+  '@sm': {
+    display: 'grid',
+    gridTemplateColumns: '13rem 1fr',
+    gap: '0.5rem',
+  },
 })
 
 export const GridProducts = styled('section', {
