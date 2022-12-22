@@ -5,6 +5,20 @@ export const SidebarFilterContainer = styled('aside', {
   flexDirection: 'column',
 })
 
+export const SidebarFilterContainerMobile = styled('div', {
+  width: '100%',
+  padding: '1rem',
+
+  display: 'flex',
+  justifyContent: 'space-between',
+})
+
+export const FilterButton = styled('button', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+})
+
 export const SidebarFilterHeader = styled('section', {
   padding: '0.5rem',
 

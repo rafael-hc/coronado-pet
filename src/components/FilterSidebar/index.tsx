@@ -5,8 +5,9 @@ import {
   SidebarFilterContainer,
   SidebarFilterHeader,
 } from './styles'
+import React from 'react'
 
-const FilterSidebar = () => {
+const Filter = () => {
   return (
     <SidebarFilterContainer>
       <SidebarFilterHeader>
@@ -43,4 +44,21 @@ const FilterSidebar = () => {
   )
 }
 
-export default FilterSidebar
+// const AccordionTrigger = React.forwardRef(
+//   ({ children, ...props }, forwardedRef) => (
+//     <StyledHeader>
+//       <StyledTrigger {...props} ref={forwardedRef}>
+//         {children}
+//         <StyledChevron aria-hidden />
+//       </StyledTrigger>
+//     </StyledHeader>
+//   ),
+// )
+
+// const AccordionContent = React.forwardRef(
+//   ({ children, ...props }, forwardedRef) => (
+
+//   ),
+// )
+
+export default Filter
