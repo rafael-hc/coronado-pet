@@ -1,7 +1,14 @@
 import Image from 'next/image'
 import { ShoppingCart } from 'phosphor-react'
 import { Button } from '../../styles/components/button'
-import { CardContainer, CardImage, CardInfo, Rating, Title } from './styles'
+import {
+  CardContainer,
+  CardImage,
+  CardInfo,
+  Price,
+  Rating,
+  Title,
+} from './styles'
 
 interface CardProductProps {
   name: string
@@ -31,12 +38,12 @@ const CardProduct = ({
       <CardInfo>
         <Title>{name}</Title>
         <Rating>*****</Rating>
-        <p>
+        <Price>
           {(price / 100).toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
           })}
-        </p>
+        </Price>
         <Button type="button" size={2} icon>
           <ShoppingCart />
           Comprar

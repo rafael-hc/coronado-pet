@@ -16,23 +16,23 @@ interface DefaultLayoutProps {
 }
 
 export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
-  const breakPoint = BreakPoint()
+  const { sm } = BreakPoint()
 
   return (
     <div>
       <DefaultLayoutContent>
         <HeaderContainer>
           <TopBar />
-          {breakPoint.lg ? (
-            <>
-              <Header />
-              <MenuBar />
-            </>
-          ) : (
+          {sm ? (
             <>
               <HeaderMobile />
               <SearchProductBar />
               <MenuBar isMobile />
+            </>
+          ) : (
+            <>
+              <Header />
+              <MenuBar />
             </>
           )}
         </HeaderContainer>

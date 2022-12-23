@@ -3,7 +3,7 @@ import { styled } from '..'
 export const PageProductsContainer = styled('main', {
   width: '100%',
   maxWidth: '1200px',
-  margin: '3rem auto',
+  margin: '0 auto',
   padding: '0 1rem',
 
   '@sm': {

@@ -5,6 +5,7 @@ export const MenuBarContainer = styled('nav', {
   width: '100%',
   // height: 50,
   overflowX: 'auto',
+  overflow: '-moz-scrollbars-none',
   padding: '1rem',
 
   display: 'flex',
@@ -13,6 +14,10 @@ export const MenuBarContainer = styled('nav', {
   gap: '2rem',
 
   backgroundColor: '$white',
+
+  '&::-webkit-scrollbar': {
+    width: '0! important',
+  },
 })
 
 export const LinkItem = styled(Link, {
@@ -24,6 +29,7 @@ export const LinkItem = styled(Link, {
 
   p: {
     textAlign: 'center',
+    fontSize: '1.2rem',
   },
 })
 

@@ -3,9 +3,9 @@ import { styled } from '../../styles'
 
 export const CardContainer = styled(Link, {
   width: '100%',
-  maxWidth: '14rem',
   padding: '0.75rem',
 
+  maxWidth: '14rem',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -13,22 +13,23 @@ export const CardContainer = styled(Link, {
   borderRadius: 8,
   border: '$gray-200 solid 1px',
 
-  variants: {
-    landscape: {
-      true: {
-        flexDirection: 'row',
-        width: '100%',
-        maxWidth: '100vw',
-      },
-    },
-  },
-
   p: {
     fontSize: '1rem',
     fontWeight: 'bold',
     color: '$gray-700',
 
     marginBottom: '1rem',
+  },
+
+  variants: {
+    landscape: {
+      true: {
+        maxWidth: '100vw',
+        display: 'grid',
+        gridTemplateColumns: '1fr 2fr',
+        columnGap: '1.5rem',
+      },
+    },
   },
 })
 
@@ -46,23 +47,32 @@ export const CardImage = styled('div', {
 export const CardInfo = styled('div', {
   height: '10.5rem',
 
-  p: {
-    fontSize: '1.6rem',
-    '@sm': {
-      fontSize: '1rem',
-    },
+  p: {},
+})
+
+export const Price = styled('span', {
+  color: '$gray-600',
+
+  fontSize: '1.5rem',
+  fontWeight: 'bold',
+  '@sm': {
+    fontSize: '1rem',
   },
 })
 
 export const Title = styled('h3', {
-  fontSize: '1rem',
+  fontSize: '1.2rem',
   fontWeight: 'normal',
   minHeight: '3.4rem',
   maxHeight: '3.625rem',
   overflow: 'hidden',
-  color: '$gray-500',
+  color: '$gray-600',
 
   marginBottom: '0.5rem',
+
+  '@sm': {
+    fontSize: '1rem',
+  },
 })
 
 export const Rating = styled('div', {
