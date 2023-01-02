@@ -15,7 +15,7 @@ import {
   Information,
 } from './styles'
 
-export const Footer = () => {
+export function Footer() {
   return (
     <FooterContainer>
       <FooterContent>

@@ -18,13 +18,13 @@ interface CardProductProps {
   landscape?: boolean
 }
 
-const CardProduct = ({
+export function CardProduct({
   name,
   imageUrl,
   price,
   slug,
   landscape,
-}: CardProductProps) => {
+}: CardProductProps) {
   return (
     <CardContainer
       href={`/product/${slug}`}
@@ -52,5 +52,3 @@ const CardProduct = ({
     </CardContainer>
   )
 }
-
-export default CardProduct

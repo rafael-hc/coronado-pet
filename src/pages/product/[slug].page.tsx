@@ -12,19 +12,20 @@ import {
   DetailsProduct,
   InfoContent,
   InfoProduct,
-  Informations,
+  Information,
   InputQnt,
   Price,
   ProductContainer,
   Stock,
   Title,
-} from '../../styles/pages/product'
+} from './styles'
 import { Product as IProduct } from '../../utils/interfaces/productInterface'
 import { Category } from '../../utils/interfaces/Category'
 import Head from 'next/head'
 import { prisma } from '../../utils/prisma'
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 import { Button } from '../../styles/components/button'
+import { NextPageWithLayout } from '../_app.page'
 
 interface ProductProps {
   product: IProduct & {
@@ -32,7 +33,9 @@ interface ProductProps {
   }
 }
 
-const Product = ({ product }: ProductProps) => {
+const Product: NextPageWithLayout<ProductProps> = ({
+  product,
+}: ProductProps) => {
   const [amount, setAmount] = useState(1)
   const { isFallback } = useRouter()
   // const { imageUrl, name } = product
@@ -66,13 +69,13 @@ const Product = ({ product }: ProductProps) => {
           <DetailsProduct>
             <header>
               <Title>{product.name}</Title>
-              <Informations>
+              <Information>
                 <span>***** |</span>
                 <span>{product.brand && `${product.brand} |`}</span>
                 <Stock isLow={product.inventory <= 10}>
                   {product.inventory > 10 ? 'Em estoque' : 'Últimas unidades'}
                 </Stock>
-              </Informations>
+              </Information>
             </header>
             <InfoContent>
               <Price>

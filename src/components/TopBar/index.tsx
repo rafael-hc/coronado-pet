@@ -14,7 +14,7 @@ import {
   TopBarContainer,
 } from './styles'
 
-const TopBar = () => {
+export function TopBar() {
   const dispatch = useDispatch()
   const { users } = useSelector((state: RootState) => state)
 
@@ -57,5 +57,3 @@ const TopBar = () => {
     </TopBarContainer>
   )
 }
-
-export default TopBar

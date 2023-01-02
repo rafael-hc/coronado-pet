@@ -2,12 +2,12 @@ import * as Popover from '@radix-ui/react-popover'
 import Image from 'next/image'
 import Link from 'next/link'
 import { List, ShoppingCartSimple } from 'phosphor-react'
-import CartModal from '../../CartModal'
+import { CartModal } from '../../CartModal'
 import { Logo } from '../../Header/styles'
-import MenuBarMobile from '../MenuBarMobile'
+import { MenuBarMobile } from '../MenuBarMobile'
 import { ColumnHeader, HeaderMobileContainer } from './styles'
 
-const HeaderMobile = () => {
+export function HeaderMobile() {
   return (
     <HeaderMobileContainer>
       <ColumnHeader side="left">
@@ -38,5 +38,3 @@ const HeaderMobile = () => {
     </HeaderMobileContainer>
   )
 }
-
-export default HeaderMobile

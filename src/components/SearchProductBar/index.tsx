@@ -1,7 +1,7 @@
 import { MagnifyingGlass } from 'phosphor-react'
 import { SearchBar } from './styles'
 
-const SearchProductBar = () => {
+export function SearchProductBar() {
   return (
     <SearchBar>
       <button>
@@ -11,5 +11,3 @@ const SearchProductBar = () => {
     </SearchBar>
   )
 }
-
-export default SearchProductBar

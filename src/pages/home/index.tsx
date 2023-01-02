@@ -1,21 +1,18 @@
-import { ReactElement } from 'react'
-import { GetStaticProps } from 'next'
+import { ReactElement, useEffect, useState } from 'react'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Categories, Products } from '@prisma/client'
-import { Bestseller } from '../components/Bestseller'
-import { Carrossel } from '../components/Carrossel'
-import { DefaultLayout } from '../layouts/DefaultLayout'
-import { getAllProducts } from '../services/products/useCases/getProduct/all'
-import { getLatestProducts } from '../services/products/useCases/getProduct/latest'
-import { Button } from '../styles/components/button'
-import {
-  Description,
-  SubBanner,
-  SubBannerContainer,
-} from '../styles/pages/home'
-import { LatestProducts } from '../utils/interfaces/productInterface'
-import { NextPageWithLayout } from './_app'
+import { Bestseller } from '../../components/Bestseller'
+import { Carrossel } from '../../components/Carrossel'
+import { DefaultLayout } from '../../layouts/DefaultLayout'
+import { getAllProducts } from '../../services/products/useCases/getProduct/all'
+import { getLatestProducts } from '../../services/products/useCases/getProduct/latest'
+import { Button } from '../../styles/components/button'
+import { Description, SubBanner, SubBannerContainer } from './styles'
+import { LatestProducts } from '../../utils/interfaces/productInterface'
+import { NextPageWithLayout } from '../_app.page'
+import { api } from '../../services/api'
 
 interface HomeProps {
   products: (Products & {
@@ -25,6 +22,19 @@ interface HomeProps {
 }
 
 const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
+  // const [product, setProduct] = useState<any>([])
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const prod = await api.get('/products/last-releases')
+  //     setProduct(prod)
+  //   }
+
+  //   fetchData()
+  // }, [])
+
+  // console.log('Cliente', product.data)
+  // console.log('Server produtos', products, 'e Últimos vendidos', latestProducts)
   return (
     <>
       <Head>
@@ -70,12 +80,13 @@ Home.getLayout = function getLayout(page: ReactElement) {
   return <DefaultLayout>{page}</DefaultLayout>
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const products = await getAllProducts()
   const latestProducts = await getLatestProducts()
+  console.log('Server produtos', products, 'e Últimos vendidos', latestProducts)
   return {
     props: {
-      products: JSON.parse(JSON.stringify(products)),
+      products,
       latestProducts: JSON.parse(JSON.stringify(latestProducts)),
     },
     revalidate: 60 * 60 * 4, // 4horas

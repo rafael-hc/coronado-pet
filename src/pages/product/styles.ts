@@ -1,4 +1,4 @@
-import { styled } from '..'
+import { styled } from '../../styles'
 
 export const ProductContainer = styled('main', {
   width: '100%',
@@ -49,7 +49,7 @@ export const InfoContent = styled('div', {
   width: '80%',
 })
 
-export const Informations = styled('div', {
+export const Information = styled('div', {
   display: 'flex',
   gap: '0.25rem',
 

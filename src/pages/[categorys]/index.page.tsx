@@ -2,15 +2,12 @@ import { Products as IProduct } from '@prisma/client'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { ReactElement } from 'react'
-import CardProduct from '../../components/CardProduct'
-import Filter from '../../components/FilterSidebar'
-import FilterMobile from '../../components/Mobile/FilterMobile'
+import { CardProduct } from '../../components/CardProduct'
+import { Filter } from '../../components/FilterSidebar'
+import { FilterMobile } from '../../components/Mobile/FilterMobile'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getProductsByPet } from '../../services/products/useCases/getProduct/byPet'
-import {
-  GridProducts,
-  PageProductsContainer,
-} from '../../styles/pages/products'
+import { GridProducts, PageProductsContainer } from './styles'
 import { BreakPoint } from '../../utils/breakPoints'
 
 interface ProductsProps {
@@ -18,7 +15,7 @@ interface ProductsProps {
   products: IProduct[]
 }
 
-const Products = ({ category, products }: ProductsProps) => {
+function Products({ category, products }: ProductsProps) {
   const { sm } = BreakPoint()
   return (
     <>

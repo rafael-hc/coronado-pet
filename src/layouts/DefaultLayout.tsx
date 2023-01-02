@@ -2,9 +2,9 @@ import { ReactNode } from 'react'
 import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { MenuBar } from '../components/MenuBar'
-import HeaderMobile from '../components/Mobile/HeaderMobile'
-import SearchProductBar from '../components/SearchProductBar'
-import TopBar from '../components/TopBar'
+import { HeaderMobile } from '../components/Mobile/HeaderMobile'
+import { SearchProductBar } from '../components/SearchProductBar'
+import { TopBar } from '../components/TopBar'
 import {
   DefaultLayoutContent,
   HeaderContainer,
@@ -15,7 +15,7 @@ interface DefaultLayoutProps {
   children: ReactNode
 }
 
-export const DefaultLayout = ({ children }: DefaultLayoutProps) => {
+export function DefaultLayout({ children }: DefaultLayoutProps) {
   const { sm } = BreakPoint()
 
   return (

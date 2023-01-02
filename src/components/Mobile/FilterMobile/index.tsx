@@ -2,7 +2,7 @@ import * as Popover from '@radix-ui/react-popover'
 import Link from 'next/link'
 import { CaretDown, Funnel, Trash, X } from 'phosphor-react'
 import { Button } from '../../../styles/components/button'
-import FilterItem from '../../FilterItem'
+import { FilterItem } from '../../FilterItem'
 import {
   AccordionItem,
   AccordionRoot,
@@ -16,7 +16,8 @@ import {
   StyledHeader,
   StyledTrigger,
 } from './styles'
-const FilterMobile = () => {
+
+export function FilterMobile() {
   return (
     <FilterMobileContainer>
       <FilterButton type="button">
@@ -105,5 +106,3 @@ const FilterMobile = () => {
     </FilterMobileContainer>
   )
 }
-
-export default FilterMobile

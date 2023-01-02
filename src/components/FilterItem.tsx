@@ -7,7 +7,7 @@ interface FilterItemProps {
   id: string
 }
 
-const FilterItem = ({ id, label, value }: FilterItemProps) => {
+export function FilterItem({ id, label, value }: FilterItemProps) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
       <Checkbox.Root
@@ -31,5 +31,3 @@ const FilterItem = ({ id, label, value }: FilterItemProps) => {
     </div>
   )
 }
-
-export default FilterItem

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 import { LoginLayout } from '../../layouts/LogintLayout'
-import { NextPageWithLayout } from '../_app'
+import { NextPageWithLayout } from '../_app.page'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { useAppDispatch } from '../../store/hooks'
@@ -14,7 +14,7 @@ import {
   SingIn,
   SingUp,
   SingUpButton,
-} from '../../styles/pages/signin'
+} from './styles'
 import { useRouter } from 'next/router'
 import { Button } from '../../styles/components/button'
 

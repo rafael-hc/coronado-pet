@@ -14,7 +14,6 @@ export const authenticateUser = createAsyncThunk(
       const authData = await api.post('/users/login', { email, password })
       return authData
     } catch (e: any) {
-      console.log('erro: ', e.response.data.message)
       return e
     }
   },
@@ -25,7 +24,6 @@ export const authSlice = createSlice({
   initialState: { loading: true, success: false } as IUser,
   reducers: {
     singIn: (state, { payload }: PayloadAction<any>) => {
-      console.log(payload)
       return {
         ...state,
         loading: false,
@@ -47,7 +45,6 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(authenticateUser.fulfilled, (state, action) => {
-      console.log(action.payload.data.token)
       return {
         ...state,
         loading: false,

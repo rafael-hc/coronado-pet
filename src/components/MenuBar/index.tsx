@@ -6,7 +6,7 @@ interface MenuBarProps {
   isMobile?: boolean
 }
 
-export const MenuBar = ({ isMobile }: MenuBarProps) => {
+export function MenuBar({ isMobile }: MenuBarProps) {
   if (isMobile) {
     return (
       <MenuBarContainer>

@@ -13,7 +13,7 @@ import {
   TextSlide,
 } from './styles'
 
-export const Carrossel = () => {
+export function Carrossel() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(

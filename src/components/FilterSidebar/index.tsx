@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import FilterItem from '../FilterItem'
+import { FilterItem } from '../FilterItem'
 import {
   FilterCategory,
   SidebarFilterContainer,
@@ -7,7 +7,7 @@ import {
 } from './styles'
 import React from 'react'
 
-const Filter = () => {
+export function Filter() {
   return (
     <SidebarFilterContainer>
       <SidebarFilterHeader>
@@ -60,5 +60,3 @@ const Filter = () => {
 
 //   ),
 // )
-
-export default Filter

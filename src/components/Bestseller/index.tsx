@@ -8,7 +8,7 @@ import {
 import 'keen-slider/keen-slider.min.css'
 import { useState } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
-import CardProduct from '../CardProduct'
+import { CardProduct } from '../CardProduct'
 import { CaretLeft, CaretRight } from 'phosphor-react'
 import { LatestProducts } from '../../utils/interfaces/productInterface'
 
@@ -17,7 +17,7 @@ interface BestSellerProps {
   products: LatestProducts[]
 }
 
-export const Bestseller = ({ title, products }: BestSellerProps) => {
+export function Bestseller({ title, products }: BestSellerProps) {
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
@@ -29,6 +29,7 @@ export const Bestseller = ({ title, products }: BestSellerProps) => {
       setLoaded(true)
     },
   })
+
   return (
     <BestsellerContainer>
       <SliderHeader>
@@ -55,7 +56,7 @@ export const Bestseller = ({ title, products }: BestSellerProps) => {
         </div>
       </SliderHeader>
       <SliderContainer ref={sliderRef} className="keen-slider">
-        {products.map((product) => {
+        {/* {products.map((product) => {
           return (
             <ItemSlider key={product.id} className="keen-slider__slide">
               <CardProduct
@@ -66,7 +67,7 @@ export const Bestseller = ({ title, products }: BestSellerProps) => {
               />
             </ItemSlider>
           )
-        })}
+        })} */}
       </SliderContainer>
     </BestsellerContainer>
   )

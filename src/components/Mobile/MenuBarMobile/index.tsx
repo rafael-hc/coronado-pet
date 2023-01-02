@@ -3,7 +3,7 @@ import { X } from 'phosphor-react'
 import { Content } from './styles'
 // import { HamburgerMenuContainer } from './styles'
 
-const MenuBarMobile = () => {
+export function MenuBarMobile() {
   return (
     <Popover.Portal>
       <Content sideOffset={-66}>
@@ -15,5 +15,3 @@ const MenuBarMobile = () => {
     </Popover.Portal>
   )
 }
-
-export default MenuBarMobile
