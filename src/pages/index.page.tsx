@@ -9,7 +9,7 @@ import { DefaultLayout } from '../layouts/DefaultLayout'
 import { getAllProducts } from '../services/products/useCases/getProduct/all'
 import { getLatestProducts } from '../services/products/useCases/getProduct/latest'
 import { Button } from '../styles/components/button'
-import { Description, SubBanner, SubBannerContainer } from './home/styles'
+import { Description, SubBanner, SubBannerContainer } from './styles'
 import { LatestProducts } from '../utils/interfaces/productInterface'
 import { NextPageWithLayout } from './_app.page'
 

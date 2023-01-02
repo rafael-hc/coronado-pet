@@ -1,6 +1,6 @@
 import { styled } from '../../styles'
 
-export const SliderTumbContainer = styled('div', {
+export const SliderThumbContainer = styled('div', {
   width: '100vw',
   height: 250,
 
@@ -133,9 +133,9 @@ export const Thumbnail = styled('div', {
   },
 })
 
-export const Magnfy = styled('div', {
-  width: 300,
-  height: 300,
+export const Magnify = styled('div', {
+  width: 250,
+  height: 250,
 
   position: 'absolute',
   backgroundRepeat: 'no-repeat',

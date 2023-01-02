@@ -67,6 +67,7 @@ export function Carrossel() {
             src="./images/main-banner-01_1903x650.webp"
             alt="Cachorro marrom com a patinha levantada usando uma coleira com pingente de ossinho"
             fill
+            priority
           />
           <TextSlide active={currentSlide === 0}>
             <span>É Sobre Fazer</span>
@@ -79,6 +80,7 @@ export function Carrossel() {
             src="./images/main-banner-2_1903x650.webp"
             alt="Gato peludo em cor mesclada entre bege e marrom"
             fill
+            priority
           />
           <TextSlide active={currentSlide === 1}>
             <span>O cuidado dos</span>

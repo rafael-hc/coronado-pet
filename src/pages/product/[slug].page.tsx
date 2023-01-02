@@ -64,7 +64,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
       <ProductContainer>
         <InfoProduct>
           <div>
-            <SliderThumb images={product.imageUrl} thumbnailPosition="botton" />
+            <SliderThumb images={product.imageUrl} thumbnailPosition="bottom" />
           </div>
           <DetailsProduct>
             <header>

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import { MouseEvent, TouchEvent, useState } from 'react'
 import {
-  Magnfy,
+  Magnify,
   Slide,
-  SliderTumbContainer,
+  SliderThumbContainer,
   SlidesContainer,
   SlideTransition,
   Thumbnail,
@@ -12,16 +12,16 @@ import {
 
 interface SliderThumbProps {
   images: string[]
-  thumbnailPosition: 'botton' | 'left'
+  thumbnailPosition: 'bottom' | 'left'
 }
 
-const ADJUSTMENT_POSTION_CURSOS = 100
+const ADJUSTMENT_POSITION_CURSOS = 250 / 2
 
 export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
   const [slideActive, setSlideActive] = useState<any>(0)
   const [touchS, setTouchS] = useState(0)
   const [touchM, setTouchM] = useState(0)
-  const [magnfyStyle, setMagnfyStyle] = useState({
+  const [magnifyStyle, setMagnifyStyle] = useState({
     backgroundImage: `url(${images[slideActive]})`,
   })
 
@@ -46,23 +46,23 @@ export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
     const xPercentage = (offsetX / offsetWidth) * 100
     const yPercentage = (offsetY / offsetHeight) * 100
 
-    setMagnfyStyle((state) => ({
+    setMagnifyStyle((state) => ({
       ...state,
       backgroundPosition: `${xPercentage}% ${yPercentage}%`,
-      top: `${offsetY + ADJUSTMENT_POSTION_CURSOS}px`,
-      left: `${offsetX + ADJUSTMENT_POSTION_CURSOS * 2}px`,
+      top: `${offsetY - ADJUSTMENT_POSITION_CURSOS}px`,
+      left: `${offsetX - ADJUSTMENT_POSITION_CURSOS}px`,
       display: 'block',
     }))
   }
 
   function zoomOut() {
-    setMagnfyStyle((state) => ({
+    setMagnifyStyle((state) => ({
       ...state,
       display: 'none',
     }))
   }
   function zoomIn() {
-    setMagnfyStyle((state) => ({
+    setMagnifyStyle((state) => ({
       ...state,
       backgroundImage: `url(${images[slideActive]})`,
     }))
@@ -70,7 +70,7 @@ export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
 
   return (
     <>
-      <SliderTumbContainer>
+      <SliderThumbContainer>
         <ThumbnailsContainer>
           {images.map((image, index) => (
             <Thumbnail
@@ -111,9 +111,9 @@ export function SliderThumb({ images, thumbnailPosition }: SliderThumbProps) {
               </Slide>
             ))}
           </SlideTransition>
+          <Magnify style={magnifyStyle}></Magnify>
         </SlidesContainer>
-      </SliderTumbContainer>
-      <Magnfy style={magnfyStyle}></Magnfy>
+      </SliderThumbContainer>
     </>
   )
 }

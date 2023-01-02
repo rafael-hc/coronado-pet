@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { styled } from '../../styles'
+import { styled } from '../styles'
 
 export const SubBannerContainer = styled('section', {
   width: '100vw',
