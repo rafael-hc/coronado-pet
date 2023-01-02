@@ -56,7 +56,7 @@ export function Bestseller({ title, products }: BestSellerProps) {
         </div>
       </SliderHeader>
       <SliderContainer ref={sliderRef} className="keen-slider">
-        {/* {products.map((product) => {
+        {products.map((product) => {
           return (
             <ItemSlider key={product.id} className="keen-slider__slide">
               <CardProduct
@@ -67,7 +67,7 @@ export function Bestseller({ title, products }: BestSellerProps) {
               />
             </ItemSlider>
           )
-        })} */}
+        })}
       </SliderContainer>
     </BestsellerContainer>
   )
