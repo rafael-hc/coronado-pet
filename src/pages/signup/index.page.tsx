@@ -42,6 +42,10 @@ const personalDataFormSchema = z.object({
   district: z.string(),
   city: z.string(),
   state: z.string(),
+  email: z.string().email({ message: 'E-mail inválido.' }),
+  password: z.string(),
+  verifyPassword: z.string(),
+  terms: z.string(),
 })
 
 type PersonDataType = z.infer<typeof personalDataFormSchema>
@@ -230,7 +234,56 @@ const SignUp: NextPageWithLayout = () => {
               </TextInput.Root>
             </label>
           </Fieldset>
-
+          <Fieldset>
+            <label>
+              <Text>E-mail</Text>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="email"
+                  placeholder="Digite seu email"
+                  {...register('email')}
+                />
+              </TextInput.Root>
+            </label>
+          </Fieldset>
+          <Fieldset>
+            <label>
+              <Text>Senha</Text>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="password"
+                  placeholder="Digite sua senha."
+                  {...register('password')}
+                />
+              </TextInput.Root>
+            </label>
+          </Fieldset>
+          <Fieldset>
+            <label>
+              <Text>Confirme a senha</Text>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="password"
+                  placeholder="Confirme sua senha."
+                  {...register('verifyPassword')}
+                />
+              </TextInput.Root>
+            </label>
+          </Fieldset>
+          <Fieldset inLine>
+            <label>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="checkbox"
+                  placeholder="Digite o número do endereço."
+                  {...register('terms')}
+                />
+              </TextInput.Root>
+              <a href="#">
+                <Text>E-mail</Text>
+              </a>
+            </label>
+          </Fieldset>
           <ButtonForm>
             <Button type="submit" disabled={isSubmitting}>
               Próximo
