@@ -1,31 +1,34 @@
-import { ReactElement } from 'react'
-import { LoginLayout } from '../../layouts/LogintLayout'
-import { NextPageWithLayout } from '../_app.page'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-import { useAppDispatch } from '../../store/hooks'
+import { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { useRouter } from 'next/router'
+import { Envelope, Key } from 'phosphor-react'
+import { LoginLayout } from '../../layouts/LoginLayout'
+import { NextPageWithLayout } from '../_app.page'
+import { useAppDispatch } from '../../store/hooks'
 import { authenticateUser } from '../../store/reducers/loginSlice'
 import {
-  FieldContainer,
   FormSingIn,
   InputError,
   LoginContainer,
   SingIn,
   SingUp,
-  SingUpButton,
+  // SingUpButton,
 } from './styles'
-import { useRouter } from 'next/router'
-import { Button } from '../../styles/components/button'
+import { TextInput } from '../../@designSystem/components/textInput'
+import { Heading } from '../../@designSystem/components/heading'
+import { Text } from '../../@designSystem/components/text'
+import { Button } from '../../@designSystem/components/button'
 
-const loginSchema = z.object({
+const loginFormSchema = z.object({
   email: z.string().email({ message: 'Digite um e-mail válido' }),
   password: z
     .string()
     .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
 })
 
-type loginFormData = z.infer<typeof loginSchema>
+type loginFormData = z.infer<typeof loginFormSchema>
 
 const SignIn: NextPageWithLayout = () => {
   const dispatch = useAppDispatch()
@@ -34,8 +37,8 @@ const SignIn: NextPageWithLayout = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<loginFormData>({ resolver: zodResolver(loginSchema) })
+    formState: { errors, isSubmitting },
+  } = useForm<loginFormData>({ resolver: zodResolver(loginFormSchema) })
 
   const handleLogin = ({ email, password }: loginFormData) => {
     dispatch(authenticateUser({ email, password }))
@@ -43,45 +46,60 @@ const SignIn: NextPageWithLayout = () => {
   }
   return (
     <LoginContainer>
-      <h1>Acessar ou criar conta</h1>
+      <Heading as="h1" size="2xl">
+        Acessar ou criar conta
+      </Heading>
       <SingIn>
-        <h2>Acesse sua conta</h2>
         <FormSingIn onSubmit={handleSubmit(handleLogin)}>
-          <FieldContainer>
-            <label htmlFor="">E-mail</label>
-            <input
-              type="text"
-              id="login"
-              placeholder="Digite seu e-mail..."
-              {...register('email')}
-            />
-            {errors.email?.message && (
-              <InputError>{String(errors.email?.message)}</InputError>
-            )}
-          </FieldContainer>
+          <Heading>Acesse sua conta</Heading>
+          <label>
+            <Text>E-mail</Text>
+            <TextInput.Root>
+              <TextInput.Icon>
+                <Envelope />
+              </TextInput.Icon>
+              <TextInput.Input
+                type="text"
+                placeholder="Digite seu e-mail..."
+                {...register('email')}
+              />
+            </TextInput.Root>
+          </label>
+          {errors.email?.message && (
+            <InputError>{String(errors.email.message)}</InputError>
+          )}
 
-          <FieldContainer>
-            <label htmlFor="">Senha</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Digite sua senha..."
-              {...register('password')}
-            />
-            {errors.password?.message && (
-              <InputError>{String(errors.password?.message)}</InputError>
-            )}
-          </FieldContainer>
-          <Button type="submit">Entrar</Button>
+          <label>
+            <Text>Senha</Text>
+            <TextInput.Root>
+              <TextInput.Icon>
+                <Key />
+              </TextInput.Icon>
+
+              <TextInput.Input
+                type="password"
+                placeholder="Digite sua senha..."
+                {...register('password')}
+              />
+            </TextInput.Root>
+          </label>
+          {errors.password?.message && (
+            <InputError>{String(errors.password?.message)}</InputError>
+          )}
+          <Button type="submit" disabled={isSubmitting}>
+            Entrar
+          </Button>
         </FormSingIn>
       </SingIn>
       <SingUp>
-        <h2>Crie sua conta é rápido, fácil e gratuito!</h2>
+        <Heading>Crie sua conta é rápido, fácil e gratuito!</Heading>
         <p>
           Com a sua conta da você tem acesso a Ofertas exclusivas, descontos,
           acompanhar os seus pedidos e muito mais!
         </p>
-        <SingUpButton href="/signup">Criar uma conta</SingUpButton>
+        <Button as="a" href="/signup">
+          Criar uma conta
+        </Button>
       </SingUp>
     </LoginContainer>
   )

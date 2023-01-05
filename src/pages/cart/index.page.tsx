@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { LoginLayout } from '../../layouts/LogintLayout'
+import { LoginLayout } from '../../layouts/LoginLayout'
 import { NextPageWithLayout } from '../../pages/_app.page'
 import { Test } from './styles'
 

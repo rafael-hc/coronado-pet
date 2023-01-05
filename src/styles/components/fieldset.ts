@@ -3,7 +3,7 @@ import { styled } from '..'
 export const Fieldset = styled('fieldset', {
   border: 'none',
   display: 'flex',
-  flexDirection: 'column',
+  // flexDirection: 'column',
   gap: '0.25rem',
 
   variants: {

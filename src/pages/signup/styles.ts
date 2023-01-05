@@ -1,3 +1,4 @@
+import { Box } from '../../@designSystem/components/box'
 import { styled } from '../../styles'
 
 export const RegisterContainer = styled('main', {
@@ -9,30 +10,14 @@ export const RegisterContainer = styled('main', {
   padding: '2rem',
 })
 
-export const FormRegister = styled('form', {
-  flex: 1,
+export const PersonalDataForm = styled(Box, {
+  // flex: 1,
+  marginTop: '1rem',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'stretch',
   justifyContent: 'center',
   gap: '2rem',
-
-  input: {
-    border: 'none',
-    borderRadius: 6,
-    padding: '0.75rem',
-  },
-})
-
-export const TipoPessoa = styled('div', {
-  gridColumnStart: 1,
-  gridRowStart: 2,
-  padding: '1rem',
-  height: '3rem',
-  borderRadius: 8,
-  display: 'flex',
-  justifyContent: 'center',
-  gap: '1rem',
 })
 
 export const StepFormContainer = styled('div', {
@@ -40,7 +25,6 @@ export const StepFormContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  padding: '1rem',
 
   borderRadius: 8,
 
@@ -53,11 +37,6 @@ export const StepFormContainer = styled('div', {
       },
     },
   },
-  // ${(props) =>
-  //   props.step !== 0 &&
-  //   css`
-  //
-  //   `}
 })
 
 export const AddressForm = styled('div', {
@@ -70,11 +49,6 @@ export const AddressForm = styled('div', {
   borderRadius: 8,
 
   backgroundColor: '$gray-400',
-  // ${(props) =>
-  //   props.step !== 1 &&
-  //   css`
-  //     display: none,
-  //   `}
 })
 
 export const LoginForm = styled('div', {
@@ -87,11 +61,6 @@ export const LoginForm = styled('div', {
   borderRadius: 8,
 
   backgroundColor: '$gray-400',
-  // ${(props) =>
-  //   props.step !== 2 &&
-  //   css`
-  //     display: none,
-  //   `}
 })
 
 export const ButtonForm = styled('div', {
