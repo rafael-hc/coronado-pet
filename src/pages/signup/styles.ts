@@ -1,4 +1,5 @@
 import { Box } from '../../@designSystem/components/box'
+import { Text } from '../../@designSystem/components/text'
 import { styled } from '../../styles'
 
 export const RegisterContainer = styled('main', {
@@ -67,21 +68,21 @@ export const ButtonForm = styled('div', {
   display: 'flex',
   justifyContent: 'space-around',
 
-  button: {
-    height: '2.5rem',
-    width: '100%',
-    borderRadius: 8,
+  // button: {
+  //   height: '2.5rem',
+  //   width: '100%',
+  //   borderRadius: 8,
 
-    display: 'flex',
+  //   display: 'flex',
 
-    alignItems: 'center',
-    justifyContent: 'center',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
 
-    cursor: 'pointer',
+  //   cursor: 'pointer',
 
-    backgroundColor: '$primary',
-    color: '$white',
-  },
+  //   backgroundColor: '$primary',
+  //   color: '$white',
+  // },
 })
 
 export const LabelStepForm = styled('div', {
@@ -94,4 +95,8 @@ export const LabelStepForm = styled('div', {
     alignItems: 'center',
     cursor: 'pointer',
   },
+})
+
+export const FormError = styled(Text, {
+  color: '$danger',
 })

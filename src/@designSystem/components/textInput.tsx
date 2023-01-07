@@ -6,7 +6,7 @@ const TextInputContainer = styled('div', {
   backgroundColor: '$gray100',
   borderRadius: '$sm',
   boxSizing: 'border-box',
-  border: '2px solid $gray900',
+  border: '2px solid transparent',
   display: 'flex',
   alignItems: 'center',
   gap: '$3',
@@ -17,12 +17,15 @@ const TextInputContainer = styled('div', {
         padding: '$2 $3',
       },
       md: {
-        padding: '$3 $4',
+        padding: '$4 $4',
+        '@sm': {
+          padding: '$3 $4',
+        },
       },
     },
   },
   '&:has(input:focus)': {
-    borderColor: '$ignite300',
+    borderColor: '$primary',
   },
   '&:has(input:disabled)': {
     opacity: 0.5,
@@ -35,7 +38,7 @@ const TextInputContainer = styled('div', {
 
 export const TextInputInput = styled('input', {
   fontFamily: '$default',
-  fontSize: '$sm',
+  fontSize: '$2xl',
   color: '$gray600',
   fontWeight: 'regular',
   background: 'transparent',
@@ -48,7 +51,10 @@ export const TextInputInput = styled('input', {
     cursor: 'not-allowed',
   },
   '&::placeholder': {
-    color: '$gray500',
+    color: '$gray200',
+  },
+  '@sm': {
+    fontSize: '$sm',
   },
 })
 

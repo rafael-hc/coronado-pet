@@ -1,8 +1,7 @@
 import { ReactElement } from 'react'
-// import { useRouter } from 'next/router'
-import { differenceInYears } from 'date-fns'
+import { subYears } from 'date-fns'
 import { z } from 'zod'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { LoginLayout } from '../../layouts/LoginLayout'
 import {
@@ -10,6 +9,7 @@ import {
   StepFormContainer,
   RegisterContainer,
   PersonalDataForm,
+  FormError,
 } from './styles'
 import { NextPageWithLayout } from '../_app.page'
 import { Fieldset } from '../../styles/components/fieldset'
@@ -18,35 +18,61 @@ import { TextInput } from '../../@designSystem/components/textInput'
 import { validaCpf } from '../../utils/validaCpf'
 import { Button } from '../../@designSystem/components/button'
 import { Heading } from '../../@designSystem/components/heading'
+import { states } from '../../utils/stateList'
+import { Select } from '../../@designSystem/components/selectInput'
+import { CheckBox } from '../../@designSystem/components/checkBox'
+import { formateDateForInput } from '../../utils/dateFormat'
 
-const personalDataFormSchema = z.object({
-  name: z
-    .string()
-    .min(3, { message: 'O nome precisa ter no mínimo 3 caracteres.' }),
-  lastName: z
-    .string()
-    .min(3, { message: 'O sobrenome precisa ter no mínimo 3 caracteres.' }),
-  cpf: z
-    .string()
-    .refine((data) => validaCpf(data), { message: 'cpf inválido' }),
-  phone: z.string().min(8, { message: 'Número inválido' }),
-  birthDate: z
-    .string()
-    .refine((data) => differenceInYears(new Date(), new Date(data)) >= 18, {
-      message: 'É preciso ter ao menos 18 anos',
+const personalDataFormSchema = z
+  .object({
+    name: z
+      .string()
+      .min(3, { message: 'O campo precisa ter no mínimo 3 caracteres.' }),
+    lastName: z
+      .string()
+      .min(3, { message: 'O campo precisa ter no mínimo 3 caracteres.' }),
+    cpf: z
+      .string()
+      .refine((data) => validaCpf(data), { message: 'Cpf inválido' }),
+    phone: z.string().min(10, { message: 'Número inválido' }),
+    birthDate: z.string(),
+    zipCode: z.string().min(8, { message: 'Cep inválido' }),
+    street: z
+      .string()
+      .min(3, { message: 'O campo precisa ter no mínimo 3 caracteres.' }),
+    numberOf: z
+      .string()
+      .min(1, { message: 'Informe o número. Informe 0 caso não tenha.' }),
+    complement: z.string(),
+    district: z
+      .string()
+      .min(3, { message: 'O campo precisa ter no mínimo 3 caracteres.' }),
+    city: z
+      .string()
+      .min(3, { message: 'O campo precisa ter no mínimo 3 caracteres.' }),
+    state: z.string().min(2, { message: 'Informe o estado.' }),
+    email: z.string().email({ message: 'E-mail inválido.' }),
+    password: z
+      .string()
+      .min(8, { message: 'Senha muito curta.' })
+      .max(16, { message: 'Senha muito longa.' }),
+    verifyPassword: z
+      .string()
+      .min(8, { message: 'Senha muito curta.' })
+      .max(16, { message: 'Senha muito longa.' }),
+    terms: z.boolean().refine((data) => data === true, {
+      message: 'Aceite as políticas de privacidade',
     }),
-  zipCode: z.string().min(8, { message: 'Cep inválido' }),
-  street: z.string(),
-  numberOf: z.number(),
-  complement: z.string(),
-  district: z.string(),
-  city: z.string(),
-  state: z.string(),
-  email: z.string().email({ message: 'E-mail inválido.' }),
-  password: z.string(),
-  verifyPassword: z.string(),
-  terms: z.string(),
-})
+  })
+  .superRefine(({ password, verifyPassword }, ctx) => {
+    if (password !== verifyPassword) {
+      ctx.addIssue({
+        code: 'custom',
+        message: 'Senhas não idênticas',
+        path: ['verifyPassword'],
+      })
+    }
+  })
 
 type PersonDataType = z.infer<typeof personalDataFormSchema>
 
@@ -54,17 +80,14 @@ const SignUp: NextPageWithLayout = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<PersonDataType>({
     resolver: zodResolver(personalDataFormSchema),
   })
 
-  // const router = useRouter()
-
   async function handleNextStepForm(data: PersonDataType) {
     console.log(data)
-    console.log(validaCpf(data.cpf))
-    // await router.push('/signup/address')
   }
 
   return (
@@ -74,6 +97,54 @@ const SignUp: NextPageWithLayout = () => {
       </Heading>
       <PersonalDataForm as="form" onSubmit={handleSubmit(handleNextStepForm)}>
         <StepFormContainer>
+          <Heading>Informações de login</Heading>
+          <Fieldset>
+            <label>
+              <Text>E-mail</Text>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="email"
+                  placeholder="Digite seu email"
+                  {...register('email')}
+                />
+              </TextInput.Root>
+              {errors.email?.message && (
+                <FormError size="sm">{errors.email.message}</FormError>
+              )}
+            </label>
+          </Fieldset>
+          <Fieldset>
+            <label>
+              <Text>Senha</Text>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="password"
+                  placeholder="Digite sua senha."
+                  {...register('password')}
+                />
+              </TextInput.Root>
+              {errors.password?.message ? (
+                <FormError size="sm">{errors.password.message}</FormError>
+              ) : (
+                <Text size="sm">(entre 8 e 16 caracteres)</Text>
+              )}
+            </label>
+            <label>
+              <Text>Confirme a senha</Text>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="password"
+                  placeholder="Confirme sua senha."
+                  {...register('verifyPassword')}
+                />
+              </TextInput.Root>
+              {errors.verifyPassword?.message ? (
+                <FormError size="sm">{errors.verifyPassword.message}</FormError>
+              ) : (
+                <Text size="sm">(entre 8 e 16 caracteres)</Text>
+              )}
+            </label>
+          </Fieldset>
           <Heading>Dados Pessoais</Heading>
           <Fieldset>
             <label>
@@ -86,7 +157,9 @@ const SignUp: NextPageWithLayout = () => {
                   {...register('name')}
                 />
               </TextInput.Root>
-              {errors.name && <Text>{errors.name.message}</Text>}
+              {errors.name && (
+                <FormError size="sm">{errors.name.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Fieldset>
@@ -100,7 +173,9 @@ const SignUp: NextPageWithLayout = () => {
                   {...register('lastName')}
                 />
               </TextInput.Root>
-              {errors.lastName && <Text>{errors.lastName.message}</Text>}
+              {errors.lastName && (
+                <FormError size="sm">{errors.lastName.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Fieldset>
@@ -117,7 +192,9 @@ const SignUp: NextPageWithLayout = () => {
                   {...register('cpf')}
                 />
               </TextInput.Root>
-              {errors.cpf && <Text>{errors.cpf.message}</Text>}
+              {errors.cpf && (
+                <FormError size="sm">{errors.cpf.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Fieldset>
@@ -134,7 +211,9 @@ const SignUp: NextPageWithLayout = () => {
                   {...register('phone')}
                 />
               </TextInput.Root>
-              {errors.phone && <Text>{errors.phone.message}</Text>}
+              {errors.phone && (
+                <FormError size="sm">{errors.phone.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Fieldset>
@@ -144,10 +223,14 @@ const SignUp: NextPageWithLayout = () => {
                 <TextInput.Input
                   type="date"
                   id="nascimento"
+                  max={formateDateForInput(subYears(new Date(), 18))}
+                  min={formateDateForInput(subYears(new Date(), 90))}
                   {...register('birthDate')}
                 />
               </TextInput.Root>
-              {errors.birthDate && <Text>{errors.birthDate.message}</Text>}
+              {errors.birthDate && (
+                <FormError size="sm">{errors.birthDate.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Heading>Endereço</Heading>
@@ -161,6 +244,9 @@ const SignUp: NextPageWithLayout = () => {
                   {...register('zipCode')}
                 />
               </TextInput.Root>
+              {errors.zipCode?.message && (
+                <FormError size="sm">{errors.zipCode.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Fieldset>
@@ -169,10 +255,13 @@ const SignUp: NextPageWithLayout = () => {
               <TextInput.Root>
                 <TextInput.Input
                   type="text"
-                  placeholder="Digite seu CEP"
+                  placeholder="Digite o nome da rua"
                   {...register('street')}
                 />
               </TextInput.Root>
+              {errors.street?.message && (
+                <FormError size="sm">{errors.street.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Fieldset>
@@ -185,13 +274,16 @@ const SignUp: NextPageWithLayout = () => {
                   {...register('numberOf')}
                 />
               </TextInput.Root>
+              {errors.numberOf?.message && (
+                <FormError size="sm">{errors.numberOf.message}</FormError>
+              )}
             </label>
             <label>
               <Text>Complemento</Text>
               <TextInput.Root>
                 <TextInput.Input
                   type="text"
-                  placeholder="Digite o número do endereço."
+                  placeholder="Digite o complemento."
                   {...register('complement')}
                 />
               </TextInput.Root>
@@ -204,86 +296,68 @@ const SignUp: NextPageWithLayout = () => {
               <TextInput.Root>
                 <TextInput.Input
                   type="text"
-                  placeholder="Digite o número do endereço."
+                  placeholder="Informe o bairro."
                   {...register('district')}
                 />
               </TextInput.Root>
+              {errors.district?.message && (
+                <FormError size="sm">{errors.district.message}</FormError>
+              )}
             </label>
           </Fieldset>
           <Fieldset>
-            <label>
+            <label style={{ flex: 2 }}>
               <Text>Cidade</Text>
               <TextInput.Root>
                 <TextInput.Input
                   type="text"
-                  placeholder="Digite o número do endereço."
+                  placeholder="Informe a cidade."
                   {...register('city')}
                 />
               </TextInput.Root>
+              {errors.city?.message && (
+                <FormError size="sm">{errors.city.message}</FormError>
+              )}
             </label>
-          </Fieldset>
-          <Fieldset>
-            <label>
+            <label style={{ flex: 1 }}>
               <Text>Estado</Text>
               <TextInput.Root>
-                <TextInput.Input
-                  type="text"
-                  placeholder="Digite o número do endereço."
-                  {...register('state')}
-                />
+                <Select {...register('state')}>
+                  <option value={''}>Selecione</option>
+                  {states.map((state) => (
+                    <option value={state} key={state}>
+                      {state}
+                    </option>
+                  ))}
+                </Select>
               </TextInput.Root>
+              {errors.state?.message && (
+                <FormError size="sm">{errors.state.message}</FormError>
+              )}
             </label>
           </Fieldset>
-          <Fieldset>
-            <label>
-              <Text>E-mail</Text>
-              <TextInput.Root>
-                <TextInput.Input
-                  type="email"
-                  placeholder="Digite seu email"
-                  {...register('email')}
+
+          <label style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Controller
+              name="terms"
+              control={control}
+              render={({ field }) => (
+                <CheckBox
+                  onCheckedChange={(checked) => {
+                    field.onChange(checked === true)
+                  }}
+                  checked={field.value}
                 />
-              </TextInput.Root>
-            </label>
-          </Fieldset>
-          <Fieldset>
-            <label>
-              <Text>Senha</Text>
-              <TextInput.Root>
-                <TextInput.Input
-                  type="password"
-                  placeholder="Digite sua senha."
-                  {...register('password')}
-                />
-              </TextInput.Root>
-            </label>
-          </Fieldset>
-          <Fieldset>
-            <label>
-              <Text>Confirme a senha</Text>
-              <TextInput.Root>
-                <TextInput.Input
-                  type="password"
-                  placeholder="Confirme sua senha."
-                  {...register('verifyPassword')}
-                />
-              </TextInput.Root>
-            </label>
-          </Fieldset>
-          <Fieldset inLine>
-            <label>
-              <TextInput.Root>
-                <TextInput.Input
-                  type="checkbox"
-                  placeholder="Digite o número do endereço."
-                  {...register('terms')}
-                />
-              </TextInput.Root>
-              <a href="#">
-                <Text>E-mail</Text>
-              </a>
-            </label>
-          </Fieldset>
+              )}
+            />
+            <Text as="span">Leia nossa</Text>
+            <a href="#">
+              <Text>Políticas de privacidade</Text>
+            </a>
+          </label>
+          {errors.terms && (
+            <FormError size="sm">{errors.terms.message}</FormError>
+          )}
           <ButtonForm>
             <Button type="submit" disabled={isSubmitting}>
               Próximo

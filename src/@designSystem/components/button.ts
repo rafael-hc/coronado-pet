@@ -3,7 +3,7 @@ import { styled } from '../../styles'
 export const Button = styled('button', {
   all: 'unset',
   borderRadius: '$sm',
-  fontSize: '$md',
+  fontSize: '$xl',
   fontWeight: '$bold',
   fontFamily: '$default',
   textAlign: 'center',
@@ -63,15 +63,21 @@ export const Button = styled('button', {
     },
     size: {
       sm: {
-        height: '2.5rem',
+        height: '$10',
       },
       md: {
-        height: '3rem',
+        height: '$16',
+        '@sm': {
+          height: '$12',
+        },
       },
     },
   },
   defaultVariants: {
     variant: 'primary',
     size: 'md',
+  },
+  '@sm': {
+    fontSize: '$md',
   },
 })

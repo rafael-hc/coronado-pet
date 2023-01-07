@@ -32,12 +32,13 @@ export const {
       danger: '#ff3100',
       gray50: '#f1f1f1',
       gray100: '#E1E1E6',
-      gray200: '#C4C4CC',
+      gray200: '#A9A9B2',
       gray400: '#7C7C8A',
-      gray500: '#7C7C8A',
+      gray500: '#505059',
       gray600: '#323238',
-      gray700: '#29292E',
-      gray800: '#1F1E1E',
+      gray700: '#202024',
+      gray800: '#202024',
+      gray900: '#121214',
 
       green300: '#46FF27',
 
