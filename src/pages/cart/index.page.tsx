@@ -1,18 +1,14 @@
 import { ReactElement } from 'react'
-import { LoginLayout } from '../../layouts/LoginLayout'
+import { CartLayout } from '../../layouts/CartLayout'
 import { NextPageWithLayout } from '../../pages/_app.page'
-import { Test } from './styles'
+import { CartComponent } from './component'
 
 const Cart: NextPageWithLayout = () => {
-  return (
-    <Test>
-      <h1>Aqui é o carrinho</h1>
-    </Test>
-  )
+  return <CartComponent />
 }
 
 Cart.getLayout = function getLayout(page: ReactElement) {
-  return <LoginLayout>{page}</LoginLayout>
+  return <CartLayout>{page}</CartLayout>
 }
 
 export default Cart
