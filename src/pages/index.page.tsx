@@ -8,10 +8,10 @@ import { Carrossel } from '../components/Carrossel'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { getAllProducts } from '../services/products/useCases/getProduct/all'
 import { getLatestProducts } from '../services/products/useCases/getProduct/latest'
-import { Button } from '../styles/components/button'
 import { Description, SubBanner, SubBannerContainer } from './styles'
 import { LatestProducts } from '../utils/interfaces/productInterface'
 import { NextPageWithLayout } from './_app.page'
+import { Button } from '../@designSystem/components/button'
 
 interface HomeProps {
   products: (Products & {
@@ -33,7 +33,7 @@ const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
           <Image src="/images/sub-banner-1.webp" alt="" fill />
           <Description>
             <p>Alimentação para Cães e Filhotes</p>
-            <Button size={2} type="button">
+            <Button size="sm" type="button">
               Confira
             </Button>
           </Description>
@@ -42,7 +42,7 @@ const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
           <Image src="/images/sub-banner-2.webp" alt="" fill />
           <Description>
             <p>Cuide da beleza do seu Pet!</p>
-            <Button size={2} type="button">
+            <Button size="sm" type="button">
               Confira
             </Button>
           </Description>
@@ -51,7 +51,7 @@ const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
           <Image src="/images/sub-banner-3.webp" alt="" fill />
           <Description position="right">
             <p>Comida de gato mais saudável?</p>
-            <Button size={2} type="button">
+            <Button size="sm" type="button">
               Confira
             </Button>
           </Description>

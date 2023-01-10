@@ -13,6 +13,15 @@ export const HeaderContainer = styled('header', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+
+  color: '$gray400',
+  backgroundColor: '$background',
+})
+
+export const HeadContent = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
   '@sm': {
     width: 1200,
     margin: '0 auto',

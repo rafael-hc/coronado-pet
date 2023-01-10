@@ -2,7 +2,6 @@ import { styled } from '../../styles'
 
 export const FooterContainer = styled('footer', {
   width: '100%',
-  height: '12rem',
   padding: '2rem 1rem',
   marginBottom: '2rem',
 
@@ -10,10 +9,10 @@ export const FooterContainer = styled('footer', {
   flexDirection: 'column',
   alignItems: 'center',
 
-  backgroundColor: '$white',
+  backgroundColor: '$background',
   borderTop: '$gray-200 solid 1px',
   $$shadowColor: '$colors$secondary',
-  boxShadow: '0px -8px 12px -9px $$shadowColor',
+  // boxShadow: '0px -8px 12px -9px $$shadowColor',
 
   p: {
     paddingBottom: '2rem',

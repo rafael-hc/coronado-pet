@@ -64,7 +64,7 @@ export function Carrossel() {
       <div ref={sliderRef} className="keen-slider">
         <ItemSlide className="keen-slider__slide">
           <Image
-            src="./images/main-banner-01_1903x650.webp"
+            src="/images/main-banner-01_1903x650.webp"
             alt="Cachorro marrom com a patinha levantada usando uma coleira com pingente de ossinho"
             fill
             priority
@@ -77,7 +77,7 @@ export function Carrossel() {
         </ItemSlide>
         <ItemSlide className="keen-slider__slide">
           <Image
-            src="./images/main-banner-2_1903x650.webp"
+            src="/images/main-banner-2_1903x650.webp"
             alt="Gato peludo em cor mesclada entre bege e marrom"
             fill
             priority

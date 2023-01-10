@@ -3,8 +3,9 @@ import { keyframes, styled } from '../../styles'
 
 export const TopBarContainer = styled('nav', {
   width: '100%',
+  maxWidth: '75rem',
   padding: '0.75rem',
-  color: '$gray-400',
+  // color: '$gray-400',
 
   display: 'flex',
   justifyContent: 'space-between',
@@ -107,7 +108,6 @@ export const ButtonAccount = styled('button', {
   gap: '0.5rem',
 
   color: '$gray-500',
-  backgroundColor: '$white',
   boxShadow: `0 2px 10px $black`,
   cursor: 'pointer',
 })

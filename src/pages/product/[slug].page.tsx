@@ -5,15 +5,12 @@ import { SliderThumb } from '../../components/SliderTumb'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getProductBySlug } from '../../services/products/useCases/getProduct/bySlug'
 import {
-  Amount,
-  ButtonChangeAmount,
   Buy,
   DescriptionProduct,
   DetailsProduct,
   InfoContent,
   InfoProduct,
   Information,
-  InputQnt,
   Price,
   ProductContainer,
   Stock,
@@ -23,9 +20,10 @@ import { Product as IProduct } from '../../utils/interfaces/productInterface'
 import { Category } from '../../utils/interfaces/Category'
 import Head from 'next/head'
 import { prisma } from '../../utils/prisma'
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
-import { Button } from '../../styles/components/button'
+import { ShoppingCart } from 'phosphor-react'
 import { NextPageWithLayout } from '../_app.page'
+import { QuantityInput } from '../../@designSystem/components/quantity-input'
+import { Button } from '../../@designSystem/components/button'
 
 interface ProductProps {
   product: IProduct & {
@@ -59,7 +57,7 @@ const Product: NextPageWithLayout<ProductProps> = ({
   return (
     <>
       <Head>
-        <title>{`Coronaro Pet - ${product.name}`}</title>
+        <title>{`Coronado Pet - ${product.name}`}</title>
       </Head>
       <ProductContainer>
         <InfoProduct>
@@ -85,7 +83,12 @@ const Product: NextPageWithLayout<ProductProps> = ({
                 })}
               </Price>
               <Buy>
-                <InputQnt>
+                <QuantityInput
+                  decrement={handleDecreaseQuantityOfProducts}
+                  increment={handleIncreaseQuantityOfProducts}
+                  quantity={amount}
+                />
+                {/* <InputQnt>
                   <ButtonChangeAmount
                     onClick={handleDecreaseQuantityOfProducts}
                     title="Diminuir quantidade"
@@ -106,9 +109,9 @@ const Product: NextPageWithLayout<ProductProps> = ({
                   >
                     <Plus />
                   </ButtonChangeAmount>
-                </InputQnt>
+                </InputQnt> */}
 
-                <Button icon size={2} type="submit" w-full>
+                <Button type="submit">
                   {' '}
                   <ShoppingCart /> Comprar
                 </Button>

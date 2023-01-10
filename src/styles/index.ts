@@ -21,7 +21,7 @@ export const {
       black: '#000',
 
       primary: '#7bb831',
-      background: '#d5f1b3',
+      background: '#f3ffe6',
       secondary: '#437a00',
       button: '#D2D2D2',
       text: '#fffff0',

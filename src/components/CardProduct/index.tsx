@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ShoppingCart } from 'phosphor-react'
-import { Button } from '../../styles/components/button'
+import { Button } from '../../@designSystem/components/button'
 import {
   CardContainer,
   CardImage,
@@ -36,7 +36,7 @@ export function CardProduct({
         <Image src={imageUrl} alt={name} fill quality={75} draggable={false} />
       </CardImage>
       <CardInfo>
-        <Title>{name}</Title>
+        <Title size="sm">{name}</Title>
         <Rating>*****</Rating>
         <Price>
           {(price / 100).toLocaleString('pt-BR', {
@@ -44,7 +44,7 @@ export function CardProduct({
             currency: 'BRL',
           })}
         </Price>
-        <Button type="button" size={2} icon>
+        <Button type="button" size="sm">
           <ShoppingCart />
           Comprar
         </Button>

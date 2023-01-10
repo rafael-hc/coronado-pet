@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Text } from '../../@designSystem/components/text'
 import { styled } from '../../styles'
 
 export const CardContainer = styled(Link, {
@@ -13,13 +14,13 @@ export const CardContainer = styled(Link, {
   borderRadius: 8,
   border: '$gray-200 solid 1px',
 
-  p: {
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    color: '$gray-700',
+  // p: {
+  //   fontSize: '1rem',
+  //   fontWeight: 'bold',
+  //   color: '$gray-700',
 
-    marginBottom: '1rem',
-  },
+  //   marginBottom: '1rem',
+  // },
 
   variants: {
     landscape: {
@@ -46,8 +47,6 @@ export const CardImage = styled('div', {
 
 export const CardInfo = styled('div', {
   height: '10.5rem',
-
-  p: {},
 })
 
 export const Price = styled('span', {
@@ -60,19 +59,12 @@ export const Price = styled('span', {
   },
 })
 
-export const Title = styled('h3', {
-  fontSize: '1.2rem',
-  fontWeight: 'normal',
-  minHeight: '3.4rem',
-  maxHeight: '3.625rem',
+export const Title = styled(Text, {
+  height: '4.8rem',
   overflow: 'hidden',
-  color: '$gray-600',
-
-  marginBottom: '0.5rem',
-
-  '@sm': {
-    fontSize: '1rem',
-  },
+  textOverflow: 'ellipsis',
+  direction: 'ltr',
+  lineHeight: '$short',
 })
 
 export const Rating = styled('div', {

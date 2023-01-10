@@ -14,7 +14,8 @@ export const SearchBar = styled('div', {
     padding: '0 16px',
 
     border: 'none',
-    borderBottom: '1px solid $gray-400',
+    borderBottom: '1px solid $gray400',
+    backgroundColor: 'transparent',
   },
 
   button: {

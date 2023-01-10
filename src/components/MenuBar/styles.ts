@@ -13,7 +13,7 @@ export const MenuBarContainer = styled('nav', {
   justifyContent: 'center',
   gap: '2rem',
 
-  backgroundColor: '$white',
+  // backgroundColor: '$white',
 
   '&::-webkit-scrollbar': {
     width: '0! important',
