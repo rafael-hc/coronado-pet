@@ -38,7 +38,11 @@ const SignIn: NextPageWithLayout = () => {
   } = useForm<loginFormData>({ resolver: zodResolver(loginFormSchema) })
 
   async function handleLogin({ email }: loginFormData) {
-    await signIn('email', { email, callbackUrl: 'http://localhost:3000' })
+    await signIn('email', {
+      email,
+      callbackUrl: process.env.LOCAL_HOST || 'http://localhost:3000',
+      redirect: false,
+    })
   }
 
   return (
