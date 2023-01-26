@@ -1,6 +1,6 @@
 import {
   ArrowSlide,
-  BestsellerContainer,
+  ProductCollectionContainer,
   ItemSlider,
   SliderContainer,
   SliderHeader,
@@ -12,12 +12,12 @@ import { CardProduct } from '../CardProduct'
 import { CaretLeft, CaretRight } from 'phosphor-react'
 import { LatestProducts } from '../../utils/interfaces/productInterface'
 
-interface BestSellerProps {
+interface ProductCollectionProps {
   title: string
   products: LatestProducts[]
 }
 
-export function Bestseller({ title, products }: BestSellerProps) {
+export function ProductCollection({ title, products }: ProductCollectionProps) {
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
@@ -31,7 +31,7 @@ export function Bestseller({ title, products }: BestSellerProps) {
   })
 
   return (
-    <BestsellerContainer>
+    <ProductCollectionContainer>
       <SliderHeader>
         <h2>{title}</h2>
         <div>
@@ -69,6 +69,6 @@ export function Bestseller({ title, products }: BestSellerProps) {
           )
         })}
       </SliderContainer>
-    </BestsellerContainer>
+    </ProductCollectionContainer>
   )
 }

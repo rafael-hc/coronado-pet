@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ChangeEvent, ReactElement, useState } from 'react'
 import { subYears } from 'date-fns'
 import { z } from 'zod'
 import { Controller, useForm } from 'react-hook-form'
@@ -22,6 +22,8 @@ import { states } from '../../utils/stateList'
 import { Select } from '../../@designSystem/components/selectInput'
 import { CheckBox } from '../../@designSystem/components/checkBox'
 import { formateDateForInput } from '../../utils/dateFormat'
+import { AxiosError } from 'axios'
+import { api } from '../../lib/axios'
 
 const personalDataFormSchema = z
   .object({
@@ -52,44 +54,67 @@ const personalDataFormSchema = z
       .min(3, { message: 'O campo precisa ter no mínimo 3 caracteres.' }),
     state: z.string().min(2, { message: 'Informe o estado.' }),
     email: z.string().email({ message: 'E-mail inválido.' }),
-    password: z
-      .string()
-      .min(8, { message: 'Senha muito curta.' })
-      .max(16, { message: 'Senha muito longa.' }),
-    verifyPassword: z
-      .string()
-      .min(8, { message: 'Senha muito curta.' })
-      .max(16, { message: 'Senha muito longa.' }),
+
     terms: z.boolean().refine((data) => data === true, {
       message: 'Aceite as políticas de privacidade',
     }),
   })
-  .superRefine(({ password, verifyPassword }, ctx) => {
-    if (password !== verifyPassword) {
-      ctx.addIssue({
-        code: 'custom',
-        message: 'Senhas não idênticas',
-        path: ['verifyPassword'],
-      })
+  .transform((formData) => {
+    return {
+      name: [formData.name, formData.lastName].join(' '),
+      cpf: formData.cpf,
+      email: formData.email,
+      phone: formData.phone,
+      date_of_birth: new Date(formData.birthDate),
+      address: {
+        street_address: formData.street,
+        number: formData.numberOf,
+        complement: formData.complement,
+        district: formData.district,
+        city: formData.city,
+        state: formData.state,
+        zip_code: formData.zipCode,
+      },
     }
   })
 
-type PersonDataType = z.infer<typeof personalDataFormSchema>
+const validaEmail = z.string().email()
+
+type PersonDataTypeInput = z.input<typeof personalDataFormSchema>
+type PersonDataTypeOutput = z.output<typeof personalDataFormSchema>
 
 const SignUp: NextPageWithLayout = () => {
+  const [emailExists, setEmailExists] = useState(false)
+
   const {
     register,
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
-  } = useForm<PersonDataType>({
+  } = useForm<PersonDataTypeInput>({
     resolver: zodResolver(personalDataFormSchema),
   })
 
-  async function handleNextStepForm(data: PersonDataType) {
-    console.log(data)
+  async function verifyEmailExists1(event: ChangeEvent<HTMLInputElement>) {
+    event.preventDefault()
+    try {
+      validaEmail.parse(event.target.value)
+      const res = await api.get(`/user/verify-email/${event.target.value}`)
+      setEmailExists(res.data)
+    } catch (e) {}
   }
 
+  async function handleNextStepForm(data: any) {
+    const formData = data as PersonDataTypeOutput
+
+    try {
+      await api.post('/user/register', formData)
+    } catch (e) {
+      if (e instanceof AxiosError) {
+        alert(e.response?.data.message)
+      }
+    }
+  }
   return (
     <RegisterContainer>
       <Heading as="h1" size="lg">
@@ -106,42 +131,15 @@ const SignUp: NextPageWithLayout = () => {
                   type="email"
                   placeholder="Digite seu email"
                   {...register('email')}
+                  // onBlur={verifyEmailExists}
+                  onChange={verifyEmailExists1}
                 />
               </TextInput.Root>
               {errors.email?.message && (
                 <FormError size="sm">{errors.email.message}</FormError>
               )}
-            </label>
-          </Fieldset>
-          <Fieldset>
-            <label>
-              <Text>Senha</Text>
-              <TextInput.Root>
-                <TextInput.Input
-                  type="password"
-                  placeholder="Digite sua senha."
-                  {...register('password')}
-                />
-              </TextInput.Root>
-              {errors.password?.message ? (
-                <FormError size="sm">{errors.password.message}</FormError>
-              ) : (
-                <Text size="sm">(entre 8 e 16 caracteres)</Text>
-              )}
-            </label>
-            <label>
-              <Text>Confirme a senha</Text>
-              <TextInput.Root>
-                <TextInput.Input
-                  type="password"
-                  placeholder="Confirme sua senha."
-                  {...register('verifyPassword')}
-                />
-              </TextInput.Root>
-              {errors.verifyPassword?.message ? (
-                <FormError size="sm">{errors.verifyPassword.message}</FormError>
-              ) : (
-                <Text size="sm">(entre 8 e 16 caracteres)</Text>
+              {emailExists && (
+                <FormError size="sm">E-mail já cadastrado</FormError>
               )}
             </label>
           </Fieldset>
@@ -359,7 +357,7 @@ const SignUp: NextPageWithLayout = () => {
             <FormError size="sm">{errors.terms.message}</FormError>
           )}
           <ButtonForm>
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting || emailExists}>
               Próximo
             </Button>
           </ButtonForm>

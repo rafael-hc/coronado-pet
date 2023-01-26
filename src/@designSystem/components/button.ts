@@ -62,6 +62,11 @@ export const Button = styled('button', {
         },
       },
     },
+    'w-full': {
+      true: {
+        width: '100%',
+      },
+    },
     size: {
       sm: {
         height: '$10',

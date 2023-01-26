@@ -1,16 +1,24 @@
-import { prisma } from '../../../../utils/prisma'
+import { prisma } from '../../../../lib/prisma'
 
 export const getProductsByCategory = async (category: string) => {
   const productByCategory = await prisma.products.findMany({
     where: {
-      categories: {
-        some: {
+      sub_category: {
+        category: {
           name: {
             contains: category,
             mode: 'insensitive',
           },
         },
       },
+      // categories: {
+      //   some: {
+      //     name: {
+      //       contains: category,
+      //       mode: 'insensitive',
+      //     },
+      //   },
+      // },
     },
   })
   return productByCategory

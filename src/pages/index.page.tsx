@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Categories, Products } from '@prisma/client'
-import { Bestseller } from '../components/Bestseller'
+import { ProductCollection } from '../components/ProductCollection'
 import { Carrossel } from '../components/Carrossel'
 import { DefaultLayout } from '../layouts/DefaultLayout'
 import { getAllProducts } from '../services/products/useCases/getProduct/all'
@@ -27,7 +27,7 @@ const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
         <title>Coronado Pet - Home</title>
       </Head>
       <Carrossel />
-      <Bestseller title="Mais vendidos" products={latestProducts} />
+      <ProductCollection title="Mais vendidos" products={latestProducts} />
       <SubBannerContainer>
         <SubBanner href="/cachorros">
           <Image src="/images/sub-banner-1.webp" alt="" fill />
@@ -57,7 +57,7 @@ const Home: NextPageWithLayout<HomeProps> = ({ products, latestProducts }) => {
           </Description>
         </SubBanner>
       </SubBannerContainer>
-      <Bestseller title="Lançamentos" products={latestProducts} />
+      <ProductCollection title="Lançamentos" products={latestProducts} />
     </>
   )
 }

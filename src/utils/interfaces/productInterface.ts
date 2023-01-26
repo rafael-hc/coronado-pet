@@ -4,16 +4,18 @@ export interface Product {
   slug: string
   price: number
   costPrice: number
-  description: string[]
   brand: string
-  pet: string
-  specie: string
-  type: string
+  pet: string | null
+  specie: string | null
   imageUrl: string[]
   size: string
   inventory: number
-  barcode: string
-  registeredAt?: Date
+  barcode: string | null
+  registeredAt: Date
+  description: string[]
+  line: string | null
+  age: string[]
+  breedSize: string[]
 }
 
 export interface LatestProducts {

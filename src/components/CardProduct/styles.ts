@@ -12,7 +12,7 @@ export const CardContainer = styled(Link, {
   alignItems: 'center',
 
   borderRadius: 8,
-  border: '$gray-200 solid 1px',
+  border: '$gray200 solid 1px',
 
   // p: {
   //   fontSize: '1rem',
@@ -36,7 +36,7 @@ export const CardContainer = styled(Link, {
 
 export const CardImage = styled('div', {
   width: '100%',
-  height: '13rem',
+  height: '12rem',
   objectFit: 'cover',
   position: 'relative',
 
@@ -46,17 +46,15 @@ export const CardImage = styled('div', {
 })
 
 export const CardInfo = styled('div', {
-  height: '10.5rem',
+  // height: '10.5rem',
 })
 
-export const Price = styled('span', {
-  color: '$gray-600',
+export const Price = styled(Text, {
+  marginBottom: '0.5rem',
+  color: '$gray600',
 
   fontSize: '1.5rem',
   fontWeight: 'bold',
-  '@sm': {
-    fontSize: '1rem',
-  },
 })
 
 export const Title = styled(Text, {

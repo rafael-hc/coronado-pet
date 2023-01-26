@@ -1,11 +1,27 @@
-import { prisma } from '../../../../utils/prisma'
+import { prisma } from '../../../../lib/prisma'
+import { LatestProducts } from '../../../../utils/interfaces/productInterface'
 
-export const getLatestProducts = async () => {
+export const getLatestProducts = async (): Promise<LatestProducts[]> => {
   const bestSeller = await prisma.products.findMany({
     take: 6,
     orderBy: {
-      registeredAt: 'desc',
+      registered_at: 'desc',
+    },
+    select: {
+      id: true,
+      name: true,
+      price: true,
+      image_url: true,
+      slug: true,
     },
   })
-  return bestSeller
+  const response = bestSeller.map((product) => ({
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    imageUrl: product.image_url,
+    slug: product.slug,
+  }))
+
+  return response
 }

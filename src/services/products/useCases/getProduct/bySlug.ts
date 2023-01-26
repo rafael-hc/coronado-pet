@@ -1,4 +1,4 @@
-import { prisma } from '../../../../utils/prisma'
+import { prisma } from '../../../../lib/prisma'
 
 export const getProductBySlug = async (slug: string) => {
   const product = await prisma.products.findUnique({
@@ -6,7 +6,7 @@ export const getProductBySlug = async (slug: string) => {
       slug,
     },
     include: {
-      categories: true,
+      sub_category: true,
     },
   })
   return product

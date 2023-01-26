@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, ShoppingCart } from 'phosphor-react'
+import { Heart, ShoppingCart, UserCircle } from 'phosphor-react'
 import * as HoverCard from '@radix-ui/react-hover-card'
 import { SearchProductBar } from '../SearchProductBar'
 
@@ -11,12 +11,18 @@ import {
   HoverCardContent,
   Icons,
   ImageTrigger,
-  Img,
   Logo,
   Text,
 } from './styles'
+import { signOut, useSession } from 'next-auth/react'
+// import { destroyCookie } from 'nookies'
 
 export function Header() {
+  const session = useSession()
+  function handleSignOut() {
+    // destroyCookie
+    signOut()
+  }
   return (
     <HeaderContainer>
       <SearchProductBar />
@@ -33,6 +39,49 @@ export function Header() {
           <HoverCard.Trigger asChild>
             <ImageTrigger href="/cart">
               <ShoppingCart size={24} />
+            </ImageTrigger>
+          </HoverCard.Trigger>
+          <HoverCard.Portal>
+            <HoverCardContent sideOffset={5}>
+              <Flex css={{ flexDirection: 'column', gap: 7 }}>
+                <Text>Carrinho</Text>
+              </Flex>
+              <HoverCardArrow />
+            </HoverCardContent>
+          </HoverCard.Portal>
+        </HoverCard.Root>
+        {!session.data ? (
+          <ImageTrigger href="/signin">
+            <UserCircle size={24} />
+            <Text>Entrar</Text>
+          </ImageTrigger>
+        ) : (
+          <HoverCard.Root>
+            <HoverCard.Trigger asChild>
+              <ImageTrigger href="/cart">
+                <Text>{`Olá ${session.data?.user?.name?.split(' ')[0]}`}</Text>
+                <UserCircle size={24} />
+              </ImageTrigger>
+            </HoverCard.Trigger>
+            <HoverCard.Portal>
+              <HoverCardContent sideOffset={5}>
+                <Flex css={{ flexDirection: 'column', gap: 7 }}>
+                  <Text>Minha conta</Text>
+                  <Text style={{ cursor: 'pointer' }} onClick={handleSignOut}>
+                    Sair
+                  </Text>
+                </Flex>
+
+                <HoverCardArrow />
+              </HoverCardContent>
+            </HoverCard.Portal>
+          </HoverCard.Root>
+        )}
+        {/* <HoverCard.Root>
+          <HoverCard.Trigger asChild>
+            <ImageTrigger href="/cart">
+              <Person size={24} />
+              <Text>Entrar</Text>
             </ImageTrigger>
           </HoverCard.Trigger>
           <HoverCard.Portal>
@@ -66,7 +115,7 @@ export function Header() {
               <HoverCardArrow />
             </HoverCardContent>
           </HoverCard.Portal>
-        </HoverCard.Root>
+        </HoverCard.Root> */}
         {/* <Link href="/cart">
           <ShoppingCart size={24} />
         </Link> */}

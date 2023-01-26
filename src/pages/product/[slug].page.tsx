@@ -19,7 +19,7 @@ import {
 import { Product as IProduct } from '../../utils/interfaces/productInterface'
 import { Category } from '../../utils/interfaces/Category'
 import Head from 'next/head'
-import { prisma } from '../../utils/prisma'
+import { prisma } from '../../lib/prisma'
 import { ShoppingCart } from 'phosphor-react'
 import { NextPageWithLayout } from '../_app.page'
 import { QuantityInput } from '../../@designSystem/components/quantity-input'
@@ -163,14 +163,13 @@ export const getStaticProps: GetStaticProps<any, { slug: string }> = async ({
         name: product?.name,
         slug: product?.slug,
         price: product?.price,
-        costPrice: product?.costPrice,
+        costPrice: product?.cost_price,
         description: product?.description,
-        imageUrl: product?.imageUrl,
+        imageUrl: product?.image_url,
         brand: product?.brand,
         size: product?.size,
         inventory: product?.inventory,
-        registeredAt: JSON.parse(JSON.stringify(product?.registeredAt)),
-        categories: product?.categories,
+        registeredAt: JSON.parse(JSON.stringify(product?.registered_at)),
       },
     },
     revalidate: 60 * 60 * 4, // 4horas

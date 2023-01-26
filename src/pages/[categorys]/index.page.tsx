@@ -1,4 +1,3 @@
-import { Products as IProduct } from '@prisma/client'
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { ReactElement } from 'react'
@@ -9,10 +8,11 @@ import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getProductsByPet } from '../../services/products/useCases/getProduct/byPet'
 import { GridProducts, PageProductsContainer } from './styles'
 import { BreakPoint } from '../../utils/breakPoints'
+import { Product } from '../../utils/interfaces/productInterface'
 
 interface ProductsProps {
   category: string
-  products: IProduct[]
+  products: Product[]
 }
 
 function Products({ category, products }: ProductsProps) {

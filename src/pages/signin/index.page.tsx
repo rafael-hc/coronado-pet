@@ -2,12 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ReactElement } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { useRouter } from 'next/router'
-import { Envelope, Key } from 'phosphor-react'
+// import { useRouter } from 'next/router'
+import { Envelope } from 'phosphor-react'
 import { LoginLayout } from '../../layouts/LoginLayout'
 import { NextPageWithLayout } from '../_app.page'
-import { useAppDispatch } from '../../store/hooks'
-import { authenticateUser } from '../../store/reducers/loginSlice'
+// import { useAppDispatch } from '../../store/hooks'
+// import { authenticateUser } from '../../store/reducers/loginSlice'
 import {
   FormSingIn,
   InputError,
@@ -20,19 +20,16 @@ import { TextInput } from '../../@designSystem/components/textInput'
 import { Heading } from '../../@designSystem/components/heading'
 import { Text } from '../../@designSystem/components/text'
 import { Button } from '../../@designSystem/components/button'
+import { signIn, useSession } from 'next-auth/react'
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: 'Digite um e-mail válido' }),
-  password: z
-    .string()
-    .min(6, { message: 'A senha deve ter pelo menos 6 caracteres' }),
 })
 
 type loginFormData = z.infer<typeof loginFormSchema>
 
 const SignIn: NextPageWithLayout = () => {
-  const dispatch = useAppDispatch()
-  const router = useRouter()
+  const session = useSession()
 
   const {
     register,
@@ -40,10 +37,10 @@ const SignIn: NextPageWithLayout = () => {
     formState: { errors, isSubmitting },
   } = useForm<loginFormData>({ resolver: zodResolver(loginFormSchema) })
 
-  const handleLogin = ({ email, password }: loginFormData) => {
-    dispatch(authenticateUser({ email, password }))
-    router.push('/')
+  async function handleLogin({ email }: loginFormData) {
+    await signIn('email', { email, callbackUrl: 'http://localhost:3000' })
   }
+
   return (
     <LoginContainer>
       <Heading as="h1" size="2xl">
@@ -69,27 +66,20 @@ const SignIn: NextPageWithLayout = () => {
             <InputError>{String(errors.email.message)}</InputError>
           )}
 
-          <label>
-            <Text>Senha</Text>
-            <TextInput.Root>
-              <TextInput.Icon>
-                <Key />
-              </TextInput.Icon>
-
-              <TextInput.Input
-                type="password"
-                placeholder="Digite sua senha..."
-                {...register('password')}
-              />
-            </TextInput.Root>
-          </label>
-          {errors.password?.message && (
-            <InputError>{String(errors.password?.message)}</InputError>
-          )}
           <Button type="submit" disabled={isSubmitting}>
             Entrar
           </Button>
         </FormSingIn>
+
+        <Text>Entrar com o Google</Text>
+        <Button
+          type="button"
+          onClick={() => {
+            signIn('google', { callbackUrl: 'http://localhost:3000' })
+          }}
+        >
+          Logar com Google
+        </Button>
       </SingIn>
       <SingUp>
         <Heading>Crie sua conta é rápido, fácil e gratuito!</Heading>
@@ -101,6 +91,7 @@ const SignIn: NextPageWithLayout = () => {
           Criar uma conta
         </Button>
       </SingUp>
+      <Text>{`Logado como: ${JSON.stringify(session.data?.user?.name)}`}</Text>
     </LoginContainer>
   )
 }

@@ -1,8 +1,8 @@
 import { Products } from '@prisma/client'
-import { prisma } from '../utils/prisma'
+import { prisma } from '../lib/prisma'
 
 export const filterProductsByPet = async (
-  category: string[],
+  category: string,
   products: Products[],
 ) => {
   const productsId = products.map((product) => {
@@ -17,20 +17,25 @@ export const filterProductsByPet = async (
           },
         },
         {
-          categories: {
-            some: {
-              name: {
-                in: category,
-                // contains: category,
-                mode: 'insensitive',
-              },
+          sub_category: {
+            category: {
+              name: category,
             },
           },
+          // categories: {
+          //   some: {
+          //     name: {
+          //       in: category,
+          //       // contains: category,
+          //       mode: 'insensitive',
+          //     },
+          //   },
+          // },
         },
       ],
     },
     include: {
-      categories: true,
+      sub_category: true,
     },
   })
 

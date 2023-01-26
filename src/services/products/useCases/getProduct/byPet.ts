@@ -1,6 +1,7 @@
-import { prisma } from '../../../../utils/prisma'
+import { prisma } from '../../../../lib/prisma'
+import { Product } from '../../../../utils/interfaces/productInterface'
 
-export const getProductsByPet = async (pet: string) => {
+export async function getProductsByPet(pet: string): Promise<Product[]> {
   const productByPet = await prisma.products.findMany({
     where: {
       pet: {
@@ -9,5 +10,25 @@ export const getProductsByPet = async (pet: string) => {
       },
     },
   })
-  return productByPet
+
+  const response = productByPet.map((product) => ({
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    price: product.price,
+    costPrice: product.cost_price,
+    brand: product.brand,
+    pet: product.pet,
+    specie: product.specie,
+    imageUrl: product.image_url,
+    size: product.size,
+    inventory: product.inventory,
+    barcode: product.barcode,
+    registeredAt: product.registered_at,
+    description: product.description,
+    line: product.line,
+    age: product.age,
+    breedSize: product.breed_size,
+  }))
+  return response
 }

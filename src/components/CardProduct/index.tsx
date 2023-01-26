@@ -44,7 +44,7 @@ export function CardProduct({
             currency: 'BRL',
           })}
         </Price>
-        <Button type="button" size="sm">
+        <Button type="button" size="sm" w-full>
           <ShoppingCart />
           Comprar
         </Button>
