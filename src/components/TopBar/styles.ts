@@ -5,7 +5,6 @@ export const TopBarContainer = styled('nav', {
   width: '100%',
   maxWidth: '75rem',
   padding: '0.75rem',
-  // color: '$gray-400',
 
   display: 'flex',
   justifyContent: 'space-between',
@@ -79,13 +78,11 @@ const StyledClose = styled(PopoverPrimitive.Close, {
   '&:focus': { boxShadow: `0 0 0 2px $secondary` },
 })
 
-// Exports
 export const Popover = PopoverPrimitive.Root
 export const PopoverTrigger = PopoverPrimitive.Trigger
 export const PopoverContent = StyledContent
 export const PopoverClose = StyledClose
 
-// Your app...
 export const Flex = styled('div', {
   display: 'flex',
   alignItems: 'center',

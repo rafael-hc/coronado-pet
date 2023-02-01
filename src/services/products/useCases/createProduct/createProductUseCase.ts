@@ -1,7 +1,4 @@
-import {
-  // Category,
-  Product,
-} from '../../../../utils/interfaces/productInterface'
+import { Product } from '../../../../utils/interfaces/productInterface'
 import { Category } from '../../../../utils/interfaces/Category'
 import { prisma } from '../../../../lib/prisma'
 
@@ -36,7 +33,3 @@ export const createProductUseCase = async (
 
   return result
 }
-
-// (Products & {
-//   categories: Categories[];
-// })

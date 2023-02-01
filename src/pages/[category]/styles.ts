@@ -16,7 +16,7 @@ export const PageProductsContainer = styled('main', {
 
 export const GridProducts = styled('section', {
   display: 'flex',
-  flexDirection: 'column', // flexWrap: 'wrap',
+  flexDirection: 'column',
   justifyContent: 'flex-start',
   rowGap: '1rem',
   columnGap: '1.5rem',

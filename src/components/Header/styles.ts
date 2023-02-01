@@ -11,7 +11,6 @@ export const HeaderContainer = styled('section', {
   alignItems: 'center',
   justifyItems: 'center',
 
-  // backgroundColor: '$white',
   color: '$gray-400',
   '@sm': {
     width: 1200,

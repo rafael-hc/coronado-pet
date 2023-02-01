@@ -10,9 +10,5 @@ export const Input = styled('input', {
   '&:focus': {
     boxShadow: '$solidGrayLarge',
   },
-  // '&:focus': {
   outline: 'transparent',
-  //   boxShadow: '0 0 0 2px $primary',
-  //   // boxShadowColor: '$'
-  // },
 })

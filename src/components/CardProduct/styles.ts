@@ -14,14 +14,6 @@ export const CardContainer = styled(Link, {
   borderRadius: 8,
   border: '$gray200 solid 1px',
 
-  // p: {
-  //   fontSize: '1rem',
-  //   fontWeight: 'bold',
-  //   color: '$gray-700',
-
-  //   marginBottom: '1rem',
-  // },
-
   variants: {
     landscape: {
       true: {
@@ -45,9 +37,7 @@ export const CardImage = styled('div', {
   },
 })
 
-export const CardInfo = styled('div', {
-  // height: '10.5rem',
-})
+export const CardInfo = styled('div', {})
 
 export const Price = styled(Text, {
   marginBottom: '0.5rem',

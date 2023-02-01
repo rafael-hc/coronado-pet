@@ -3,7 +3,6 @@ import { styled } from '../../styles'
 
 const Container = styled('div', {
   width: '$40',
-  // padding: '$4',
 
   display: 'flex',
   alignItems: 'center',

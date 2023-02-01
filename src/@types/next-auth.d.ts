@@ -1,5 +1,9 @@
 import NextAuth from 'next-auth'
 
+interface Address{
+  id: string
+}
+
 declare module 'next-auth' {
   interface User {
     id: string
@@ -9,5 +13,6 @@ declare module 'next-auth' {
     phone?: string
     date_of_birth?: Date
     avatar_url: string
+    address?: Address[]
   }
 }

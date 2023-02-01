@@ -1,7 +1,7 @@
 import { prisma } from '../../../../lib/prisma'
 import { LatestProducts } from '../../../../utils/interfaces/productInterface'
 
-export const getLatestProducts = async (): Promise<LatestProducts[]> => {
+export async function getLatestProducts(): Promise<LatestProducts[]> {
   const bestSeller = await prisma.products.findMany({
     take: 6,
     orderBy: {

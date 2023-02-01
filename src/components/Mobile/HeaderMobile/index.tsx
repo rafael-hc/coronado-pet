@@ -2,33 +2,27 @@ import * as Popover from '@radix-ui/react-popover'
 import { signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import Link from 'next/link'
-import {
-  List,
-  ShoppingCartSimple,
-  SignIn,
-  SignOut,
-  User,
-  X,
-} from 'phosphor-react'
-// import { singOut } from '../../../store/reducers/loginSlice'
+import { List, ShoppingCartSimple, UserCircle } from 'phosphor-react'
+import { Button } from '../../../@designSystem/components/button'
+import { Text } from '../../../@designSystem/components/text'
 import { CartModal } from '../../CartModal'
 import { Logo } from '../../Header/styles'
+import { MenuBarMobile } from '../MenuBarMobile'
 import {
-  ButtonAccount,
-  Flex,
-  PopoverClose,
+  ColumnHeader,
+  HeaderMobileContainer,
+  PopoverArrow,
   PopoverContent,
   PopoverTrigger,
-  StyledArrow,
-} from '../../TopBar/styles'
-import { MenuBarMobile } from '../MenuBarMobile'
-import { ColumnHeader, HeaderMobileContainer } from './styles'
+} from './styles'
 
 export function HeaderMobile() {
   const { data: session } = useSession()
-  const handleLogout = () => {
+
+  async function handleSignOut() {
     signOut()
   }
+
   return (
     <HeaderMobileContainer>
       <ColumnHeader side="left">
@@ -47,34 +41,35 @@ export function HeaderMobile() {
         </Link>
       </Logo>
       <ColumnHeader side="right">
-        <Popover.Root>
-          <PopoverTrigger asChild>
-            <ButtonAccount>
-              <User size={24} />
-            </ButtonAccount>
-          </PopoverTrigger>
-          <Popover.Portal>
-            <PopoverContent sideOffset={5}>
-              <Flex css={{ flexDirection: 'column', gap: 10 }}>
-                {session ? (
-                  <button onClick={handleLogout} style={{ cursor: 'pointer' }}>
-                    {`Logado como: ${session.user?.name}`}
-                    <SignOut size={24} />
-                  </button>
-                ) : (
-                  <Link href="/signin">
-                    <SignIn size={24} />
-                    Entre ou Cadastre-se
-                  </Link>
-                )}
-              </Flex>
-              <PopoverClose aria-label="Close">
-                <X />
-              </PopoverClose>
-              <StyledArrow />
-            </PopoverContent>
-          </Popover.Portal>
-        </Popover.Root>
+        {session ? (
+          <Popover.Root>
+            <PopoverTrigger asChild>
+              <button title="Carrinho de compras">
+                <UserCircle size={24} />
+                {`Olá ${session.user?.name?.split(' ', 1)}`}
+              </button>
+            </PopoverTrigger>
+            <Popover.Portal>
+              <PopoverContent>
+                <Link href="/customer/account">
+                  <Text>Minha conta</Text>
+                </Link>
+                <Link href="/customer/orders">
+                  <Text>Meus Pedidos</Text>
+                </Link>
+                <Button size="sm" onClick={handleSignOut}>
+                  Sair
+                </Button>
+                <PopoverArrow />
+              </PopoverContent>
+            </Popover.Portal>
+          </Popover.Root>
+        ) : (
+          <Link href="/signin" style={{ color: 'black' }}>
+            <UserCircle size={24} />
+          </Link>
+        )}
+
         <Popover.Root>
           <Popover.Trigger asChild>
             <button title="Carrinho de compras">

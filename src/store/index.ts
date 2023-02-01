@@ -1,9 +1,11 @@
 import { AnyAction, configureStore, ThunkAction } from '@reduxjs/toolkit'
-import { productsSlice } from './reducers/productSlice'
+import { addressSlice } from './reducers/addressSlice'
+import { cartSlice } from './reducers/cartSlice'
 
 export const store = configureStore({
   reducer: {
-    products: productsSlice.reducer,
+    products: cartSlice.reducer,
+    address: addressSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

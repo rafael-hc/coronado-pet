@@ -5,6 +5,7 @@ import EmailProvider from 'next-auth/providers/email'
 import { PrismaAdapter } from '../../../lib/auth/prisma-adapter'
 import { prisma } from '../../../lib/prisma'
 import { parseCookies, setCookie } from 'nookies'
+import { getCartId } from '../../../services/cart/getId'
 
 export function buildNextAuthOptions(
   req: NextApiRequest,
@@ -45,11 +46,17 @@ export function buildNextAuthOptions(
     },
     callbacks: {
       async signIn({ profile, account, user, email }) {
+        const newCartId = await getCartId(user.id)
+        setCookie({ res }, '@coronado_pet:cartId', newCartId, {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 7, // 7 day
+        })
+
+        setCookie({ res }, '@coronado_pet:userId', user.id, {
+          path: '/',
+          maxAge: 60 * 60 * 24 * 7, // 1 day
+        })
         if (account?.provider === 'email') {
-          setCookie({ res }, '@coronado_pet:userId', user.id, {
-            path: '/',
-            maxAge: 60 * 60 * 24, // 1 day
-          })
           const existEmailInDb = await prisma.user.findUnique({
             where: {
               email: account?.providerAccountId,
@@ -88,7 +95,8 @@ export function buildNextAuthOptions(
     },
     secret: process.env.NEXTAUTH_SECRET,
     session: {
-      strategy: 'jwt',
+      strategy: 'database',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
     },
   }
 }

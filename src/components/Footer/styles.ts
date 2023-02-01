@@ -12,7 +12,6 @@ export const FooterContainer = styled('footer', {
   backgroundColor: '$background',
   borderTop: '$gray100 solid 1px',
   $$shadowColor: '$colors$secondary',
-  // boxShadow: '0px -8px 12px -9px $$shadowColor',
 
   p: {
     paddingBottom: '2rem',

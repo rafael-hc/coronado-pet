@@ -9,14 +9,22 @@ import { getProductsByPet } from '../../services/products/useCases/getProduct/by
 import { GridProducts, PageProductsContainer } from './styles'
 import { BreakPoint } from '../../utils/breakPoints'
 import { Product } from '../../utils/interfaces/productInterface'
+import { getServerSession } from 'next-auth'
+import { buildNextAuthOptions } from '../api/auth/[...nextauth].api'
+import { shoppingCartByUserId } from '../../services/cart/byUserId'
+import { fetchProducts, ProductsInCart } from '../../store/reducers/cartSlice'
+import { useDispatch } from 'react-redux'
 
 interface ProductsProps {
   category: string
   products: Product[]
+  shoppingCart: ProductsInCart[]
 }
 
-function Products({ category, products }: ProductsProps) {
+function Products({ category, products, shoppingCart }: ProductsProps) {
   const { sm } = BreakPoint()
+  const dispatch = useDispatch()
+  dispatch(fetchProducts(shoppingCart))
   return (
     <>
       <Head>
@@ -26,14 +34,7 @@ function Products({ category, products }: ProductsProps) {
         {sm ? <FilterMobile /> : <Filter />}
         <GridProducts>
           {products.map((product) => (
-            <CardProduct
-              key={product.id}
-              imageUrl={product.imageUrl[0]}
-              name={product.name}
-              price={product.price}
-              slug={product.slug!}
-              landscape={sm}
-            />
+            <CardProduct key={product.id} product={product} landscape={sm} />
           ))}
         </GridProducts>
       </PageProductsContainer>
@@ -49,14 +50,23 @@ Products.getLayout = function getLayout(page: ReactElement) {
 
 export const getServerSideProps: GetServerSideProps<
   any,
-  { categorys: string }
-> = async ({ params }) => {
-  const category = params?.categorys
+  { category: string }
+> = async ({ params, req, res }) => {
+  const session = await getServerSession(
+    req,
+    res,
+    buildNextAuthOptions(req as any, res as any),
+  )
+  const category = params?.category
   const products = await getProductsByPet(category!)
+  const userEmail = session?.user?.email
+  const shoppingCart =
+    typeof userEmail === 'string' && (await shoppingCartByUserId(userEmail))
   return {
     props: {
       products: JSON.parse(JSON.stringify(products)),
       category: JSON.parse(JSON.stringify(category)),
+      shoppingCart: JSON.parse(JSON.stringify(shoppingCart)),
     },
   }
 }

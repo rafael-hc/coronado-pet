@@ -72,24 +72,4 @@ export const Description = styled('div', {
       },
     },
   },
-
-  // button: {
-  //   marginTop: '1rem',
-  //   padding: '0.75rem',
-
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-
-  //   cursor: 'pointer',
-  //   borderRadius: 8,
-  //   fontSize: '1rem',
-
-  //   backgroundColor: '$primary',
-  //   color: '$white',
-
-  //   '&:hover': {
-  //     opacity: '0.8',
-  //   },
-  // },
 })

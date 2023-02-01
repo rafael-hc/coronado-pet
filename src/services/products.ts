@@ -22,15 +22,6 @@ export const filterProductsByPet = async (
               name: category,
             },
           },
-          // categories: {
-          //   some: {
-          //     name: {
-          //       in: category,
-          //       // contains: category,
-          //       mode: 'insensitive',
-          //     },
-          //   },
-          // },
         },
       ],
     },
@@ -42,7 +33,7 @@ export const filterProductsByPet = async (
   return productBySize
 }
 
-export const getBestSellerProducts = async () => {
+export async function getBestSellerProducts() {
   const bestSellet = await prisma.products.findMany()
   return bestSellet
 }

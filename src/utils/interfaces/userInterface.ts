@@ -26,7 +26,7 @@ interface IUserInfo {
 export interface IUser {
   loading: boolean
   userInfo?: IUserInfo
-  userToken?: string // for storing the JWT
+  userToken?: string
   error?: string
-  success: boolean // for monitoring the registration process.
+  success: boolean
 }

@@ -77,6 +77,7 @@ model Address {
   state          String
   zip_code       String
   user_id        String
+  order          Order[]
 
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
@@ -85,18 +86,27 @@ model Address {
 
 // Order
 model ShoppingCart {
-  id          String   @id @default(uuid())
-  created_at  DateTime @default(now())
-  finished_at DateTime
-  is_active   Boolean
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  is_active  Boolean  @default(true)
 
-  user    User   @relation(fields: [user_id], references: [id])
-  user_id String
+  user    User?   @relation(fields: [user_id], references: [id])
+  user_id String?
 
+  session_cart          SessionCart?            @relation(fields: [session_cart_id], references: [id])
+  session_cart_id       String?                 @unique
   ProductOnShoppingCart ProductOnShoppingCart[]
   order                 Order?
 
   @@map("shoppin_carts")
+}
+
+model SessionCart {
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  expire     Int
+
+  shopping_cart ShoppingCart?
 }
 
 model Order {
@@ -108,6 +118,8 @@ model Order {
   user_id          String
   shopping_cart    ShoppingCart @relation(fields: [shopping_cart_id], references: [id])
   shopping_cart_id String       @unique
+  address          Address?     @relation(fields: [address_id], references: [id])
+  address_id       String?
 
   @@map("orders")
 }
@@ -120,6 +132,7 @@ model ProductOnShoppingCart {
   shopping_cart_id String
   quantity         Int
 
+  @@unique([products_id, shopping_cart_id])
   @@map("product_on_shopping_cart")
 }
 

@@ -12,7 +12,6 @@ export const RegisterContainer = styled('main', {
 })
 
 export const PersonalDataForm = styled(Box, {
-  // flex: 1,
   marginTop: '1rem',
   display: 'flex',
   flexDirection: 'column',
@@ -67,22 +66,6 @@ export const LoginForm = styled('div', {
 export const ButtonForm = styled('div', {
   display: 'flex',
   justifyContent: 'space-around',
-
-  // button: {
-  //   height: '2.5rem',
-  //   width: '100%',
-  //   borderRadius: 8,
-
-  //   display: 'flex',
-
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-
-  //   cursor: 'pointer',
-
-  //   backgroundColor: '$primary',
-  //   color: '$white',
-  // },
 })
 
 export const LabelStepForm = styled('div', {
