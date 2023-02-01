@@ -96,7 +96,6 @@ export function Carrossel() {
             onClick={(e: any) =>
               e.stopPropagation() || instanceRef.current?.prev()
             }
-            // disabled={currentSlide === 0}
             position="left"
           >
             <CaretLeft size={30} />
@@ -105,10 +104,6 @@ export function Carrossel() {
             onClick={(e: any) =>
               e.stopPropagation() || instanceRef.current?.next()
             }
-            // disabled={
-            //   currentSlide ===
-            //   instanceRef.current.track.details.slides.length - 1
-            // }
             position="right"
           >
             <CaretRight size={30} />

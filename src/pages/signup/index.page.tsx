@@ -131,7 +131,6 @@ const SignUp: NextPageWithLayout = () => {
                   type="email"
                   placeholder="Digite seu email"
                   {...register('email')}
-                  // onBlur={verifyEmailExists}
                   onChange={verifyEmailExists1}
                 />
               </TextInput.Root>
@@ -185,8 +184,6 @@ const SignUp: NextPageWithLayout = () => {
                   id="cpf"
                   maxLength={14}
                   placeholder="Digite seu CPF"
-                  // value={formatToCPF(cep)}
-                  // onChange={(e) => setCep(e.target.value)}
                   {...register('cpf')}
                 />
               </TextInput.Root>
@@ -204,8 +201,6 @@ const SignUp: NextPageWithLayout = () => {
                   id="celular"
                   maxLength={16}
                   placeholder="Digite seu DDD + Celular"
-                  // value={formatToPhone(tel)}
-                  // onChange={(e) => setTel(e.target.value)}
                   {...register('phone')}
                 />
               </TextInput.Root>

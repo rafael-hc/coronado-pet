@@ -1,10 +1,15 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
-import { ReactElement, useState } from 'react'
+import { ChangeEvent, ReactElement, useState } from 'react'
+import * as AlertDialog from '@radix-ui/react-alert-dialog'
 import { SliderThumb } from '../../components/SliderTumb'
 import { DefaultLayout } from '../../layouts/DefaultLayout'
 import { getProductBySlug } from '../../services/products/useCases/getProduct/bySlug'
 import {
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogOverlay,
+  AlertDialogTitle,
   Buy,
   DescriptionProduct,
   DetailsProduct,
@@ -24,6 +29,17 @@ import { ShoppingCart } from 'phosphor-react'
 import { NextPageWithLayout } from '../_app.page'
 import { QuantityInput } from '../../@designSystem/components/quantity-input'
 import { Button } from '../../@designSystem/components/button'
+import { api } from '../../lib/axios'
+import { useDispatch } from 'react-redux'
+import { addProducts } from '../../store/reducers/cartSlice'
+import { signIn, useSession } from 'next-auth/react'
+import { TextInput } from '../../@designSystem/components/textInput'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { InputError } from '../signin/styles'
+import { FormError } from '../signup/styles'
+import { Text } from '../../@designSystem/components/text'
 
 interface ProductProps {
   product: IProduct & {
@@ -31,12 +47,39 @@ interface ProductProps {
   }
 }
 
+const loginFormSchema = z.object({
+  email: z.string().email({ message: 'Digite um e-mail válido' }),
+})
+
+type loginFormData = z.infer<typeof loginFormSchema>
+
+const validaEmail = z.string().email()
+
 const Product: NextPageWithLayout<ProductProps> = ({
   product,
 }: ProductProps) => {
+  const [open, setOpen] = useState(false)
+  const [addingToCart, setAddingToCart] = useState(false)
   const [amount, setAmount] = useState(1)
+  const [emailExists, setEmailExists] = useState(true)
   const { isFallback } = useRouter()
-  // const { imageUrl, name } = product
+  const { data: session } = useSession()
+  const dispatch = useDispatch()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<loginFormData>({ resolver: zodResolver(loginFormSchema) })
+
+  async function verifyEmailExists(event: ChangeEvent<HTMLInputElement>) {
+    event.preventDefault()
+    try {
+      validaEmail.parse(event.target.value)
+      const res = await api.get(`/user/verify-email/${event.target.value}`)
+      setEmailExists(res.data)
+    } catch (e) {}
+  }
 
   function handleIncreaseQuantityOfProducts() {
     if (amount < 10) {
@@ -48,6 +91,29 @@ const Product: NextPageWithLayout<ProductProps> = ({
     if (amount >= 2) {
       setAmount((state) => state - 1)
     }
+  }
+
+  async function handleAddToCart(productId: string, quantity: number) {
+    setAddingToCart(true)
+    if (session) {
+      await api.post('/cart/add-product', { productId, quantity })
+      dispatch(
+        addProducts({
+          productId: product.id,
+          quantity: amount,
+          name: product.name,
+          imageUrl: product.imageUrl[0],
+          price: product.price,
+        }),
+      )
+      setAddingToCart(false)
+    } else {
+      setAddingToCart(false)
+      setOpen(true)
+    }
+  }
+  async function handleLogin({ email }: loginFormData) {
+    await signIn('email', { email, redirect: false })
   }
 
   if (isFallback) {
@@ -111,7 +177,11 @@ const Product: NextPageWithLayout<ProductProps> = ({
                   </ButtonChangeAmount>
                 </InputQnt> */}
 
-                <Button type="submit">
+                <Button
+                  type="button"
+                  onClick={() => handleAddToCart(product.id, amount)}
+                  disabled={addingToCart}
+                >
                   {' '}
                   <ShoppingCart /> Comprar
                 </Button>
@@ -126,6 +196,51 @@ const Product: NextPageWithLayout<ProductProps> = ({
           ))}
         </DescriptionProduct>
       </ProductContainer>
+      <AlertDialog.Root open={open} onOpenChange={setOpen}>
+        <AlertDialog.Portal>
+          <AlertDialogOverlay />
+          <AlertDialogContent>
+            <AlertDialogTitle>Login</AlertDialogTitle>
+            <AlertDialogDescription>
+              Faça login para adicionar ao carrinho.
+            </AlertDialogDescription>
+            <form onSubmit={handleSubmit(handleLogin)}>
+              <TextInput.Root>
+                <TextInput.Input
+                  type="email"
+                  placeholder="Digite seu e-mail..."
+                  {...register('email')}
+                  onChange={verifyEmailExists}
+                />
+              </TextInput.Root>
+              {errors.email?.message && (
+                <InputError>{String(errors.email.message)}</InputError>
+              )}
+              {emailExists ? (
+                ''
+              ) : (
+                <FormError size="sm">E-mail não cadastrado</FormError>
+              )}
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                style={{ marginTop: '1rem' }}
+              >
+                Entrar
+              </Button>
+            </form>
+            <Text>Entrar com o Google</Text>
+            <Button
+              type="button"
+              onClick={() => {
+                signIn('google', { redirect: false })
+              }}
+            >
+              Logar com Google
+            </Button>
+          </AlertDialogContent>
+        </AlertDialog.Portal>
+      </AlertDialog.Root>
     </>
   )
 }

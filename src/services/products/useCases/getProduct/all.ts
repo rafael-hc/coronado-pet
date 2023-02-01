@@ -1,6 +1,6 @@
 import { prisma } from '../../../../lib/prisma'
 
-export const getAllProducts = async () => {
+export async function getAllProducts() {
   const products = await prisma.products.findMany({
     where: {
       AND: [

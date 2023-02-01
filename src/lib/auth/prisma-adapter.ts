@@ -10,9 +10,6 @@ export function PrismaAdapter(
   return {
     async createUser(user) {
       const { '@coronado_pet:userId': userIdInCookies } = parseCookies({ req })
-      if (!userIdInCookies) {
-        // throw new Error('User id not found')
-      }
 
       const prismaUser = await prisma.user.update({
         where: {
@@ -20,6 +17,13 @@ export function PrismaAdapter(
         },
         data: {
           avatar_url: user.avatar_url,
+        },
+        include: {
+          address: {
+            select: {
+              id: true,
+            },
+          },
         },
       })
 
@@ -36,6 +40,7 @@ export function PrismaAdapter(
         date_of_birth: prismaUser.date_of_birth,
         phone: prismaUser.phone,
         emailVerified: null,
+        address: prismaUser.address,
       }
     },
 
@@ -44,28 +49,12 @@ export function PrismaAdapter(
         where: {
           id,
         },
-      })
-
-      if (!user) {
-        return null
-      }
-
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        cpf: user.cpf,
-        phone: user.phone,
-        avatar_url: user.avatar_url!,
-        date_of_birth: user.date_of_birth,
-        emailVerified: null,
-      }
-    },
-
-    async getUserByEmail(email) {
-      const user = await prisma.user.findUnique({
-        where: {
-          email,
+        include: {
+          address: {
+            select: {
+              id: true,
+            },
+          },
         },
       })
 
@@ -82,6 +71,38 @@ export function PrismaAdapter(
         avatar_url: user.avatar_url!,
         date_of_birth: user.date_of_birth,
         emailVerified: null,
+        address: user.address,
+      }
+    },
+
+    async getUserByEmail(email) {
+      const user = await prisma.user.findUnique({
+        where: {
+          email,
+        },
+        include: {
+          address: {
+            select: {
+              id: true,
+            },
+          },
+        },
+      })
+
+      if (!user) {
+        return null
+      }
+
+      return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        cpf: user.cpf,
+        phone: user.phone,
+        avatar_url: user.avatar_url!,
+        date_of_birth: user.date_of_birth,
+        emailVerified: null,
+        address: user.address,
       }
     },
 
@@ -94,7 +115,22 @@ export function PrismaAdapter(
           },
         },
         include: {
-          user: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              cpf: true,
+              phone: true,
+              avatar_url: true,
+              date_of_birth: true,
+              address: {
+                select: {
+                  id: true,
+                },
+              },
+            },
+          },
         },
       })
 
@@ -112,6 +148,7 @@ export function PrismaAdapter(
         avatar_url: user.avatar_url!,
         date_of_birth: user.date_of_birth,
         emailVerified: null,
+        address: user.address,
       }
     },
 
@@ -123,6 +160,13 @@ export function PrismaAdapter(
         data: {
           avatar_url: user.avatar_url,
         },
+        include: {
+          address: {
+            select: {
+              id: true,
+            },
+          },
+        },
       })
       return {
         id: prismaUser.id,
@@ -133,6 +177,7 @@ export function PrismaAdapter(
         avatar_url: prismaUser.avatar_url!,
         date_of_birth: prismaUser.date_of_birth,
         emailVerified: null,
+        address: prismaUser.address,
       }
     },
 
@@ -175,7 +220,22 @@ export function PrismaAdapter(
           session_token: sessionToken,
         },
         include: {
-          user: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              cpf: true,
+              phone: true,
+              avatar_url: true,
+              date_of_birth: true,
+              address: {
+                select: {
+                  id: true,
+                },
+              },
+            },
+          },
         },
       })
       if (!prismaSession) {
@@ -198,6 +258,7 @@ export function PrismaAdapter(
           avatar_url: user.avatar_url!,
           date_of_birth: user.date_of_birth,
           emailVerified: null,
+          address: user.address,
         },
       }
     },

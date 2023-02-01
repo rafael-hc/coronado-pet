@@ -11,14 +11,6 @@ export const getProductsByCategory = async (category: string) => {
           },
         },
       },
-      // categories: {
-      //   some: {
-      //     name: {
-      //       contains: category,
-      //       mode: 'insensitive',
-      //     },
-      //   },
-      // },
     },
   })
   return productByCategory

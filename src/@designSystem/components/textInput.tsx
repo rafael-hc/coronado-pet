@@ -84,13 +84,6 @@ const TextInputIcon = ({ children }: TextInputIconProps) => {
   return <Icon>{children}</Icon>
 }
 
-// export interface TextInputInputProps
-//   extends InputHTMLAttributes<HTMLInputElement> {}
-
-// const TextInputInput = (props: TextInputInputProps) => {
-//   return <Input {...props} />
-// }
-
 export const TextInput = {
   Root: TextInputRoot,
   Input: TextInputInput,

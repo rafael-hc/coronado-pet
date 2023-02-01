@@ -63,7 +63,6 @@ export const SingUpButton = styled(Link, {
 
 export const InputError = styled(Text, {
   display: 'block',
-  // position: 'absolute',
   bottom: 0,
   right: 0,
   fontSize: '0.825rem',

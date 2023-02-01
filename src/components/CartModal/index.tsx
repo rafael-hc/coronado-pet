@@ -13,7 +13,7 @@ export function CartModal() {
             <X size={32} />
           </Button>
         </CartModalClose>
-        <CartComponent />
+        <CartComponent isMobile />
       </CartModalContent>
     </Popover.Portal>
   )

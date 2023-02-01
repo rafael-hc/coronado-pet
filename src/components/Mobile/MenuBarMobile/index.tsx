@@ -1,7 +1,6 @@
 import * as Popover from '@radix-ui/react-popover'
 import { X } from 'phosphor-react'
 import { Content } from './styles'
-// import { HamburgerMenuContainer } from './styles'
 
 export function MenuBarMobile() {
   return (

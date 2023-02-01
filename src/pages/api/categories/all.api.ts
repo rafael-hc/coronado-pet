@@ -1,14 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { shoppingCartByUserId } from '../../../services/cart'
+import { parseCookies } from 'nookies'
+import { shoppingCartByUserId } from '../../../services/cart/byUserId'
 import { getAllCategories } from '../../../services/products/useCases/getCategories'
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  const { '@coronado_pet:cartId': cartId } = parseCookies({
+    req,
+  })
   if (req.method === 'GET') {
     const response = await getAllCategories()
-    await shoppingCartByUserId('60ab6a74-9c45-440e-b304-182d4943c701')
+    await shoppingCartByUserId(cartId)
     res.status(200).json(response)
   }
 

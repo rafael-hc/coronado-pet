@@ -15,12 +15,14 @@ import {
   Text,
 } from './styles'
 import { signOut, useSession } from 'next-auth/react'
-// import { destroyCookie } from 'nookies'
+import { Button } from '../../@designSystem/components/button'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 export function Header() {
-  const session = useSession()
+  const { data: session } = useSession()
+  const { products } = useSelector((state: RootState) => state)
   function handleSignOut() {
-    // destroyCookie
     signOut()
   }
   return (
@@ -39,6 +41,7 @@ export function Header() {
           <HoverCard.Trigger asChild>
             <ImageTrigger href="/cart">
               <ShoppingCart size={24} />
+              <Text>{products.length}</Text>
             </ImageTrigger>
           </HoverCard.Trigger>
           <HoverCard.Portal>
@@ -50,7 +53,7 @@ export function Header() {
             </HoverCardContent>
           </HoverCard.Portal>
         </HoverCard.Root>
-        {!session.data ? (
+        {!session ? (
           <ImageTrigger href="/signin">
             <UserCircle size={24} />
             <Text>Entrar</Text>
@@ -58,18 +61,23 @@ export function Header() {
         ) : (
           <HoverCard.Root>
             <HoverCard.Trigger asChild>
-              <ImageTrigger href="/cart">
-                <Text>{`Olá ${session.data?.user?.name?.split(' ')[0]}`}</Text>
+              <ImageTrigger href="#">
+                <Text>{`Olá ${session.user?.name?.split(' ')[0]}`}</Text>
                 <UserCircle size={24} />
               </ImageTrigger>
             </HoverCard.Trigger>
             <HoverCard.Portal>
               <HoverCardContent sideOffset={5}>
                 <Flex css={{ flexDirection: 'column', gap: 7 }}>
-                  <Text>Minha conta</Text>
-                  <Text style={{ cursor: 'pointer' }} onClick={handleSignOut}>
+                  <Link href="/customer/account">
+                    <Text>Minha conta</Text>
+                  </Link>
+                  <Link href="/customer/orders">
+                    <Text>Meus Pedidos</Text>
+                  </Link>
+                  <Button size="sm" onClick={handleSignOut}>
                     Sair
-                  </Text>
+                  </Button>
                 </Flex>
 
                 <HoverCardArrow />

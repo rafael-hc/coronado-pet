@@ -6,7 +6,6 @@ export const SliderThumbContainer = styled('div', {
 
   display: 'grid',
   gridTemplateColumns: '1fr',
-  // flexDirection: 'column',
 
   '@sm': {
     width: '100vw',

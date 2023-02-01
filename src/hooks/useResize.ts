@@ -6,11 +6,6 @@ interface SizeProps {
 }
 
 export const useResize = (): SizeProps => {
-  // const initialSize = {
-  //   width: window.screen.width,
-  //   height: window.screen.height,
-  // }
-
   const [size, setSize] = useState({} as SizeProps)
 
   const changeSize = () => {

@@ -1,26 +1,26 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ReactElement } from 'react'
+import { ChangeEvent, ReactElement, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-// import { useRouter } from 'next/router'
+
 import { Envelope } from 'phosphor-react'
 import { LoginLayout } from '../../layouts/LoginLayout'
 import { NextPageWithLayout } from '../_app.page'
-// import { useAppDispatch } from '../../store/hooks'
-// import { authenticateUser } from '../../store/reducers/loginSlice'
+
 import {
   FormSingIn,
   InputError,
   LoginContainer,
   SingIn,
   SingUp,
-  // SingUpButton,
 } from './styles'
 import { TextInput } from '../../@designSystem/components/textInput'
 import { Heading } from '../../@designSystem/components/heading'
 import { Text } from '../../@designSystem/components/text'
 import { Button } from '../../@designSystem/components/button'
 import { signIn, useSession } from 'next-auth/react'
+import { api } from '../../lib/axios'
+import { FormError } from '../signup/styles'
 
 const loginFormSchema = z.object({
   email: z.string().email({ message: 'Digite um e-mail válido' }),
@@ -28,8 +28,11 @@ const loginFormSchema = z.object({
 
 type loginFormData = z.infer<typeof loginFormSchema>
 
+const validaEmail = z.string().email()
+
 const SignIn: NextPageWithLayout = () => {
   const session = useSession()
+  const [emailExists, setEmailExists] = useState(true)
 
   const {
     register,
@@ -37,8 +40,17 @@ const SignIn: NextPageWithLayout = () => {
     formState: { errors, isSubmitting },
   } = useForm<loginFormData>({ resolver: zodResolver(loginFormSchema) })
 
+  async function verifyEmailExists(event: ChangeEvent<HTMLInputElement>) {
+    event.preventDefault()
+    try {
+      validaEmail.parse(event.target.value)
+      const res = await api.get(`/user/verify-email/${event.target.value}`)
+      setEmailExists(res.data)
+    } catch (e) {}
+  }
+
   async function handleLogin({ email }: loginFormData) {
-    await signIn('email', { email, callbackUrl: 'http://localhost:3000' })
+    await signIn('email', { email, callbackUrl: '/' })
   }
 
   return (
@@ -59,14 +71,19 @@ const SignIn: NextPageWithLayout = () => {
                 type="text"
                 placeholder="Digite seu e-mail..."
                 {...register('email')}
+                onChange={verifyEmailExists}
               />
             </TextInput.Root>
           </label>
           {errors.email?.message && (
             <InputError>{String(errors.email.message)}</InputError>
           )}
-
-          <Button type="submit" disabled={isSubmitting}>
+          {emailExists ? (
+            ''
+          ) : (
+            <FormError size="sm">E-mail não cadastrado</FormError>
+          )}
+          <Button type="submit" disabled={isSubmitting || !emailExists}>
             Entrar
           </Button>
         </FormSingIn>
@@ -75,7 +92,7 @@ const SignIn: NextPageWithLayout = () => {
         <Button
           type="button"
           onClick={() => {
-            signIn('google', { callbackUrl: 'http://localhost:3000' })
+            signIn('google', { callbackUrl: '/' })
           }}
         >
           Logar com Google

@@ -59,12 +59,7 @@ export function ProductCollection({ title, products }: ProductCollectionProps) {
         {products.map((product) => {
           return (
             <ItemSlider key={product.id} className="keen-slider__slide">
-              <CardProduct
-                name={product.name}
-                imageUrl={product.imageUrl[0]}
-                price={product.price}
-                slug={product.slug}
-              />
+              <CardProduct product={product} />
             </ItemSlider>
           )
         })}

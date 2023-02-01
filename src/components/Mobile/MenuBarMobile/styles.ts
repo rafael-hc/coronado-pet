@@ -10,6 +10,4 @@ export const Content = styled(Popover.Content, {
   width: '70vw',
   height: '100vh',
   backgroundColor: '$gray-100',
-
-  // zIndex: 9999,
 })
